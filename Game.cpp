@@ -3,6 +3,20 @@
 #include<iostream>
 #include<fstream>
 using namespace std;
+
+MUDGame::MUDGame(){
+    _Run = true;
+
+
+}
+void MUDGame::ToffGame(){
+    _Run = false;
+
+
+}
+bool MUDGame::RunOrNot(){
+    return _Run;
+}
 void MUDGame::LoadLogo(){
     
      fstream file;
