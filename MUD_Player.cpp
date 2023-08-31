@@ -3,9 +3,12 @@
 #include<cstdlib>
 #include<algorithm>
 #include"Player.h"
+#include<vector>
+#include"Equipment.h"
+
 using namespace std;
 
-struct Player
+struct Player_Stats
 {
 	int DateCount=1; //天数 
 	char Major[32];
@@ -19,7 +22,7 @@ struct Player
 
 
 
-Player_Options::Player_Options()  //构造函数 
+Player::Player()  //构造函数 
 {
 
 	cout << endl;
@@ -80,15 +83,16 @@ Player_Options::Player_Options()  //构造函数
 		p->Player_AbilityofPractice = 2;
 		p->Player_Action_Points = 10;
 	}
+	
 }
 
-void Player_Options::Tasks()
+void Player::Tasks()
 {
 	cout << "在10个天数单位内，通过与同学 [交流学习] 和 [探索校园] 提升自己的学习力与各方面能力值" << endl;
 	cout << "在有自信的把握下，向教师发起 [考试] 请求，累积到6个学分方可顺利毕业" << endl;
 }
 
-void Player_Options::State() const //展示玩家当前状态 
+void Player::State() const //展示玩家当前状态 
 {
 	cout << endl;
 	cout << "你的专业 [" << p->Major << ']' << endl;
@@ -101,10 +105,11 @@ void Player_Options::State() const //展示玩家当前状态
 	cout << "在校已学习天数 : " << p->DateCount << endl;
 }
 
-void Player_Options::Equip_equipments(int num_eq)
+void Player::Equip_equipments(int num_eq)
 {
+	Equipment player_equ;
 	cout << endl;
-	cout << " 对于 [" << player_equip[num_eq] << "] 你打算 :" << endl;
+	cout << " 对于 [" << equipment_bag[num_eq-1] << "] 你打算 :" << endl;
 	cout << "1. 使用该物品" << endl;
 	cout << "2. 查看该物品属性" << endl;
 	cout << "3. 卸下该装备" << endl;
@@ -113,21 +118,32 @@ void Player_Options::Equip_equipments(int num_eq)
 	cin >> flag_eq;
 	if (flag_eq == 1)
 	{
-		//给自己增益
+		cout << "装备该物品后你的状态 : " << endl;
+		this->p->Player_AbilityofLearn+= equipment_bag[num_eq - 1]->get_AbilityofLearn();  //学习力 
+		this->p->Player_AbilityofProgramming += equipment_bag[num_eq - 1]->get_AbilityofProgramming();  //编程能力值 
+		this->p->Player_AbilityofMath += equipment_bag[num_eq - 1]->get_AbilityofMath(); // 数学能力值 
+		this->p->Player_AbilityofLogic += equipment_bag[num_eq - 1]->get_AbilityofLogic();  //逻辑能力值 
+		this->p->Player_AbilityofPractice += equipment_bag[num_eq - 1]->get_AbilityofPractice();  //实践能力值 
+		equipment_bag[num_eq - 1]->show();
 	}
 	else if (flag_eq == 2)
 	{
-		//属性
+		equipment_bag[num_eq-1]->show();
 	}
 	else if (flag_eq == 3)
 	{
-		if () //还未使用
+		if (!equipment_bag[num_eq - 1]->get_on()) //还未使用
 		{
 			cout << "该物品仍未使用 无法卸下" << endl;
 		}
 		else
 		{
-
+			this->p->Player_AbilityofLearn -= equipment_bag[num_eq - 1]->get_AbilityofLearn();  //学习力 
+			this->p->Player_AbilityofProgramming -= equipment_bag[num_eq - 1]->get_AbilityofProgramming();  //编程能力值 
+			this->p->Player_AbilityofMath -= equipment_bag[num_eq - 1]->get_AbilityofMath(); // 数学能力值 
+			this->p->Player_AbilityofLogic -= equipment_bag[num_eq - 1]->get_AbilityofLogic();  //逻辑能力值 
+			this->p->Player_AbilityofPractice -= equipment_bag[num_eq - 1]->get_AbilityofPractice();  //实践能力值 
+			equipment_bag[num_eq - 1]->show();
 		}
 	}
 	else if (flag_eq == 4)
@@ -139,7 +155,7 @@ void Player_Options::Equip_equipments(int num_eq)
 		cin >> flag_qr;
 		if (flag_qr == 1)
 		{
-
+			
 		}
 		else
 		{
@@ -149,24 +165,23 @@ void Player_Options::Equip_equipments(int num_eq)
 		
 }
 
-void Player_Options::Backpack() const
+void Player::Backpack() const
 {
-	if () //空 
+	 if (!equipment_bag.empty()) //空 
 	{
-
+		cout << "你的背包空空如也 " << endl;
 	}
 	else
 	{
 		cout << "你背包内的物品有 : " << endl;
-		/*for (int i = 0; i< ;i++)
+		for (int i = 0; i < equipment_bag.size() ; i++)
 		{
-			cout<<i+1<<'. '<<
-		
-	*/
+			cout << i + 1 << '. ' << equipment_bag[i]->get_name();
+		}
 	}
 }
 
-void Player_Options::Eat_orSleep() const
+void Player::Eat_orSleep() const
 {
 	int flag_es;
 	cout << endl;
@@ -234,22 +249,22 @@ void Player_Options::Eat_orSleep() const
 
 }
 
-void Player_Options::Learn_with_classmates() const
+void Player::Learn_with_classmates() const
 {
 
 }
 
-void Player_Options::Exam_with_teachers() const
+void Player::Exam_with_teachers() const
 {
 
 }
 
-void Player_Options::Explore_items() const
+void Player::Explore_items() const
 {
 
 }
 
-void Player_Options::Settings() 
+void Player::Settings() 
 {
 	cout << endl;
 	cout << "进入游戏系统菜单" << endl;
@@ -275,7 +290,7 @@ void Player_Options::Settings()
 
 	}
 }
-Player_Options you;    //实例化一个 you
+Player you;    //实例化一个 you
 void Menu()
 {
 	cout << "你要打算做什么 : " << endl;
@@ -331,8 +346,8 @@ void Menu()
 			{
 				cout << i + 1 << '. ' <<
 				//NPC 
-			}
-		}*/
+			}*/
+		}
 	}
 	else if (opt == 5)
 	{
