@@ -34,7 +34,7 @@ void MUDGame::LoadLogo(){
     file.read(GameLogo,logolength);
 
      file.close();
-
+    return ;
 
 
 }

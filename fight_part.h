@@ -1,13 +1,30 @@
+#ifndef FIGHT_H
+#define FIGHT_H
+#include"Player.h"
+#include<vector>
+
+typedef struct Tskill{
+    char name[16];
+    char description[1024];
+    int  hardlvl;
+    char choices[32];
+    int  answer;
+
+}Skill;
+
 class npc{
 public:
-    void Useskill();
+    npc();
+    int Useskill();
+    bool Check(int skill,int choice);
+    void UseBossSkill();
     void Leave();
-    void GivePoint(/*player*/);
-
+    void GivePoint(Player player);
+    bool IsBoss();
 private:
-    bool _IsBoss ; 
+    bool _isBoss ; 
     bool _inround ;
-    bool _inroom ;
+    
     char Name[16];
     char Description[1024];
     int GiveMat;
@@ -15,13 +32,13 @@ private:
     int GiveProg;
     int GivePrac;
     int GiveLearnPinit;
-    //problem
+    vector<Skill> skills;
+    vector<Skill> bossSkills;
 
 };
 
-struct problem{
-    char name[16];
-    char description[1024];
-    int hardlvl;
 
-};
+
+void FightRound(Player thisPlayer, npc thisNpc);
+
+#endif 
