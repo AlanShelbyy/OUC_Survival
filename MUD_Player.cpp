@@ -1,4 +1,4 @@
-﻿#include<iostream>
+#include<iostream>
 #include<windows.h>
 #include<cstdlib>
 #include<algorithm>
@@ -7,7 +7,7 @@ using namespace std;
 
 struct Player
 {
-	int DateCount; //天数 
+	int DateCount=1; //天数 
 	char Major[32];
 	int Player_AbilityofLearn;  //学习力 
 	int Player_AbilityofProgramming;  //编程能力值 
@@ -101,6 +101,54 @@ void Player_Options::State() const //展示玩家当前状态
 	cout << "在校已学习天数 : " << p->DateCount << endl;
 }
 
+void Player_Options::Equip_equipments(int num_eq)
+{
+	cout << endl;
+	cout << " 对于 [" << player_equip[num_eq] << "] 你打算 :" << endl;
+	cout << "1. 使用该物品" << endl;
+	cout << "2. 查看该物品属性" << endl;
+	cout << "3. 卸下该装备" << endl;
+	cout << "4. 丢弃该物品 " << endl;
+	int flag_eq;
+	cin >> flag_eq;
+	if (flag_eq == 1)
+	{
+		//给自己增益
+	}
+	else if (flag_eq == 2)
+	{
+		//属性
+	}
+	else if (flag_eq == 3)
+	{
+		if () //还未使用
+		{
+			cout << "该物品仍未使用 无法卸下" << endl;
+		}
+		else
+		{
+
+		}
+	}
+	else if (flag_eq == 4)
+	{
+		cout << "确认丢弃该物品?" << endl;
+		cout << "1. 丢弃" << endl;
+		cout << "2. 取消" << endl;
+		int flag_qr;
+		cin >> flag_qr;
+		if (flag_qr == 1)
+		{
+
+		}
+		else
+		{
+			//返回
+		}
+	}
+		
+}
+
 void Player_Options::Backpack() const
 {
 	if () //空 
@@ -110,7 +158,11 @@ void Player_Options::Backpack() const
 	else
 	{
 		cout << "你背包内的物品有 : " << endl;
-
+		/*for (int i = 0; i< ;i++)
+		{
+			cout<<i+1<<'. '<<
+		
+	*/
 	}
 }
 
@@ -223,7 +275,7 @@ void Player_Options::Settings()
 
 	}
 }
-
+Player_Options you;    //实例化一个 you
 void Menu()
 {
 	cout << "你要打算做什么 : " << endl;
@@ -235,7 +287,7 @@ void Menu()
 	if (opt == 1)
 	{
 		cout << "你的状态 : " << endl;
-		State();
+		you.State();
 	}
 	else if (opt == 2)
 	{
@@ -246,7 +298,7 @@ void Menu()
 		else
 		{
 			cout << "以下是你背包中的物品 : " << endl;
-			Backpack();
+			you.Backpack();
 		}
 	}
 	else if (opt == 3)
@@ -258,6 +310,11 @@ void Menu()
 		else
 		{
 			cout << "以下是可拾取的物品 ：" << endl;
+			/*for (int i = 0; i< ;i++)
+		{
+			cout<<i+1<<'. '<<
+
+	*/
 			//物品 
 		}
 	}
@@ -265,13 +322,17 @@ void Menu()
 	{
 		if ()//NPC
 		{
-			cout << "这间教室貌似无人 " << endl;
+			cout << "这间教室貌似空无一人" << endl;
 		}
 		else
 		{
 			cout << "当前教室有 : " << endl;
-			//NPC 
-		}
+			/*for (int i = 0; i <; i++)
+			{
+				cout << i + 1 << '. ' <<
+				//NPC 
+			}
+		}*/
 	}
 	else if (opt == 5)
 	{
@@ -281,7 +342,7 @@ void Menu()
 	}
 	else if (opt == 6)
 	{
-		Eat_orSleep();
+		you.Eat_orSleep();
 	}
 	else if (opt == 7)
 	{
