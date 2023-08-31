@@ -24,12 +24,13 @@ class Equipment {
 public:
 	Equipment(string fname= "data/Equipment",int n = 1);
 	void show();
-	vector<string> player_equip();
+	vector<string> to_player;//储存装备属性 
 private:
 	string intro;//装备的简介
 	string name;//装备的名字
 	Effect equip;//装备的效果属性
 	int num;//数量
 	Type status;//装备状态属性
-	vector<string> to_player;//储存装备属性 
 };
+
+static vector<Equipment*> player_equip;

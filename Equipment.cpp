@@ -1,4 +1,4 @@
-#include<fstream>
+﻿#include<fstream>
 #include<iostream>
 #include<string>
 #include<iomanip>
@@ -6,12 +6,12 @@
 #include"Equipment.h"
 using namespace std;
 
-Equipment::Equipment(string fname,int n) {
+Equipment::Equipment(string fname1,int n) {
 	string change;
-	name = fname + "/" + to_string(n) + ".dat";
+	name = fname1 + "/" + to_string(n) + ".dat";
 	ifstream readf(name);
 	if (!readf)
-		cout << "�޷���" << name<<endl;
+		cout << "无法打开" << name<<endl;
 	getline(readf, intro);
 	to_player.push_back(intro);
 	getline(readf, name);
@@ -45,18 +45,14 @@ Equipment::Equipment(string fname,int n) {
 }
 
 void Equipment::show() {
-	cout << setfill('=')<<setw(20)<< "" << endl;
+	cout << setfill('=')<<setw(25)<< "装备" <<setfill('=') << setw(25) << "" << endl;
 	cout << intro << endl;
 	cout << name << endl;
-	cout << equip.Player_AbilityofLearn << endl;
-	cout << equip.Player_AbilityofProgramming << endl;
-	cout << equip.Player_AbilityofMath << endl;
-	cout << equip.Player_AbilityofLogic << endl;
-	cout << equip.Player_AbilityofPractice << endl;
-	cout << equip.Player_Action_Points << endl;
-	cout << num << endl;
-}
-
-vector<string> Equipment::player_equip(){
-	return to_player;
+	cout <<"学习力" << equip.Player_AbilityofLearn << endl;
+	cout << "编程能力"<<equip.Player_AbilityofProgramming << endl;
+	cout << "数学力"<<equip.Player_AbilityofMath << endl;
+	cout << "逻辑力"<<equip.Player_AbilityofLogic << endl;
+	cout << "实践力"<<equip.Player_AbilityofPractice << endl;
+	cout << "行动点"<<equip.Player_Action_Points << endl;
+	cout << "数量"<<num << endl;
 }
