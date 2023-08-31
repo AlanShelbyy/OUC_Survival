@@ -1,18 +1,27 @@
+#include<iostream>
+
+using namespace std;
+
 class Player_Options
 {
 public:
-	Player_Options(); //³õÊ¼»¯ 
-	void State() const;  //×´Ì¬  
-	void Backpack() const; //±³°ü 
-	void Move() const;  //ÒÆ¶¯ 
-	void Explore_items() const;  //Ì½Ë÷ÎïÆ· 
-	void Eat_orSleep() const; //£¨½öÔÚÊ³ÌÃ£©³Ô·¹ 
-	void Learn_with_classmates() const;  //ÓëÍ¬Ñ§NPCÑ§Ï°½»Á÷ 
-	void Exam_with_teachers() const;  //Óë½ÌÊ¦NPC¿¼ÊÔ 
+	Player_Options(); //åˆå§‹åŒ– 
+	void State() const;  //çŠ¶æ€  
+	void Backpack() const; //èƒŒåŒ…
+	void Equip_equipments(int num_eq);//è£…å¤‡/å¸è£…å¤‡
+	void Move() const;  //ç§»åŠ¨ 
+	void Explore_items() const;  //æ¢ç´¢ç‰©å“ 
+	void Eat_orSleep() const; //ï¼ˆä»…åœ¨é£Ÿå ‚ï¼‰åƒé¥­ 
+	void Learn_with_classmates() const;  //ä¸åŒå­¦NPCå­¦ä¹ äº¤æµ 
+	void Exam_with_teachers() const;  //ä¸æ•™å¸ˆNPCè€ƒè¯• 
 	void Tasks();
-	void Settings();  //ÉèÖÃ 
+	void Settings();  //è®¾ç½® 
 
 private:
-	struct Player* p; //Ö¸ÏòPlayerµÄÖ¸Õë
-	int flag_major; //ÓÃÓÚ¿ª¾ÖÊ±Íæ¼ÒÌôÑ¡×¨Òµ	
+	//ouc_map * p_m;
+	string player_equip[30];
+	struct Player* p; //æŒ‡å‘Playerçš„æŒ‡é’ˆ
+	int flag_major; //ç”¨äºå¼€å±€æ—¶ç©å®¶æŒ‘é€‰ä¸“ä¸š	
+	struct Player* p_equip;//æŒ‡å‘è£…å¤‡
+	struct Player* p_equipment;//  æŒ‡é’ˆæ•°ç»„ç”¨æ¥     
 };
