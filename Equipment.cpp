@@ -6,11 +6,12 @@
 #include"Equipment.h"
 using namespace std;
 
-Equipment::Equipment(string fname) {
+Equipment::Equipment(string fname,int n) {
 	string change;
-	ifstream readf(fname);
+	name = fname + "/" + to_string(n) + ".dat";
+	ifstream readf(name);
 	if (!readf)
-		cout << "无法打开" << fname<<endl;
+		cout << "无法打开" << name<<endl;
 	getline(readf, intro);
 	to_player.push_back(intro);
 	getline(readf, name);
@@ -40,6 +41,7 @@ Equipment::Equipment(string fname) {
 	status.on = change == "true" ? true : false;
 	getline(readf, change);
 	status.immediate = change == "true" ? true : false;
+	readf.close();
 }
 
 void Equipment::show() {

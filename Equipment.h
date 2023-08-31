@@ -22,7 +22,7 @@ struct Type {
 //装备的读取
 class Equipment {
 public:
-	Equipment(string fname);
+	Equipment(string fname= "data/Equipment",int n = 1);
 	void show();
 	vector<string> player_equip();
 private:
