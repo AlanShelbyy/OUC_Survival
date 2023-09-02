@@ -255,7 +255,7 @@ void Player::Learn_with_classmates() const
 
 }
 
-void Player::Exam_with_teachers() const
+void Player::Exam_with_teachers() const//
 {
 
 }
