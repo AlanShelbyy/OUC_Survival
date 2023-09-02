@@ -19,5 +19,4 @@ void ShowLogo();
 void LoadLogo();
 void ToffGame();
 bool RunOrNot();
-void RunGame();
 };
