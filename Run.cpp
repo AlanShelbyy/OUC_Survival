@@ -11,7 +11,7 @@ Player player;
 npc testene;
 
 int main(){
-    cout<<"test"<<endl;
+    
     MUDGame thisgame;
     
     thisgame.RunGame();

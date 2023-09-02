@@ -7,11 +7,20 @@ char GameLogo[4096];
 char GameMap[4096];
 bool _Run;
 Player player;
-npc* NPCs;
+vector<npc> NPCs;
+vector<npc> Boss;
+
+vector<Skill> skills;
+vector<Skill> bossSkills;
 //房间
 //物品
 //商店（可选）
 
+//一些用来表示状态的
+vector<int> npcindex;
+int npcchoice ;
+
+int bossindex;
 
 public:
 MUDGame();

@@ -15,16 +15,18 @@ typedef struct Tskill{
 class npc{
 public:
     npc();
-    int Useskill();
-    bool Check(int skill,int choice);
-    void UseBossSkill();
-    void Leave();
+    int Useskill(vector<Skill>& skills);
+    int UseBossSkill();
+    bool Check(int skill,int choice,vector<Skill>& skills);
+    bool CheckEquip(int skill,int item_class,vector<Skill>& BossSkills);
+    int Getter_hardlvl();
+    void be_attack(bool right_item);
     void GivePoint(Player player);
     bool IsBoss();
 private:
     bool _isBoss ; 
     bool _inround ;
-    
+    int hardlvl;
     char Name[16];
     char Description[1024];
     int GiveMat;
@@ -32,8 +34,7 @@ private:
     int GiveProg;
     int GivePrac;
     int GiveLearnPinit;
-    vector<Skill> skills;
-    vector<Skill> bossSkills;
+
 
 };
 

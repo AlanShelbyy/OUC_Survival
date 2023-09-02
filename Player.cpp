@@ -105,7 +105,9 @@ void Player::State() const //展示玩家当前状态
 	cout << "实践能力值 : " << p->Player_AbilityofPractice << endl;
 	cout << "在校已学习天数 : " << p->DateCount << endl;
 }
-
+int Player::Getter_learn(){
+	return p->Player_AbilityofLearn;
+}
 void Player::Equip_equipments(int num_eq)
 {
 	Equipment player_equ;
@@ -177,7 +179,7 @@ void Player::Backpack() const
 		cout << "你背包内的物品有 : " << endl;
 		for (int i = 0; i < equipment_bag.size() ; i++)
 		{
-			cout << i + 1 << '. ' << equipment_bag[i]->get_name();
+			cout << i + 1 <<'.' << equipment_bag[i]->get_name();
 		}
 	}
 }
