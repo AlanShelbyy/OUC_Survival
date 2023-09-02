@@ -3,7 +3,7 @@
 #include<iostream>
 #include<fstream>
 using namespace std;
-
+enum {start_menu,inroom,fighting,rest,bag,store} gamestate;
 MUDGame::MUDGame(){
     _Run = true;
 
@@ -41,4 +41,33 @@ void MUDGame::LoadLogo(){
 void MUDGame::ShowLogo(){
 
     cout<<GameLogo;
+}
+void MUDGame::RunGame(){
+    system("pause");
+
+    int choice=0;
+    gamestate = start_menu;
+    while(this->RunOrNot()){
+
+        
+        switch(gamestate){ 
+            case start_menu:cout<<"this is start"<<endl;//各种游戏状态
+                            gamestate = fighting;
+                            //thisgame.ToffGame();
+                            break;
+            case inroom:cout<<"inroom";break;
+            case fighting: cout<<"你选择了战斗！"<<endl;
+                            FightRound(player,testene);
+                            
+                            gamestate = inroom;
+            
+                            break;
+            case rest: ;break;
+            case bag: ; break;
+            case store: ;break;
+            default: thisgame.ToffGame();
+                    cout<<"esc unexpected";
+                    break;
+        }
+    }
 }

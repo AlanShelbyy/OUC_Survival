@@ -27,7 +27,7 @@ int npc::Useskill(){
     uniform_int_distribution<int> u(0,skills.size()-1);
     e.seed(time(0));
     choice = u(e);
-    cout<<choice<<'#'<<endl;
+    cout<<"µ÷ÊÔÐÅÏ¢"<<choice<<'#'<<endl;
 
     cout<<skills[choice].name<<endl;
     cout<<skills[choice].description<<endl;
