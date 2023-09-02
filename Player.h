@@ -1,11 +1,12 @@
+#pragma once
 #include<iostream>
 
 using namespace std;
 
-class Player_Options
+class Player
 {
 public:
-	Player_Options(); //初始化 
+	Player(); //初始化 
 	void State() const;  //状态  
 	void Backpack() const; //背包
 	void Equip_equipments(int num_eq);//装备/卸装备
@@ -19,9 +20,9 @@ public:
 
 private:
 	//ouc_map * p_m;
-	string player_equip[30];
-	struct Player* p; //指向Player的指针
+
+	struct Player_Stats* p; //指向Player的指针
 	int flag_major; //用于开局时玩家挑选专业	
-	struct Player* p_equip;//指向装备
-	struct Player* p_equipment;//  指针数组用来     
+	struct Player_Stats* p_equip;//指向装备
+	struct Player_Stats* p_equipment;//  指针数组用来     
 };
