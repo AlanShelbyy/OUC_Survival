@@ -1,19 +1,20 @@
 #pragma once
 #include<iostream>
+
 #include<cstring>
 using namespace std;
 
 
 struct Player_Stats
 {
-	int DateCount=1; //ÌìÊı 
+	int DateCount=1; //å¤©æ•° 
 	char Major[32];
-	int Player_AbilityofLearn;  //Ñ§Ï°Á¦ 
-	int Player_AbilityofProgramming;  //±à³ÌÄÜÁ¦Öµ 
-	int Player_AbilityofMath;  // ÊıÑ§ÄÜÁ¦Öµ 
-	int Player_AbilityofLogic;  //Âß¼­ÄÜÁ¦Öµ 
-	int Player_AbilityofPractice;  //Êµ¼ùÄÜÁ¦Öµ 
-	int Player_Action_Points;  //ĞĞ¶¯µã
+	int Player_AbilityofLearn;  //å­¦ä¹ åŠ› 
+	int Player_AbilityofProgramming;  //ç¼–ç¨‹èƒ½åŠ›å€¼ 
+	int Player_AbilityofMath;  // æ•°å­¦èƒ½åŠ›å€¼ 
+	int Player_AbilityofLogic;  //é€»è¾‘èƒ½åŠ›å€¼ 
+	int Player_AbilityofPractice;  //å®è·µèƒ½åŠ›å€¼ 
+	int Player_Action_Points;  //è¡ŒåŠ¨ç‚¹
 	Player_Stats(){ 
 		DateCount = 0;
 		strcpy(Major,"nothing");
@@ -28,27 +29,32 @@ struct Player_Stats
 };
 
 
+
 class Player
 {
 public:
-	Player(); //³õÊ¼»¯ 
-	void State() const;  //×´Ì¬  
-	void Backpack() const; //±³°ü
-	void Equip_equipments(int num_eq);//×°±¸/Ğ¶×°±¸
-	void Move() const;  //ÒÆ¶¯ 
-	void Explore_items() const;  //Ì½Ë÷ÎïÆ· 
-	void Eat_orSleep() const; //£¨½öÔÚÊ³ÌÃ£©³Ô·¹ 
-	void Learn_with_classmates() const;  //ÓëÍ¬Ñ§NPCÑ§Ï°½»Á÷ 
-	void Exam_with_teachers() const;  //Óë½ÌÊ¦NPC¿¼ÊÔ 
+	Player(); //åˆå§‹åŒ– 
+	void State() const;  //çŠ¶æ€  
+	void Backpack() const; //èƒŒåŒ…
+	void Equip_equipments(int num_eq);//è£…å¤‡/å¸è£…å¤‡
+	void Move() const;  //ç§»åŠ¨ 
+	void Explore_items() const;  //æ¢ç´¢ç‰©å“ 
+	void Eat_orSleep() const; //ï¼ˆä»…åœ¨é£Ÿå ‚ï¼‰åƒé¥­ 
+	void Learn_with_classmates() const;  //ä¸åŒå­¦NPCå­¦ä¹ äº¤æµ 
+	void Exam_with_teachers() const;  //ä¸æ•™å¸ˆNPCè€ƒè¯• 
 	void Tasks();
-	void Settings();  //ÉèÖÃ 
+	void Settings();  //è®¾ç½® 
+
 	void GetReward(int pro , int mat , int log , int pra , int lnp);
+
 
 private:
 	//ouc_map * p_m;
 
-	struct Player_Stats* p; //Ö¸ÏòPlayerµÄÖ¸Õë
-	int flag_major; //ÓÃÓÚ¿ª¾ÖÊ±Íæ¼ÒÌôÑ¡×¨Òµ	
-	struct Player_Stats* p_equip;//Ö¸Ïò×°±¸
-	struct Player_Stats* p_equipment;//  Ö¸ÕëÊı×éÓÃÀ´     
+	struct Player_Stats* p; //æŒ‡å‘Playerçš„æŒ‡é’ˆ
+	int flag_major; //ç”¨äºå¼€å±€æ—¶ç©å®¶æŒ‘é€‰ä¸“ä¸š	
+	struct Player_Stats* p_equip;//æŒ‡å‘è£…å¤‡
+	struct Player_Stats* p_equipment;//  æŒ‡é’ˆæ•°ç»„ç”¨æ¥     
+
 };
+
