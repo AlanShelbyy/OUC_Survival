@@ -1,3 +1,4 @@
+
 #include<iostream>
 #include<windows.h>
 #include<cstdlib>
@@ -364,4 +365,4 @@ void Menu()
 	{
 		//地图 
 	}
-}
+} 
