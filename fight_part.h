@@ -23,9 +23,7 @@ public:
     void be_attack(bool right_item);
     void GivePoint(Player player);
     bool IsBoss();
-private:
-    bool _isBoss ; 
-    bool _inround ;
+    //ÎªÁË·½±ã
     int hardlvl;
     char Name[16];
     char Description[1024];
@@ -34,6 +32,10 @@ private:
     int GiveProg;
     int GivePrac;
     int GiveLearnPinit;
+private:
+    bool _isBoss ; 
+    bool _inround ;
+    
 
 
 };

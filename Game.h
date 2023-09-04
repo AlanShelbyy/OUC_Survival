@@ -24,6 +24,8 @@ int bossindex;
 
 public:
 MUDGame();
+void LoadNpc();
+void ShowNpcList();
 void ShowLogo();
 void LoadLogo();
 void LoadSkill();

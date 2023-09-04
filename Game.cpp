@@ -21,6 +21,43 @@ vector<Equipment*> equipment_bag;
 MUDGame::MUDGame(){
     _Run = true;
 }
+
+void MUDGame::LoadNpc(){
+    fstream infile;
+    npc tmp;
+    
+    infile.open("date\\npc.dat",ios::in);
+    if(!infile){
+        cout<<"打开失败"<<endl;
+        exit(1);
+    }
+
+    while(!infile.eof()){
+        infile>>tmp.Name;
+        infile>>tmp.Description;
+        infile>>tmp.GiveMat;
+        infile>>tmp.GiveLog;
+        infile>>tmp.GiveProg;
+        infile>>tmp.GivePrac;
+        infile>>tmp.GiveLearnPinit;
+        infile>>tmp.hardlvl;
+        //  if(infile.eof()){
+        //     cout<<"读取结束"<<endl;
+        //     return ;
+        //  }
+        NPCs.push_back(tmp);
+        // cout<<skills.size()<<'#';
+    }
+    return;
+}
+
+void MUDGame::ShowNpcList(){
+    for(int i = 0; i<NPCs.size();i++){
+        cout<<NPCs[i].Name<<endl;
+        cout<<NPCs[i].Description<<endl;
+    }
+
+} 
 void MUDGame::LoadSkill(){
     fstream infile;
     Skill tmp;
@@ -36,10 +73,10 @@ void MUDGame::LoadSkill(){
         infile>>tmp.choices;
         infile>>tmp.answer;
         infile>>tmp.hardlvl;
-         if(infile.eof()){
-            cout<<"读取结束"<<endl;
-            return ;
-         }
+        //  if(infile.eof()){
+        //     cout<<"读取结束"<<endl;
+        //     return ;
+        //  }
         skills.push_back(tmp);
         // cout<<skills.size()<<'#';
     }
@@ -62,8 +99,10 @@ void MUDGame::ShowSkillList(){
 void MUDGame::RunGame(){
     LoadLogo();
     LoadSkill();
-    //ShowSkillList();
-    cout<<"end"<<endl;
+    ShowSkillList();
+    LoadNpc();
+    ShowNpcList();
+    cout<<"load end"<<endl;
     int choice=0;
     int operate;
     npc* tmpNpc;
