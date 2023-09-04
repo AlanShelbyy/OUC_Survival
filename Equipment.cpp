@@ -12,6 +12,8 @@ Equipment::Equipment(string fname1,int n) {
 	ifstream readf(name);
 	if (!readf)
 		cout << "无法打开" << name<<endl;
+	getline(readf, change);
+	id = stoi(change);
 	getline(readf, intro);
 	to_player.push_back(intro);
 	getline(readf, name);
