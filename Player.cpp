@@ -1,90 +1,92 @@
-﻿#include<iostream>
+
+#include<iostream>
 #include<windows.h>
 #include<cstdlib>
 #include<algorithm>
 #include"Player.h"
 #include<vector>
 #include"Equipment.h"
-
+#include<ctime>
 using namespace std;
-
-struct Player_Stats
-{
-	int DateCount=1; //天数 
-	char Major[32];
-	int Player_AbilityofLearn;  //学习力 
-	int Player_AbilityofProgramming;  //编程能力值 
-	int Player_AbilityofMath;  // 数学能力值 
-	int Player_AbilityofLogic;  //逻辑能力值 
-	int Player_AbilityofPractice;  //实践能力值 
-	int Player_Action_Points;  //行动点 
-};
-
-
-
-Player::Player()  //构造函数 
-{
-
-	cout << endl;
-	cout << "欢迎你来到 OUC 信部 ！"; Sleep(400);
-	cout << "想好计算机类分流后的专业去向了么？ 有以下四个分流专业供你挑选 : " << endl;
-	cout << "1. 计算机科学与技术" << endl;
-	cout << "2. 智能科学与技术" << endl;
-	cout << "3. 网络空间安全" << endl;
-	cout << "4. 软件工程" << endl;
-	cout << endl;
-	cout << "请选择一个适合你的分流专业 : " << endl;
-	cin >> flag_major;
-	if (flag_major == 1)
-	{
-		cout << "你已成为 [计算机科学与技术] 专业的学生  " << endl;
-		Sleep(300);
-		cout << "快去探索校园 不断交流学习 提高自身能力 争取顺利毕业吧 " << endl;
-		p->Player_AbilityofLearn = 1;
-		p->Player_AbilityofProgramming = 4;
-		p->Player_AbilityofMath = 2;
-		p->Player_AbilityofLogic = 2;
-		p->Player_AbilityofPractice = 2;
-		p->Player_Action_Points = 10;
-	}
-	else if (flag_major == 2)
-	{
-		cout << "你已成为 [智能科学与技术] 专业的学生  " << endl;
-		Sleep(300);
-		cout << "快去探索校园 不断交流学习 提高自身能力 争取顺利毕业吧 " << endl;
-		p->Player_AbilityofLearn = 1;
-		p->Player_AbilityofProgramming = 2;
-		p->Player_AbilityofMath = 2;
-		p->Player_AbilityofLogic = 4;
-		p->Player_AbilityofPractice = 2;
-		p->Player_Action_Points = 10;
-	}
-	else if (flag_major == 3)
-	{
-		cout << "你已成为 [网络空间安全] 专业的学生  " << endl;
-		Sleep(300);
-		cout << "快去探索校园 不断交流学习 提高自身能力 争取顺利毕业吧 " << endl;
-		p->Player_AbilityofLearn = 1;
-		p->Player_AbilityofProgramming = 2;
-		p->Player_AbilityofMath = 2;
-		p->Player_AbilityofLogic = 3;
-		p->Player_AbilityofPractice = 3;
-		p->Player_Action_Points = 10;
-	}
-	else if (flag_major == 4)
-	{
-		cout << "你已成为 [软件工程] 专业的学生  " << endl;
-		Sleep(300);
-		cout << "快去探索校园 不断交流学习 提高自身能力 争取顺利毕业吧 " << endl;
-		p->Player_AbilityofLearn = 1;
-		p->Player_AbilityofProgramming = 4;
-		p->Player_AbilityofMath = 2;
-		p->Player_AbilityofLogic = 2;
-		p->Player_AbilityofPractice = 2;
-		p->Player_Action_Points = 10;
-	}
+Player::Player(){//测试用例
+	p = (struct Player_Stats*)new struct Player_Stats;
 	
 }
+void Player::GetReward(int pro , int mat , int log , int pra , int lnp){
+	p->Player_AbilityofLearn += lnp;
+	p->Player_AbilityofLogic += log;
+	p->Player_AbilityofMath += mat;
+	p->Player_AbilityofPractice =+ pra;
+	p->Player_AbilityofProgramming += pro;
+}
+
+
+
+
+
+// Player::Player()  //构造函数 
+// {
+
+// 	cout << endl;
+// 	cout << "欢迎你来到 OUC 信部 ！"; Sleep(400);
+// 	cout << "想好计算机类分流后的专业去向了么？ 有以下四个分流专业供你挑选 : " << endl;
+// 	cout << "1. 计算机科学与技术" << endl;
+// 	cout << "2. 智能科学与技术" << endl;
+// 	cout << "3. 网络空间安全" << endl;
+// 	cout << "4. 软件工程" << endl;
+// 	cout << endl;
+// 	cout << "请选择一个适合你的分流专业 : " << endl;
+// 	cin >> flag_major;
+// 	if (flag_major == 1)
+// 	{
+// 		cout << "你已成为 [计算机科学与技术] 专业的学生  " << endl;
+// 		Sleep(300);
+// 		cout << "快去探索校园 不断交流学习 提高自身能力 争取顺利毕业吧 " << endl;
+// 		p->Player_AbilityofLearn = 1;
+// 		p->Player_AbilityofProgramming = 4;
+// 		p->Player_AbilityofMath = 2;
+// 		p->Player_AbilityofLogic = 2;
+// 		p->Player_AbilityofPractice = 2;
+// 		p->Player_Action_Points = 10;
+// 	}
+// 	else if (flag_major == 2)
+// 	{
+// 		cout << "你已成为 [智能科学与技术] 专业的学生  " << endl;
+// 		Sleep(300);
+// 		cout << "快去探索校园 不断交流学习 提高自身能力 争取顺利毕业吧 " << endl;
+// 		p->Player_AbilityofLearn = 1;
+// 		p->Player_AbilityofProgramming = 2;
+// 		p->Player_AbilityofMath = 2;
+// 		p->Player_AbilityofLogic = 4;
+// 		p->Player_AbilityofPractice = 2;
+// 		p->Player_Action_Points = 10;
+// 	}
+// 	else if (flag_major == 3)
+// 	{
+// 		cout << "你已成为 [网络空间安全] 专业的学生  " << endl;
+// 		Sleep(300);
+// 		cout << "快去探索校园 不断交流学习 提高自身能力 争取顺利毕业吧 " << endl;
+// 		p->Player_AbilityofLearn = 1;
+// 		p->Player_AbilityofProgramming = 2;
+// 		p->Player_AbilityofMath = 2;
+// 		p->Player_AbilityofLogic = 3;
+// 		p->Player_AbilityofPractice = 3;
+// 		p->Player_Action_Points = 10;
+// 	}
+// 	else if (flag_major == 4)
+// 	{
+// 		cout << "你已成为 [软件工程] 专业的学生  " << endl;
+// 		Sleep(300);
+// 		cout << "快去探索校园 不断交流学习 提高自身能力 争取顺利毕业吧 " << endl;
+// 		p->Player_AbilityofLearn = 1;
+// 		p->Player_AbilityofProgramming = 4;
+// 		p->Player_AbilityofMath = 2;
+// 		p->Player_AbilityofLogic = 2;
+// 		p->Player_AbilityofPractice = 2;
+// 		p->Player_Action_Points = 10;
+// 	}
+	
+// }
 
 void Player::Tasks()
 {
@@ -104,7 +106,9 @@ void Player::State() const //展示玩家当前状态
 	cout << "实践能力值 : " << p->Player_AbilityofPractice << endl;
 	cout << "在校已学习天数 : " << p->DateCount << endl;
 }
-
+int Player::Getter_learn(){
+	return p->Player_AbilityofLearn;
+}
 void Player::Equip_equipments(int num_eq)
 {
 	Equipment player_equ;
@@ -176,7 +180,7 @@ void Player::Backpack() const
 		cout << "你背包内的物品有 : " << endl;
 		for (int i = 0; i < equipment_bag.size() ; i++)
 		{
-			cout << i + 1 << '. ' << equipment_bag[i]->get_name();
+			cout << i + 1 <<'.' << equipment_bag[i]->get_name();
 		}
 	}
 }
@@ -192,7 +196,7 @@ void Player::Eat_orSleep() const
 		int flag_eat; //一天仅仅可以用餐一次  转天flag_eat标注为 1 可用餐  
 		srand(time(NULL));
 		int temp1_Player_Action_Points = rand() % 4 + 2; //吃一次饭随机加 2~5行动点  
-		if () //不在食堂
+		if (false) //不在食堂
 		{
 			cout << "此处不可用餐 仅可在食堂用餐 " << endl;
 		}
@@ -219,7 +223,7 @@ void Player::Eat_orSleep() const
 	}
 	else if (flag_es == 2)
 	{
-		if ()//不在宿舍
+		if (false)//不在宿舍
 		{
 			cout << endl;
 			cout << "仅允许在宿舍睡大觉哦" << endl;
@@ -254,7 +258,7 @@ void Player::Learn_with_classmates() const
 
 }
 
-void Player::Exam_with_teachers() const
+void Player::Exam_with_teachers() const//
 {
 
 }
@@ -306,7 +310,7 @@ void Menu()
 	}
 	else if (opt == 2)
 	{
-		if () //背包为空
+		if (false) //背包为空
 		{
 			cout << "你的背包里 空空如也 " << endl;
 		}
@@ -318,7 +322,7 @@ void Menu()
 	}
 	else if (opt == 3)
 	{
-		if () //无物品 
+		if (false) //无物品 
 		{
 			cout << "这间教室中无物品可拾取 " << endl;
 		}
@@ -335,7 +339,7 @@ void Menu()
 	}
 	else if (opt == 4)
 	{
-		if ()//NPC
+		if (false)//NPC
 		{
 			cout << "这间教室貌似空无一人" << endl;
 		}
@@ -363,4 +367,4 @@ void Menu()
 	{
 		//地图 
 	}
-}
+} 
