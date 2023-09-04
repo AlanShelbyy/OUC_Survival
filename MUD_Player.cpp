@@ -35,6 +35,21 @@ ouc_map* Player::get_map() {
 	return p_m;
 }
 
+/*void clear()
+{
+	cout << endl;
+	cout << endl;
+	cout << endl;
+	int temp_cl;
+	cout << "请按任意键继续...";
+	cin >> temp_cl;
+	if (temp_cl)
+	{
+		system("cls");
+	}
+
+}*/
+
 void showMap() {
 	string line;
 	ifstream file("data/map.dat");
@@ -48,6 +63,7 @@ void showMap() {
 		cout << "无法打开文件" << endl;
 	}
 }
+
 
 
 Player::Player()  //构造函数 
@@ -348,39 +364,26 @@ void Menu()
 			you.Backpack();
 		}
 	}
-	/*else if (opt == 3)
+	else if (opt == 3)
 	{
-		if () //无物品 
-		{
-			cout << "这间教室中无物品可拾取 " << endl;
-		}
-		else
-		{
-			cout << "以下是可拾取的物品 ：" << endl;
-			/*for (int i = 0; i< ;i++)
-		{
-			cout<<i+1<<'. '<<
-
-	
-			//物品 
-		}
+		you.get_map()->map_explore(you);
 	}
 	else if (opt == 4)
 	{
-		if ()//NPC
+		if (you.get_map()->get_npc_id().empty())//该房间没有NPC
 		{
 			cout << "这间教室貌似空无一人" << endl;
 		}
 		else
 		{
 			cout << "当前教室有 : " << endl;
-			/*for (int i = 0; i <; i++)
+			for (int i = 0; i <you.get_map()->get_npc_id().size(); i++)
 			{
 				cout << i + 1 << '. ' <<
 				//NPC 
 			}
 		}
-	}*/
+	}
 	else if (opt == 5)
 	{
 		cout << endl;
