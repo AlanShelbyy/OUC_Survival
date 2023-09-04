@@ -1,3 +1,4 @@
+
 #include<iostream>
 #include<windows.h>
 #include<cstdlib>
@@ -5,8 +6,12 @@
 #include"Player.h"
 #include<vector>
 #include"Equipment.h"
+#include "map.h"
+#include<fstream>
 
 using namespace std;
+extern vector<Equipment*> equipment_bag;
+extern ouc_map Ouc_map[19];
 
 struct Player_Stats
 {
@@ -20,11 +25,33 @@ struct Player_Stats
 	int Player_Action_Points;  //行动点 
 };
 
+void Player::changep_m(int num) {
+	p_m = &Ouc_map[num];
+};//移动位置
+short Player::getMap_id() {
+	return p_m->getId();
+}
+ouc_map* Player::get_map() {
+	return p_m;
+}
+
+void showMap() {
+	string line;
+	ifstream file("data/map.dat");
+	if (file.is_open()) {
+		while (getline(file, line)) {
+			cout << line << endl;
+		}
+		file.close();
+	}
+	else {
+		cout << "无法打开文件" << endl;
+	}
+}
 
 
 Player::Player()  //构造函数 
 {
-
 	cout << endl;
 	cout << "欢迎你来到 OUC 信部 ！"; Sleep(400);
 	cout << "想好计算机类分流后的专业去向了么？ 有以下四个分流专业供你挑选 : " << endl;
@@ -119,7 +146,7 @@ void Player::Equip_equipments(int num_eq)
 	if (flag_eq == 1)
 	{
 		cout << "装备该物品后你的状态 : " << endl;
-		this->p->Player_AbilityofLearn+= equipment_bag[num_eq - 1]->get_AbilityofLearn();  //学习力 
+		p->Player_AbilityofLearn+= equipment_bag[num_eq - 1]->get_AbilityofLearn();  //学习力 
 		this->p->Player_AbilityofProgramming += equipment_bag[num_eq - 1]->get_AbilityofProgramming();  //编程能力值 
 		this->p->Player_AbilityofMath += equipment_bag[num_eq - 1]->get_AbilityofMath(); // 数学能力值 
 		this->p->Player_AbilityofLogic += equipment_bag[num_eq - 1]->get_AbilityofLogic();  //逻辑能力值 
@@ -150,12 +177,14 @@ void Player::Equip_equipments(int num_eq)
 	{
 		cout << "确认丢弃该物品?" << endl;
 		cout << "1. 丢弃" << endl;
+
 		cout << "2. 取消" << endl;
 		int flag_qr;
 		cin >> flag_qr;
 		if (flag_qr == 1)
 		{
-			
+			int temp = num_eq - 1;
+			equipment_bag.erase(equipment_bag.begin()+ temp);
 		}
 		else
 		{
@@ -167,7 +196,7 @@ void Player::Equip_equipments(int num_eq)
 
 void Player::Backpack() const
 {
-	 if (!equipment_bag.empty()) //空 
+	 if (!equipment_bag.empty()) //空 背包
 	{
 		cout << "你的背包空空如也 " << endl;
 	}
@@ -187,12 +216,13 @@ void Player::Eat_orSleep() const
 	cout << endl;
 	cout << "1. Eat in canteen" << endl;
 	cout << "2. Sleep in dormitory" << endl;
+	cin >> flag_es;
 	if (flag_es == 1)
 	{
-		int flag_eat; //一天仅仅可以用餐一次  转天flag_eat标注为 1 可用餐  
+		int flag_eat=1; //一天仅仅可以用餐一次  转天flag_eat标注为 1 可用餐  
 		srand(time(NULL));
 		int temp1_Player_Action_Points = rand() % 4 + 2; //吃一次饭随机加 2~5行动点  
-		if () //不在食堂
+		if (p_m->getId()!=2) //不在食堂
 		{
 			cout << "此处不可用餐 仅可在食堂用餐 " << endl;
 		}
@@ -219,7 +249,7 @@ void Player::Eat_orSleep() const
 	}
 	else if (flag_es == 2)
 	{
-		if ()//不在宿舍
+		if (p_m->getId() != 1)//不在宿舍
 		{
 			cout << endl;
 			cout << "仅允许在宿舍睡大觉哦" << endl;
@@ -290,6 +320,8 @@ void Player::Settings()
 
 	}
 }
+
+
 Player you;    //实例化一个 you
 void Menu()
 {
@@ -306,7 +338,7 @@ void Menu()
 	}
 	else if (opt == 2)
 	{
-		if () //背包为空
+		if (!equipment_bag.size()) //背包为空
 		{
 			cout << "你的背包里 空空如也 " << endl;
 		}
@@ -316,7 +348,7 @@ void Menu()
 			you.Backpack();
 		}
 	}
-	else if (opt == 3)
+	/*else if (opt == 3)
 	{
 		if () //无物品 
 		{
@@ -329,7 +361,7 @@ void Menu()
 		{
 			cout<<i+1<<'. '<<
 
-	*/
+	
 			//物品 
 		}
 	}
@@ -346,14 +378,14 @@ void Menu()
 			{
 				cout << i + 1 << '. ' <<
 				//NPC 
-			}*/
+			}
 		}
-	}
+	}*/
 	else if (opt == 5)
 	{
 		cout << endl;
-		cout << "你当前所在地为 ["; //地点 
-			//地图 
+		cout << "你当前所在地编号及名称为 ";
+		you.get_map()->show();
 	}
 	else if (opt == 6)
 	{
@@ -361,6 +393,6 @@ void Menu()
 	}
 	else if (opt == 7)
 	{
-		//地图 
+		showMap();
 	}
 }
