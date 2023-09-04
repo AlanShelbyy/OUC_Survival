@@ -1,5 +1,6 @@
 #pragma once
 #include<iostream>
+#include"map.h"
 
 using namespace std;
 
@@ -17,9 +18,12 @@ public:
 	void Exam_with_teachers() const;  //与教师NPC考试 
 	void Tasks();
 	void Settings();  //设置 
+	void changep_m(int num);
+	short getMap_id();
+	ouc_map* get_map();
 
 private:
-	//ouc_map * p_m;
+	ouc_map * p_m;
 
 	struct Player_Stats* p; //指向Player的指针
 	int flag_major; //用于开局时玩家挑选专业	
