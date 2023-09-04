@@ -99,9 +99,9 @@ void MUDGame::ShowSkillList(){
 void MUDGame::RunGame(){
     LoadLogo();
     LoadSkill();
-    ShowSkillList();
+    //ShowSkillList();
     LoadNpc();
-    ShowNpcList();
+    //ShowNpcList();
     cout<<"load end"<<endl;
     int choice=0;
     int operate;
@@ -119,6 +119,8 @@ void MUDGame::RunGame(){
                             if(operate == 1){
                                 system("cls");
                                 player.ChooseMajor();
+                                player.State();
+                                system("pause");
                                 system("cls");
                                 //cout<<"虚假的选专业"<<endl;
                                 gamestate = adv;

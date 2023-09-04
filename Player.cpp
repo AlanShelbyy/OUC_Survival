@@ -49,6 +49,7 @@ void Player::ChooseMajor()
 		p->Player_AbilityofLogic = 2;
 		p->Player_AbilityofPractice = 2;
 		p->Player_Action_Points = 10;
+		strcpy(p->Major ,"[计算机科学与技术]");
 	}
 	else if (flag_major == 2)
 	{
@@ -61,6 +62,7 @@ void Player::ChooseMajor()
 		p->Player_AbilityofLogic = 4;
 		p->Player_AbilityofPractice = 2;
 		p->Player_Action_Points = 10;
+		strcpy(p->Major ,"[智能科学与技术]");
 	}
 	else if (flag_major == 3)
 	{
@@ -73,6 +75,7 @@ void Player::ChooseMajor()
 		p->Player_AbilityofLogic = 3;
 		p->Player_AbilityofPractice = 3;
 		p->Player_Action_Points = 10;
+		strcpy(p->Major ,"[网络空间安全]");
 	}
 	else if (flag_major == 4)
 	{
@@ -85,6 +88,7 @@ void Player::ChooseMajor()
 		p->Player_AbilityofLogic = 2;
 		p->Player_AbilityofPractice = 2;
 		p->Player_Action_Points = 10;
+		strcpy(p->Major ,"[软件工程]");
 	}
 	
 }
