@@ -34,6 +34,7 @@ class Player
 {
 public:
 	Player(); //初始化 
+	void ChooseMajor();
 	void State() const;  //状态  
 	void Backpack() const; //背包
 	void Equip_equipments(int num_eq);//装备/卸装备

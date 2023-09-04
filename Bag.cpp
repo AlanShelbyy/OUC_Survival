@@ -22,6 +22,8 @@ void Bag::bag_write() {
 	cout << "´æµµ³É¹¦" << endl;
 	ofs.close();
 }
+
+
 void Bag::bag_read() {
 	ifstream ifs("data/Bag/bag.dat", ios::in | ios::binary);
 	int i = 0;

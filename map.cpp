@@ -3,7 +3,7 @@
 #include <string>
 #include "map.h"
 #include<iomanip>
-#include"global.h"
+//#include"global.h"
 #include"Equipment.h"
 #include <time.h> 
 #include"Player.h"
@@ -75,21 +75,21 @@ void loadMap(ouc_map Ouc_map[]) {
 
 
 
-int main() {
-    loadMap(Ouc_map);
- /*   for (int i = 0; i < 19; i++) {
-        Ouc_map[i].show();
-    }*/
-    short neib[6];
-    Ouc_map[18].getNeib(neib);
-    for (int i = 0; i < 6; i++) {
-        if (neib[i] != 0)
-            cout << i + 1 << ". " << Ouc_map[neib[i]-1].getName() << endl;
-        else
-            break;
-    }
-    return 0;
-}
+// int main() {
+//     loadMap(Ouc_map);
+//  /*   for (int i = 0; i < 19; i++) {
+//         Ouc_map[i].show();
+//     }*/
+//     short neib[6];
+//     Ouc_map[18].getNeib(neib);
+//     for (int i = 0; i < 6; i++) {
+//         if (neib[i] != 0)
+//             cout << i + 1 << ". " << Ouc_map[neib[i]-1].getName() << endl;
+//         else
+//             break;
+//     }
+//     return 0;
+// }
 
 //玩家输入函数
 int Player_scanf() {
@@ -102,7 +102,7 @@ int Player_scanf() {
 void move(Player& you) {
     int num;
     short neib[6];
-    you.get_map()->getNeib(neib);
+    //you.get_map()->getNeib(neib);
     cout << "有什么想去的地方吗？" << endl;
     //打印能移动到的节点
     int size = 0;//能移动节点的数量
@@ -121,8 +121,8 @@ void move(Player& you) {
         cout << "无效输入，请重新选择" << endl;
         choice = Player_scanf();
     }
-    you.changep_m(neib[choice - 1] - 1);
-    num = you.get_map()->getId();
+    //you.changep_m(neib[choice - 1] - 1);
+    //num = you.get_map()->getId();
 
     //移动时概率获取装备
     srand(time(NULL));
@@ -142,19 +142,19 @@ void move(Player& you) {
             if (probability < 15) {
                 bool isTrue = 0;
                 //背包里存在该装备时
-                for (int i = 0; i < equipment_bag.size(); i++) {
-                    if (equipment_bag[i]->get_id() == equip_id) {
-                        isTrue = 1;
-                        equipment_bag[i]->num_plus();
-                        cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一本" << equipment_bag[i]->get_name() << endl;
-                        break;
-                    }
-                }
+                // for (int i = 0; i < equipment_bag.size(); i++) {
+                //     if (equipment_bag[i]->get_id() == equip_id) {
+                //         isTrue = 1;
+                //         equipment_bag[i]->num_plus();
+                //         cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一本" << equipment_bag[i]->get_name() << endl;
+                //         break;
+                //     }
+                // }
                 //不存在时添加该装备
-                if (!isTrue) {
-                    equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                    cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一本" << equipment_bag[equipment_bag.size() - 1]->get_name() << endl;
-                }
+                // if (!isTrue) {
+                //     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
+                //     cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一本" << equipment_bag[equipment_bag.size() - 1]->get_name() << endl;
+                // }
             }
         }
         break;
@@ -163,19 +163,19 @@ void move(Player& you) {
         if (probability < 10) {
             bool isTrue = 0;
             //背包里存在该装备时
-            for (int i = 0; i < equipment_bag.size(); i++) {
-                if (equipment_bag[i]->get_id() == equip_id) {
-                    isTrue = 1;
-                    equipment_bag[i]->num_plus();
-                    cout << "意外之喜——你在移动过程中" << "拾取了一张" << equipment_bag[i]->get_name() << endl;
-                    break;
-                }
-            }
+            // for (int i = 0; i < equipment_bag.size(); i++) {
+            //     if (equipment_bag[i]->get_id() == equip_id) {
+            //         isTrue = 1;
+            //         equipment_bag[i]->num_plus();
+            //         cout << "意外之喜——你在移动过程中" << "拾取了一张" << equipment_bag[i]->get_name() << endl;
+            //         break;
+            //     }
+            // }
             //不存在时添加该装备
-            if (!isTrue) {
-                equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                cout << "意外之喜——你在移动过程中" << "拾取了一张" << equipment_bag[equipment_bag.size() - 1]->get_name() << endl;
-            }
+            // if (!isTrue) {
+            //     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
+            //     cout << "意外之喜——你在移动过程中" << "拾取了一张" << equipment_bag[equipment_bag.size() - 1]->get_name() << endl;
+            // }
         }
         break;
     case 8:
@@ -183,19 +183,19 @@ void move(Player& you) {
         if (probability < 20) {
             bool isTrue = 0;
             //背包里存在该装备时
-            for (int i = 0; i < equipment_bag.size(); i++) {
-                if (equipment_bag[i]->get_id() == equip_id) {
-                    isTrue = 1;
-                    equipment_bag[i]->num_plus();
-                    cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "捡到了一瓶" << equipment_bag[i]->get_name() << "，但你确定敢喝吗" << endl;
-                    break;
-                }
-            }
+            // for (int i = 0; i < equipment_bag.size(); i++) {
+            //     if (equipment_bag[i]->get_id() == equip_id) {
+            //         isTrue = 1;
+            //         equipment_bag[i]->num_plus();
+            //         cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "捡到了一瓶" << equipment_bag[i]->get_name() << "，但你确定敢喝吗" << endl;
+            //         break;
+            //     }
+            // }
             //不存在时添加该装备
-            if (!isTrue) {
-                equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一瓶" << equipment_bag[equipment_bag.size() - 1]->get_name() << "，但你确定敢喝吗" << endl;
-            }
+            // if (!isTrue) {
+            //     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
+            //     cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一瓶" << equipment_bag[equipment_bag.size() - 1]->get_name() << "，但你确定敢喝吗" << endl;
+            // }
         }
         break;
     case 9:
@@ -203,18 +203,18 @@ void move(Player& you) {
             probability = rand() % 100;
             if (probability < 2) {
                 bool isTrue = 0;
-                for (int i = 0; i < equipment_bag.size(); i++) {
-                    if (equipment_bag[i]->get_id() == equip_id) {
-                        isTrue = 1;
-                        equipment_bag[i]->num_plus();
-                        cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了" << equipment_bag[i]->get_name() << "，看起来似乎能使你对部分学习内容更加通透" << endl;
-                        break;
-                    }
-                }
-                if (!isTrue) {
-                    equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                    cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了" << equipment_bag[equipment_bag.size() - 1]->get_name() << "，看起来似乎能使你对部分学习内容更加通透" << endl;
-                }
+                // for (int i = 0; i < equipment_bag.size(); i++) {
+                //     if (equipment_bag[i]->get_id() == equip_id) {
+                //         isTrue = 1;
+                //         equipment_bag[i]->num_plus();
+                //         cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了" << equipment_bag[i]->get_name() << "，看起来似乎能使你对部分学习内容更加通透" << endl;
+                //         break;
+                //     }
+                //  }
+                // if (!isTrue) {
+                //     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
+                //     cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了" << equipment_bag[equipment_bag.size() - 1]->get_name() << "，看起来似乎能使你对部分学习内容更加通透" << endl;
+                // }
             }
         }
         break;
@@ -224,19 +224,19 @@ void move(Player& you) {
             if (probability < 2) {
                 bool isTrue = 0;
                 //背包里存在该装备时
-                for (int i = 0; i < equipment_bag.size(); i++) {
-                    if (equipment_bag[i]->get_id() == equip_id) {
-                        isTrue = 1;
-                        equipment_bag[i]->num_plus();
-                        cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一副没人要的" << equipment_bag[i]->get_name() << "天上偶尔是会掉馅饼的，你就欣然接受吧" << endl;
-                        break;
-                    }
-                }
+                // for (int i = 0; i < equipment_bag.size(); i++) {
+                //     if (equipment_bag[i]->get_id() == equip_id) {
+                //         isTrue = 1;
+                //         equipment_bag[i]->num_plus();
+                //         cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一副没人要的" << equipment_bag[i]->get_name() << "天上偶尔是会掉馅饼的，你就欣然接受吧" << endl;
+                //         break;
+                //     }
+                // }
                 //不存在时添加该装备
-                if (!isTrue) {
-                    equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                    cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一副没人要的" << equipment_bag[equipment_bag.size() - 1]->get_name() << "天上偶尔是会掉馅饼的，你就欣然接受吧" << endl;
-                }
+                // if (!isTrue) {
+                //     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
+                //     cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一副没人要的" << equipment_bag[equipment_bag.size() - 1]->get_name() << "天上偶尔是会掉馅饼的，你就欣然接受吧" << endl;
+                // }
             }
         }
         break;
@@ -245,18 +245,18 @@ void move(Player& you) {
             probability = rand() % 100;
             if (probability < 5) {
                 bool isTrue = 0;
-                for (int i = 0; i < equipment_bag.size(); i++) {
-                    if (equipment_bag[i]->get_id() == equip_id) {
-                        isTrue = 1;
-                        equipment_bag[i]->num_plus();
-                        cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一张大佬的" << equipment_bag[i]->get_name() << "，虽然有些潦草，但你还是一眼认出上面正写着困扰你许久的题目" << endl;
-                        break;
-                    }
-                }
-                if (!isTrue) {
-                    equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                    cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一张大佬的" << equipment_bag[equipment_bag.size() - 1]->get_name() << "，虽然有些潦草，但你还是一眼认出上面正写着困扰你许久的题目" << endl;
-                }
+                // for (int i = 0; i < equipment_bag.size(); i++) {
+                //     if (equipment_bag[i]->get_id() == equip_id) {
+                //         isTrue = 1;
+                //         equipment_bag[i]->num_plus();
+                //         cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一张大佬的" << equipment_bag[i]->get_name() << "，虽然有些潦草，但你还是一眼认出上面正写着困扰你许久的题目" << endl;
+                //         break;
+                //     }
+                // }
+                // if (!isTrue) {
+                //     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
+                //     cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一张大佬的" << equipment_bag[equipment_bag.size() - 1]->get_name() << "，虽然有些潦草，但你还是一眼认出上面正写着困扰你许久的题目" << endl;
+                // }
             }
         }
         break;
@@ -265,18 +265,18 @@ void move(Player& you) {
             probability = rand() % 100;
             if (probability < 1) {
                 bool isTrue = 0;
-                for (int i = 0; i < equipment_bag.size(); i++) {
-                    if (equipment_bag[i]->get_id() == equip_id) {
-                        isTrue = 1;
-                        equipment_bag[i]->num_plus();
-                        cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "时，某位大佬对你相见如故，你获得了" << equipment_bag[i]->get_name() << "，在他的帮助下，你各方面都有了不少长进" << endl;
-                        break;
-                    }
-                }
-                if (!isTrue) {
-                    equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                    cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "时，某位大佬对你相见如故，你获得了" << equipment_bag[equipment_bag.size() - 1]->get_name() << "，在他的帮助下，你各方面都有了不少长进" << endl;
-                }
+                // for (int i = 0; i < equipment_bag.size(); i++) {
+                //     if (equipment_bag[i]->get_id() == equip_id) {
+                //         isTrue = 1;
+                //         equipment_bag[i]->num_plus();
+                //         cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "时，某位大佬对你相见如故，你获得了" << equipment_bag[i]->get_name() << "，在他的帮助下，你各方面都有了不少长进" << endl;
+                //         break;
+                //     }
+                // }
+                // if (!isTrue) {
+                //     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
+                //     cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "时，某位大佬对你相见如故，你获得了" << equipment_bag[equipment_bag.size() - 1]->get_name() << "，在他的帮助下，你各方面都有了不少长进" << endl;
+                // }
             }
         }
         break;
@@ -284,16 +284,16 @@ void move(Player& you) {
         probability = rand() % 100;
         if (probability < 30) {
             bool isTrue = 0;
-            for (int i = 0; i < equipment_bag.size(); i++) {
-                if (equipment_bag[i]->get_id() == equip_id) {
-                    isTrue = 1;
-                    break;
-                }
-            }
-            if (!isTrue) {
-                equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                cout << "意外之喜——你在移动时，捡到了一双没人要的" << equipment_bag[equipment_bag.size() - 1]->get_name() << "，穿上它后你似乎能够跨节点移动了" << endl;
-            }
+            // for (int i = 0; i < equipment_bag.size(); i++) {
+            //     if (equipment_bag[i]->get_id() == equip_id) {
+            //         isTrue = 1;
+            //         break;
+            //     }
+            // }
+            // if (!isTrue) {
+            //     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
+            //     cout << "意外之喜——你在移动时，捡到了一双没人要的" << equipment_bag[equipment_bag.size() - 1]->get_name() << "，穿上它后你似乎能够跨节点移动了" << endl;
+            // }
         }
     }
  
@@ -312,12 +312,12 @@ void quick_move(Player& you, int num) {
         cout << "别尝试选项以外的数字啦，怎么想也做不到的" << endl;
         choice = Player_scanf();
     }
-    you.changep_m(choice);
+    // you.changep_m(choice);
 }
 
 //打印当前位置的函数
 void show_address(Player& you) {
     cout << setfill('=') << setw(25) << "地图节点" << setfill('=') << setw(25) << "" << endl;
-    cout << "你当前处于——" << you.get_map()->getName() << endl;
-    cout << "该节点地图编号是：" << you.get_map()->getId() << endl;
+    // cout << "你当前处于——" << you.get_map()->getName() << endl;
+    // cout << "该节点地图编号是：" << you.get_map()->getId() << endl;
 }

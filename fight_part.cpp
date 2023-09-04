@@ -62,7 +62,7 @@ void npc::GivePoint(Player player){
 }
 int npc::UseBossSkill(){
 
-    return;
+    return 0;
 }
 
 // void FightRound(Player thisPlayer,npc thisNpc){

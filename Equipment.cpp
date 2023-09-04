@@ -1,4 +1,4 @@
-ï»¿#include<fstream>
+#include<fstream>
 #include<iostream>
 #include<string>
 #include<iomanip>
@@ -11,7 +11,7 @@ Equipment::Equipment(string fname1,int n) {
 	name = fname1 + "/" + to_string(n) + ".dat";
 	ifstream readf(name);
 	if (!readf)
-		cout << "æ— æ³•æ‰“å¼€" << name<<endl;
+		cout << "ÎÞ·¨´ò¿ª" << name<<endl;
 	getline(readf, change);
 	id = stoi(change);
 	getline(readf, intro);
@@ -46,15 +46,16 @@ Equipment::Equipment(string fname1,int n) {
 	readf.close();
 }
 
+
 void Equipment::show() {
-	cout << setfill('=')<<setw(25)<< "è£…å¤‡" <<setfill('=') << setw(25) << "" << endl;
+	cout << setfill('=')<<setw(25)<< "×°±¸" <<setfill('=') << setw(25) << "" << endl;
 	cout << intro << endl;
 	cout << name << endl;
-	cout <<"å­¦ä¹ åŠ›" << equip.Player_AbilityofLearn << endl;
-	cout << "ç¼–ç¨‹èƒ½åŠ›"<<equip.Player_AbilityofProgramming << endl;
-	cout << "æ•°å­¦åŠ›"<<equip.Player_AbilityofMath << endl;
-	cout << "é€»è¾‘åŠ›"<<equip.Player_AbilityofLogic << endl;
-	cout << "å®žè·µåŠ›"<<equip.Player_AbilityofPractice << endl;
-	cout << "è¡ŒåŠ¨ç‚¹"<<equip.Player_Action_Points << endl;
-	cout << "æ•°é‡"<<num << endl;
+	cout <<"Ñ§Ï°Á¦" << equip.Player_AbilityofLearn << endl;
+	cout << "±à³ÌÄÜÁ¦"<<equip.Player_AbilityofProgramming << endl;
+	cout << "ÊýÑ§Á¦"<<equip.Player_AbilityofMath << endl;
+	cout << "Âß¼­Á¦"<<equip.Player_AbilityofLogic << endl;
+	cout << "Êµ¼ùÁ¦"<<equip.Player_AbilityofPractice << endl;
+	cout << "ÐÐ¶¯µã"<<equip.Player_Action_Points << endl;
+	cout << "ÊýÁ¿"<<num << endl;
 }

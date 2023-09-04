@@ -26,6 +26,8 @@ public:
 MUDGame();
 void ShowLogo();
 void LoadLogo();
+void LoadSkill();
+void ShowSkillList();
 void ToffGame();
 bool RunOrNot();
 void RunGame();
