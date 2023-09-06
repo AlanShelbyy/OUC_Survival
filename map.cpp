@@ -9,7 +9,7 @@
 #include"Player.h"
 using namespace std;
 
-ouc_map Ouc_map[19];
+extern ouc_map Ouc_map[19];
 
 int showMap() {
     string line;
@@ -21,7 +21,7 @@ int showMap() {
         file.close(); 
     }
     else {
-        cout << "ÎŞ·¨´ò¿ªÎÄ¼ş" << endl;
+        cout << "æ— æ³•æ‰“å¼€æ–‡ä»¶" << endl;
     }
     return 0;
 }
@@ -32,7 +32,7 @@ ouc_map::ouc_map( int n ) {
     name = fname + "/" + to_string(n) + ".dat";
     ifstream readf(name);
     if (!readf)
-        cout << "ÎŞ·¨´ò¿ªÎÄ¼ş" << name << endl;
+        cout << "æ— æ³•æ‰“å¼€æ–‡ä»¶" << name << endl;
     getline(readf, name);
     getline(readf,change);
     map_id = stoi(change);
@@ -65,7 +65,7 @@ ouc_map::ouc_map(ouc_map& d) {
     npc_id.assign(3, 3);
 }
 
-//½«µØÍ¼ÎÄ¼ş¼ÓÔØÈëOuc_mapÊı×éÀï
+//å°†åœ°å›¾æ–‡ä»¶åŠ è½½å…¥Ouc_mapæ•°ç»„é‡Œ
 void loadMap(ouc_map Ouc_map[]) {
     for (int i = 0; i < 19; i++) {
         ouc_map map(i + 1);
@@ -75,37 +75,27 @@ void loadMap(ouc_map Ouc_map[]) {
 
 
 
-// int main() {
-//     loadMap(Ouc_map);
-//  /*   for (int i = 0; i < 19; i++) {
-//         Ouc_map[i].show();
-//     }*/
-//     short neib[6];
-//     Ouc_map[18].getNeib(neib);
-//     for (int i = 0; i < 6; i++) {
-//         if (neib[i] != 0)
-//             cout << i + 1 << ". " << Ouc_map[neib[i]-1].getName() << endl;
-//         else
-//             break;
-//     }
-//     return 0;
-// }
+//ç©å®¶è¾“å…¥å‡½æ•°
 
-//Íæ¼ÒÊäÈëº¯Êı
 int Player_scanf() {
     int a;
     cin >> a;
     return a;
 }
 
-//ÒÆ¶¯º¯Êı
+bool MofE(int equip_id, int num, int a, int b, int c, int d, int e, int f, int g);
+
+
+//ç§»åŠ¨å‡½æ•°
 void move(Player& you) {
     int num;
     short neib[6];
-    //you.get_map()->getNeib(neib);
-    cout << "ÓĞÊ²Ã´ÏëÈ¥µÄµØ·½Âğ£¿" << endl;
-    //´òÓ¡ÄÜÒÆ¶¯µ½µÄ½Úµã
-    int size = 0;//ÄÜÒÆ¶¯½ÚµãµÄÊıÁ¿
+
+    you.get_map()->getNeib(neib);
+    cout << "æœ‰ä»€ä¹ˆæƒ³å»çš„åœ°æ–¹å—ï¼Ÿ" << endl;
+    //æ‰“å°èƒ½ç§»åŠ¨åˆ°çš„èŠ‚ç‚¹
+    int size = 0;//èƒ½ç§»åŠ¨èŠ‚ç‚¹çš„æ•°é‡
+
     for (int i = 0; i < 6; i++) {
         if (neib[i] != 0) {
             cout << i + 1 << ". " << Ouc_map[neib[i] - 1].getName() << endl;
@@ -114,21 +104,82 @@ void move(Player& you) {
         else
             break;
     }
-    //¸ù¾İÍæ¼ÒÑ¡ÔñÒÆ¶¯
+    //æ ¹æ®ç©å®¶é€‰æ‹©ç§»åŠ¨
     int choice;
     choice = Player_scanf();
     while (choice < 1 || choice > size) {
-        cout << "ÎŞĞ§ÊäÈë£¬ÇëÖØĞÂÑ¡Ôñ" << endl;
+        cout << "æ— æ•ˆè¾“å…¥ï¼Œè¯·é‡æ–°é€‰æ‹©" << endl;
         choice = Player_scanf();
     }
     //you.changep_m(neib[choice - 1] - 1);
     //num = you.get_map()->getId();
 
-    //ÒÆ¶¯Ê±¸ÅÂÊ»ñÈ¡×°±¸
+    //ç§»åŠ¨æ—¶æ¦‚ç‡è·å–è£…å¤‡
     srand(time(NULL));
     int equip_id;
     int probability;
-    equip_id = rand() % 10;
+    equip_id = rand() % 19;
+    MofE(equip_id, num, 15, 10, 20, 2, 5, 1, 30);
+    
+    //åˆ·æ–°0-3ä¸ªnpc 
+    num = rand() % 4;
+    for (int i = 0; i < num; i++) {
+        bool isTrue = 0;
+        int Npc_id = rand() % 4;
+        for (int i = 0; i < you.get_map()->getNpc_id().size(); i++) {
+            if (Npc_id == you.get_map()->getNpc_id()[i]) {
+                isTrue = 1;
+                break;
+            }
+        }
+        if (!isTrue)
+            you.get_map()->getNpc_id().push_back(Npc_id);
+    }
+    //å›ºå®šåˆ·æ–°boss
+    if (num = you.get_map()->getId() == 17)
+        you.get_map()->getBoss_id().push_back(0);
+    if (num = you.get_map()->getId() == 6)
+        you.get_map()->getBoss_id().push_back(1);
+    if (num = you.get_map()->getId() == 9)
+        you.get_map()->getBoss_id().push_back(2);
+}
+
+void map_explore(Player& you) {
+    srand(time(NULL));
+    int equip_id = rand() % 19;
+    bool theBool = 0;
+    int num = you.get_map()->getId();
+    theBool = MofE(equip_id, num, 30, 20, 40, 4, 10, 2, 60);
+    if (!theBool)
+        cout << "è¿æ°”çœŸå·®ï¼Œä¼¼ä¹å¹¶æ²¡æœ‰æ‰¾åˆ°ä»€ä¹ˆæœ‰ç”¨çš„ä¸œè¥¿" << endl;
+}
+
+//å¿«é€Ÿç§»åŠ¨çš„å‡½æ•°
+void quick_move(Player& you, int num) {
+    cout << "æ˜¯æƒ³è·‘å»å“ªé‡Œå—ï¼Ÿ";
+    cout << setfill('=') << setw(25) << "åœ°å›¾èŠ‚ç‚¹" << setfill('=') << setw(25) << "" << endl;
+    for (int i = 0; i < 19; i++) {
+        Ouc_map[i].show();
+    }
+    int choice = Player_scanf();
+    while (choice < 1 || choice>19) {
+        cout << "åˆ«å°è¯•é€‰é¡¹ä»¥å¤–çš„æ•°å­—å•¦ï¼Œæ€ä¹ˆæƒ³ä¹Ÿåšä¸åˆ°çš„" << endl;
+        choice = Player_scanf();
+    }
+    you.changep_m(choice);
+}
+
+//æ‰“å°å½“å‰ä½ç½®çš„å‡½æ•°
+void show_address(Player& you) {
+    cout << setfill('=') << setw(25) << "åœ°å›¾èŠ‚ç‚¹" << setfill('=') << setw(25) << "" << endl;
+    cout << "ä½ å½“å‰å¤„äºâ€”â€”" << you.get_map()->getName() << endl;
+    cout << "è¯¥èŠ‚ç‚¹åœ°å›¾ç¼–å·æ˜¯ï¼š" << you.get_map()->getId() << endl;
+}
+
+
+bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int g) {
+    bool theBool = 0;
+    int probability;
     switch (equip_id) {
     case 0:
     case 1:
@@ -139,185 +190,191 @@ void move(Player& you) {
     case 6:
         if (num == 4 || num == 16 || num == 17 || num == 18 || num == 5 || num == 6) {
             probability = rand() % 100;
-            if (probability < 15) {
+            if (probability < a) {
                 bool isTrue = 0;
-                //±³°üÀï´æÔÚ¸Ã×°±¸Ê±
-                // for (int i = 0; i < equipment_bag.size(); i++) {
-                //     if (equipment_bag[i]->get_id() == equip_id) {
-                //         isTrue = 1;
-                //         equipment_bag[i]->num_plus();
-                //         cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁËÒ»±¾" << equipment_bag[i]->get_name() << endl;
-                //         break;
-                //     }
-                // }
-                //²»´æÔÚÊ±Ìí¼Ó¸Ã×°±¸
-                // if (!isTrue) {
-                //     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                //     cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁËÒ»±¾" << equipment_bag[equipment_bag.size() - 1]->get_name() << endl;
-                // }
+
+                //èƒŒåŒ…é‡Œå­˜åœ¨è¯¥è£…å¤‡æ—¶
+                for (int i = 0; i < equipment_bag.size(); i++) {
+                    if (equipment_bag[i]->get_id() == equip_id) {
+                        isTrue = 1;
+                        equipment_bag[i]->num_plus();
+                        cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†ä¸€æœ¬" << equipment_bag[i]->get_name() << endl;
+                        break;
+                    }
+                }
+                //ä¸å­˜åœ¨æ—¶æ·»åŠ è¯¥è£…å¤‡
+                if (!isTrue) {
+                    equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
+                    cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†ä¸€æœ¬" << equipment_bag[equipment_bag.size() - 1]->get_name() << endl;
+                }
+                theBool = 1;
+
             }
         }
         break;
     case 7:
         probability = rand() % 100;
-        if (probability < 10) {
+        if (probability < b) {
             bool isTrue = 0;
-            //±³°üÀï´æÔÚ¸Ã×°±¸Ê±
-            // for (int i = 0; i < equipment_bag.size(); i++) {
-            //     if (equipment_bag[i]->get_id() == equip_id) {
-            //         isTrue = 1;
-            //         equipment_bag[i]->num_plus();
-            //         cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚÒÆ¶¯¹ı³ÌÖĞ" << "Ê°È¡ÁËÒ»ÕÅ" << equipment_bag[i]->get_name() << endl;
-            //         break;
-            //     }
-            // }
-            //²»´æÔÚÊ±Ìí¼Ó¸Ã×°±¸
-            // if (!isTrue) {
-            //     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-            //     cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚÒÆ¶¯¹ı³ÌÖĞ" << "Ê°È¡ÁËÒ»ÕÅ" << equipment_bag[equipment_bag.size() - 1]->get_name() << endl;
-            // }
+
+            //èƒŒåŒ…é‡Œå­˜åœ¨è¯¥è£…å¤‡æ—¶
+            for (int i = 0; i < equipment_bag.size(); i++) {
+                if (equipment_bag[i]->get_id() == equip_id) {
+                    isTrue = 1;
+                    equipment_bag[i]->num_plus();
+                    cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨ç§»åŠ¨è¿‡ç¨‹ä¸­" << "æ‹¾å–äº†ä¸€å¼ " << equipment_bag[i]->get_name() << endl;
+                    break;
+                }
+            }
+            //ä¸å­˜åœ¨æ—¶æ·»åŠ è¯¥è£…å¤‡
+            if (!isTrue) {
+                equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
+                cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ " << "æ‹¾å–äº†ä¸€å¼ " << equipment_bag[equipment_bag.size() - 1]->get_name() << endl;
+            }
+            theBool = 1;
+
         }
         break;
     case 8:
         probability = rand() % 100;
-        if (probability < 20) {
+        if (probability < c) {
             bool isTrue = 0;
-            //±³°üÀï´æÔÚ¸Ã×°±¸Ê±
-            // for (int i = 0; i < equipment_bag.size(); i++) {
-            //     if (equipment_bag[i]->get_id() == equip_id) {
-            //         isTrue = 1;
-            //         equipment_bag[i]->num_plus();
-            //         cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "¼ñµ½ÁËÒ»Æ¿" << equipment_bag[i]->get_name() << "£¬µ«ÄãÈ·¶¨¸ÒºÈÂğ" << endl;
-            //         break;
-            //     }
-            // }
-            //²»´æÔÚÊ±Ìí¼Ó¸Ã×°±¸
-            // if (!isTrue) {
-            //     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-            //     cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁËÒ»Æ¿" << equipment_bag[equipment_bag.size() - 1]->get_name() << "£¬µ«ÄãÈ·¶¨¸ÒºÈÂğ" << endl;
-            // }
+
+            //èƒŒåŒ…é‡Œå­˜åœ¨è¯¥è£…å¤‡æ—¶
+            for (int i = 0; i < equipment_bag.size(); i++) {
+                if (equipment_bag[i]->get_id() == equip_id) {
+                    isTrue = 1;
+                    equipment_bag[i]->num_plus();
+                    cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ¡åˆ°äº†ä¸€ç“¶" << equipment_bag[i]->get_name() << "ï¼Œä½†ä½ ç¡®å®šæ•¢å–å—" << endl;
+                    break;
+                }
+            }
+            //ä¸å­˜åœ¨æ—¶æ·»åŠ è¯¥è£…å¤‡
+            if (!isTrue) {
+                equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
+                cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†ä¸€ç“¶" << equipment_bag[equipment_bag.size() - 1]->get_name() << "ï¼Œä½†ä½ ç¡®å®šæ•¢å–å—" << endl;
+            }
+            theBool = 1;
+
         }
         break;
     case 9:
         if (num == 4 || num == 16 || num == 17 || num == 18 || num == 5 || num == 6) {
             probability = rand() % 100;
-            if (probability < 2) {
+            if (probability < d) {
                 bool isTrue = 0;
-                // for (int i = 0; i < equipment_bag.size(); i++) {
-                //     if (equipment_bag[i]->get_id() == equip_id) {
-                //         isTrue = 1;
-                //         equipment_bag[i]->num_plus();
-                //         cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁË" << equipment_bag[i]->get_name() << "£¬¿´ÆğÀ´ËÆºõÄÜÊ¹Äã¶Ô²¿·ÖÑ§Ï°ÄÚÈİ¸ü¼ÓÍ¨Í¸" << endl;
-                //         break;
-                //     }
-                //  }
-                // if (!isTrue) {
-                //     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                //     cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁË" << equipment_bag[equipment_bag.size() - 1]->get_name() << "£¬¿´ÆğÀ´ËÆºõÄÜÊ¹Äã¶Ô²¿·ÖÑ§Ï°ÄÚÈİ¸ü¼ÓÍ¨Í¸" << endl;
-                // }
+
+                for (int i = 0; i < equipment_bag.size(); i++) {
+                    if (equipment_bag[i]->get_id() == equip_id) {
+                        isTrue = 1;
+                        equipment_bag[i]->num_plus();
+                        cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†" << equipment_bag[i]->get_name() << "ï¼Œçœ‹èµ·æ¥ä¼¼ä¹èƒ½ä½¿ä½ å¯¹éƒ¨åˆ†å­¦ä¹ å†…å®¹æ›´åŠ é€šé€" << endl;
+                        break;
+                    }
+                }
+                if (!isTrue) {
+                    equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
+                    cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†" << equipment_bag[equipment_bag.size() - 1]->get_name() << "ï¼Œçœ‹èµ·æ¥ä¼¼ä¹èƒ½ä½¿ä½ å¯¹éƒ¨åˆ†å­¦ä¹ å†…å®¹æ›´åŠ é€šé€" << endl;
+                }
+                theBool = 1;
+
             }
         }
         break;
     case 10:
         if (num == 10 || num == 11 || num == 12 || num == 13 || num == 14 || num == 15) {
             probability = rand() % 100;
-            if (probability < 2) {
+            if (probability < d) {
                 bool isTrue = 0;
-                //±³°üÀï´æÔÚ¸Ã×°±¸Ê±
-                // for (int i = 0; i < equipment_bag.size(); i++) {
-                //     if (equipment_bag[i]->get_id() == equip_id) {
-                //         isTrue = 1;
-                //         equipment_bag[i]->num_plus();
-                //         cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁËÒ»¸±Ã»ÈËÒªµÄ" << equipment_bag[i]->get_name() << "ÌìÉÏÅ¼¶ûÊÇ»áµôÏÚ±ıµÄ£¬Äã¾ÍĞÀÈ»½ÓÊÜ°É" << endl;
-                //         break;
-                //     }
-                // }
-                //²»´æÔÚÊ±Ìí¼Ó¸Ã×°±¸
-                // if (!isTrue) {
-                //     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                //     cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁËÒ»¸±Ã»ÈËÒªµÄ" << equipment_bag[equipment_bag.size() - 1]->get_name() << "ÌìÉÏÅ¼¶ûÊÇ»áµôÏÚ±ıµÄ£¬Äã¾ÍĞÀÈ»½ÓÊÜ°É" << endl;
-                // }
+
+                //èƒŒåŒ…é‡Œå­˜åœ¨è¯¥è£…å¤‡æ—¶
+                for (int i = 0; i < equipment_bag.size(); i++) {
+                    if (equipment_bag[i]->get_id() == equip_id) {
+                        isTrue = 1;
+                        equipment_bag[i]->num_plus();
+                        cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†ä¸€å‰¯æ²¡äººè¦çš„" << equipment_bag[i]->get_name() << "å¤©ä¸Šå¶å°”æ˜¯ä¼šæ‰é¦…é¥¼çš„ï¼Œä½ å°±æ¬£ç„¶æ¥å—å§" << endl;
+                        break;
+                    }
+                }
+                //ä¸å­˜åœ¨æ—¶æ·»åŠ è¯¥è£…å¤‡
+                if (!isTrue) {
+                    equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
+                    cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†ä¸€å‰¯æ²¡äººè¦çš„" << equipment_bag[equipment_bag.size() - 1]->get_name() << "å¤©ä¸Šå¶å°”æ˜¯ä¼šæ‰é¦…é¥¼çš„ï¼Œä½ å°±æ¬£ç„¶æ¥å—å§" << endl;
+                }
+                theBool = 1;
+
             }
         }
         break;
     case 11:
         if (num == 4 || num == 16 || num == 17 || num == 18 || num == 5 || num == 6) {
             probability = rand() % 100;
-            if (probability < 5) {
+            if (probability < e) {
                 bool isTrue = 0;
-                // for (int i = 0; i < equipment_bag.size(); i++) {
-                //     if (equipment_bag[i]->get_id() == equip_id) {
-                //         isTrue = 1;
-                //         equipment_bag[i]->num_plus();
-                //         cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁËÒ»ÕÅ´óÀĞµÄ" << equipment_bag[i]->get_name() << "£¬ËäÈ»ÓĞĞ©ÁÊ²İ£¬µ«Äã»¹ÊÇÒ»ÑÛÈÏ³öÉÏÃæÕıĞ´×ÅÀ§ÈÅÄãĞí¾ÃµÄÌâÄ¿" << endl;
-                //         break;
-                //     }
-                // }
-                // if (!isTrue) {
-                //     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                //     cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁËÒ»ÕÅ´óÀĞµÄ" << equipment_bag[equipment_bag.size() - 1]->get_name() << "£¬ËäÈ»ÓĞĞ©ÁÊ²İ£¬µ«Äã»¹ÊÇÒ»ÑÛÈÏ³öÉÏÃæÕıĞ´×ÅÀ§ÈÅÄãĞí¾ÃµÄÌâÄ¿" << endl;
-                // }
+
+                for (int i = 0; i < equipment_bag.size(); i++) {
+                    if (equipment_bag[i]->get_id() == equip_id) {
+                        isTrue = 1;
+                        equipment_bag[i]->num_plus();
+                        cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†ä¸€å¼ å¤§ä½¬çš„" << equipment_bag[i]->get_name() << "ï¼Œè™½ç„¶æœ‰äº›æ½¦è‰ï¼Œä½†ä½ è¿˜æ˜¯ä¸€çœ¼è®¤å‡ºä¸Šé¢æ­£å†™ç€å›°æ‰°ä½ è®¸ä¹…çš„é¢˜ç›®" << endl;
+                        break;
+                    }
+                }
+                if (!isTrue) {
+                    equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
+                    cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†ä¸€å¼ å¤§ä½¬çš„" << equipment_bag[equipment_bag.size() - 1]->get_name() << "ï¼Œè™½ç„¶æœ‰äº›æ½¦è‰ï¼Œä½†ä½ è¿˜æ˜¯ä¸€çœ¼è®¤å‡ºä¸Šé¢æ­£å†™ç€å›°æ‰°ä½ è®¸ä¹…çš„é¢˜ç›®" << endl;
+                }
+                theBool = 1;
+
             }
         }
         break;
     case 12:
         if (num == 4 || num == 16 || num == 17 || num == 18 || num == 5 || num == 6) {
             probability = rand() % 100;
-            if (probability < 1) {
+            if (probability < f) {
                 bool isTrue = 0;
-                // for (int i = 0; i < equipment_bag.size(); i++) {
-                //     if (equipment_bag[i]->get_id() == equip_id) {
-                //         isTrue = 1;
-                //         equipment_bag[i]->num_plus();
-                //         cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "Ê±£¬Ä³Î»´óÀĞ¶ÔÄãÏà¼ûÈç¹Ê£¬Äã»ñµÃÁË" << equipment_bag[i]->get_name() << "£¬ÔÚËûµÄ°ïÖúÏÂ£¬Äã¸÷·½Ãæ¶¼ÓĞÁË²»ÉÙ³¤½ø" << endl;
-                //         break;
-                //     }
-                // }
-                // if (!isTrue) {
-                //     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                //     cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "Ê±£¬Ä³Î»´óÀĞ¶ÔÄãÏà¼ûÈç¹Ê£¬Äã»ñµÃÁË" << equipment_bag[equipment_bag.size() - 1]->get_name() << "£¬ÔÚËûµÄ°ïÖúÏÂ£¬Äã¸÷·½Ãæ¶¼ÓĞÁË²»ÉÙ³¤½ø" << endl;
-                // }
+
+                for (int i = 0; i < equipment_bag.size(); i++) {
+                    if (equipment_bag[i]->get_id() == equip_id) {
+                        isTrue = 1;
+                        equipment_bag[i]->num_plus();
+                        cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ—¶ï¼ŒæŸä½å¤§ä½¬å¯¹ä½ ç›¸è§å¦‚æ•…ï¼Œä½ è·å¾—äº†" << equipment_bag[i]->get_name() << "ï¼Œåœ¨ä»–çš„å¸®åŠ©ä¸‹ï¼Œä½ å„æ–¹é¢éƒ½æœ‰äº†ä¸å°‘é•¿è¿›" << endl;
+                        break;
+                    }
+                }
+                if (!isTrue) {
+                    equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
+                    cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ—¶ï¼ŒæŸä½å¤§ä½¬å¯¹ä½ ç›¸è§å¦‚æ•…ï¼Œä½ è·å¾—äº†" << equipment_bag[equipment_bag.size() - 1]->get_name() << "ï¼Œåœ¨ä»–çš„å¸®åŠ©ä¸‹ï¼Œä½ å„æ–¹é¢éƒ½æœ‰äº†ä¸å°‘é•¿è¿›" << endl;
+                }
+                theBool = 1;
+
             }
         }
         break;
-    case 17:
+    case 15:
         probability = rand() % 100;
-        if (probability < 30) {
+        if (probability < g) {
             bool isTrue = 0;
-            // for (int i = 0; i < equipment_bag.size(); i++) {
-            //     if (equipment_bag[i]->get_id() == equip_id) {
-            //         isTrue = 1;
-            //         break;
-            //     }
-            // }
-            // if (!isTrue) {
-            //     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-            //     cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚÒÆ¶¯Ê±£¬¼ñµ½ÁËÒ»Ë«Ã»ÈËÒªµÄ" << equipment_bag[equipment_bag.size() - 1]->get_name() << "£¬´©ÉÏËüºóÄãËÆºõÄÜ¹»¿ç½ÚµãÒÆ¶¯ÁË" << endl;
-            // }
+
+            for (int i = 0; i < equipment_bag.size(); i++) {
+                if (equipment_bag[i]->get_id() == equip_id) {
+                    isTrue = 1;
+                    break;
+                }
+            }
+            if (!isTrue) {
+                equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
+                cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ æ¡åˆ°äº†ä¸€åŒæ²¡äººè¦çš„" << equipment_bag[equipment_bag.size() - 1]->get_name() << "ï¼Œç©¿ä¸Šå®ƒåä½ ä¼¼ä¹èƒ½å¤Ÿè·¨èŠ‚ç‚¹ç§»åŠ¨äº†" << endl;
+            }
+            theBool = 1;
+
         }
+        break;
+    default:
+        break;
     }
- 
-    
+
+    return theBool;
 }
 
-//¿ìËÙÒÆ¶¯µÄº¯Êı
-void quick_move(Player& you, int num) {
-    cout << "ÊÇÏëÅÜÈ¥ÄÄÀïÂğ£¿";
-    cout << setfill('=') << setw(25) << "µØÍ¼½Úµã" << setfill('=') << setw(25) << "" << endl;
-    for (int i = 0; i < 19; i++) {
-        Ouc_map[i].show();
-    }
-    int choice = Player_scanf();
-    while (choice < 1 || choice>19) {
-        cout << "±ğ³¢ÊÔÑ¡ÏîÒÔÍâµÄÊı×ÖÀ²£¬ÔõÃ´ÏëÒ²×ö²»µ½µÄ" << endl;
-        choice = Player_scanf();
-    }
-    // you.changep_m(choice);
-}
-
-//´òÓ¡µ±Ç°Î»ÖÃµÄº¯Êı
-void show_address(Player& you) {
-    cout << setfill('=') << setw(25) << "µØÍ¼½Úµã" << setfill('=') << setw(25) << "" << endl;
-    // cout << "Äãµ±Ç°´¦ÓÚ¡ª¡ª" << you.get_map()->getName() << endl;
-    // cout << "¸Ã½ÚµãµØÍ¼±àºÅÊÇ£º" << you.get_map()->getId() << endl;
-}
