@@ -133,9 +133,27 @@ void move(Player& you) {
     int probability;
     equip_id = rand() % 19;
     MofE(equip_id, num, 15, 10, 20, 2, 5, 1, 30);
+    num = rand() % 4;
+    for (int i = 0; i < num; i++) {
+        bool isTrue = 0;
+        int Npc_id = rand() % 4;
+        for (int i = 0; i < you.get_map()->getNpc_id().size(); i++) {
+            if (Npc_id == you.get_map()->getNpc_id()[i]) {
+                isTrue = 1;
+                break;
+            }
+        }
+        if (!isTrue)
+            you.get_map()->getNpc_id().push_back(Npc_id);
+    }
+    if (num = you.get_map()->getId() == 17)
+        you.get_map()->getBoss_id().push_back(0);
+    if (num = you.get_map()->getId() == 6)
+        you.get_map()->getBoss_id().push_back(1);
+    if (num = you.get_map()->getId() == 9)
+        you.get_map()->getBoss_id().push_back(2);
 }
 
-//探索使用的函数，直接调用即可
 void map_explore(Player& you) {
     int equip_id = rand() % 19;
     bool theBool = 0;
@@ -167,7 +185,7 @@ void show_address(Player& you) {
     cout << "该节点地图编号是：" << you.get_map()->getId() << endl;
 }
 
-//判断是否获得道具
+
 bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int g) {
     bool theBool = 0;
     int probability;
@@ -217,7 +235,7 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
             //不存在时添加该装备
             if (!isTrue) {
                 equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                cout << "意外之喜——你在移动过程中" << "拾取了一张" << equipment_bag[equipment_bag.size() - 1]->get_name() << endl;
+                cout << "意外之喜——你" << "拾取了一张" << equipment_bag[equipment_bag.size() - 1]->get_name() << endl;
             }
             theBool = 1;
         }
@@ -329,7 +347,7 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
             }
         }
         break;
-    case 17:
+    case 15:
         probability = rand() % 100;
         if (probability < g) {
             bool isTrue = 0;
@@ -341,7 +359,7 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
             }
             if (!isTrue) {
                 equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                cout << "意外之喜——你在移动时，捡到了一双没人要的" << equipment_bag[equipment_bag.size() - 1]->get_name() << "，穿上它后你似乎能够跨节点移动了" << endl;
+                cout << "意外之喜——你捡到了一双没人要的" << equipment_bag[equipment_bag.size() - 1]->get_name() << "，穿上它后你似乎能够跨节点移动了" << endl;
             }
             theBool = 1;
         }
