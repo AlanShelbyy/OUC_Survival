@@ -74,23 +74,6 @@ void loadMap(ouc_map Ouc_map[]) {
 }
 
 
-
-int main() {
-    loadMap(Ouc_map);
- /*   for (int i = 0; i < 19; i++) {
-        Ouc_map[i].show();
-    }*/
-    short neib[6];
-    Ouc_map[18].getNeib(neib);
-    for (int i = 0; i < 6; i++) {
-        if (neib[i] != 0)
-            cout << i + 1 << ". " << Ouc_map[neib[i]-1].getName() << endl;
-        else
-            break;
-    }
-    return 0;
-}
-
 //玩家输入函数
 int Player_scanf() {
     int a;
