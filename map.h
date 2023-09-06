@@ -20,11 +20,18 @@ public:
 			a[i] = neighbor[i];
 		}
 	}
+	vector<int> getNpc_id() {
+		return npc_id;
+	}
+	vector<int> getBoss_id() {
+		return boss_id;
+	}
 private:
 	string name;
-	short map_id;//µØÍ¼±àºÅ
-	short neighbor[6];//ÏàÁÚ½ÚµãµÄ±àºÅ
-	vector<int> npc_id;//µØÍ¼Éú³ÉnpcµÄ±àºÅ
+	short map_id;//åœ°å›¾ç¼–å·
+	short neighbor[6];//ç›¸é‚»èŠ‚ç‚¹çš„ç¼–å·
+	vector<int> npc_id;//åœ°å›¾ç”Ÿæˆnpcçš„ç¼–å·
+	vector<int> boss_id;//bossçš„ç¼–å·
 };
 
 
