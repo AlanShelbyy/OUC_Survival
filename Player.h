@@ -45,6 +45,7 @@ public:
 	void Exam_with_teachers() const;  //与教师NPC考试 
 	void Tasks();
 	void Settings();  //设置
+	void be_attack(int damage);//玩家受攻击
 	int  Getter_learn();
 	void GetReward(int pro , int mat , int log , int pra , int lnp);
 

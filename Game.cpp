@@ -163,8 +163,8 @@ void MUDGame::RunGame(){
                                 //´æµµÎ´Íê³É
                             }
                             else if(operate == 3){
-                                cout<<"²âÊÔÕ½¶·"<<endl;
-                                gamestate = fightea;
+                                // cout<<"²âÊÔÕ½¶·"<<endl;
+                                // gamestate = fightea;
                                 //do nothing
                                 break;
                             }
@@ -216,11 +216,19 @@ void MUDGame::RunGame(){
                             cin>>choice;
                             if(choice==1){
                                 Boss[bossindex].be_attack(false);
-                                //palyer
+                                player.be_attack(2);
                             }
                             else if(choice ==2){
                                 int item_class = 0;//select item
-                                Boss[bossindex].be_attack(Boss[bossindex].CheckEquip(bossskill,item_class,bossSkills));
+                                bool right = Boss[bossindex].CheckEquip(bossskill,item_class,bossSkills);
+                                if(right){
+                                        Boss[bossindex].be_attack(Boss[bossindex].CheckEquip(bossskill,item_class,bossSkills));
+                                    
+                                }
+                                else{
+                                    player.be_attack(20);
+                                }
+
                             }                           
                             
                             if(player.Getter_learn()<0){

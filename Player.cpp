@@ -114,6 +114,11 @@ void Player::State() const //展示玩家当前状态
 int Player::Getter_learn(){
 	return p->Player_AbilityofLearn;
 }
+
+void Player::be_attack(int damage){
+	p->Player_AbilityofLearn -= damage ;
+}
+
 void Player::Equip_equipments(int num_eq)
 {
 	Equipment player_equ;
