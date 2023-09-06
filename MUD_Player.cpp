@@ -8,6 +8,7 @@
 #include"Equipment.h"
 #include "map.h"
 #include<fstream>
+#include"Bag.h"
 
 using namespace std;
 extern vector<Equipment*> equipment_bag;
@@ -321,15 +322,26 @@ void Player::Settings()
 	cin >> flag_set;
 	if (flag_set == 1)
 	{
-
+		mybag.bag_write();
 	}
 	else if (flag_set == 2)
 	{
-
+		cout << "请选择返回标题前 是否要存储进度？\n1. 存储进度\n2. 潇洒离去";
+			int temp_save;
+			cin >> temp_save;
+			if (temp_save == 1)
+			{
+				mybag.bag_write();
+				//
+			}
+			else if (temp_save == 20)
+			{
+				//
+			}
 	}
 	else if (flag_set == 3)
 	{
-
+		mybag.bag_write();
 	}
 	else if (flag_set == 4)
 	{
@@ -339,6 +351,9 @@ void Player::Settings()
 
 
 Player you;    //实例化一个 you
+Bag mybag;
+
+
 void Menu()
 {
 	cout << "你要打算做什么 : " << endl;
