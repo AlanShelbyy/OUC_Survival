@@ -138,6 +138,7 @@ void move(Player& you) {
 }
 
 void map_explore(Player& you) {
+    srand(time(NULL));
     int equip_id = rand() % 19;
     bool theBool = 0;
     int num = you.get_map()->getId();
