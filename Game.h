@@ -24,11 +24,17 @@ int bossindex;
 
 public:
 MUDGame();
+//游戏加载行为
 void LoadNpc();
-void ShowNpcList();
-void ShowLogo();
 void LoadLogo();
 void LoadSkill();
+void LoadBossSkill();
+void LoadBoss();
+//debug
+void ShowNpcList();
+void ShowLogo();
+
+//游戏运行
 void ShowSkillList();
 void ToffGame();
 bool RunOrNot();

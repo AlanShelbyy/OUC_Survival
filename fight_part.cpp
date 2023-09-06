@@ -1,5 +1,6 @@
 #include<iostream>
 #include<random>
+#include<cstdlib>
 #include<ctime>
 #include<cstring>
 using namespace std;
@@ -23,10 +24,11 @@ bool npc::IsBoss(){
 int npc::Useskill(vector<Skill> &skills){
     
     int choice;
-    default_random_engine e;
-    uniform_int_distribution<int> u(0,skills.size()-1);
-    e.seed(time(0));
-    choice = u(e);
+
+    srand(time(0));
+    // (rand() % (b-a+1))+ a;
+    choice = (rand() % skills.size());
+
     cout<<choice<<'#'<<endl;
 
     cout<<skills[choice].name<<endl;
@@ -49,6 +51,19 @@ bool npc::Check(int skill_index,int choice,vector<Skill>& skills){
 bool npc::CheckEquip(int skill,int item_class,vector<Skill>& BossSkills){
     if(BossSkills[skill].answer == item_class)return true;
     else return false;
+
+}
+
+void npc::be_attack(bool right_item){
+    if(right_item){
+        hardlvl -= 50;
+    }
+    else{
+        hardlvl -= 1;
+    }
+    
+    return ;
+
 
 }
 

@@ -4,6 +4,7 @@
 #include<fstream>
 #include<string>
 #include"Equipment.h"
+#include"fight_part.h"
 using namespace std;
 
 enum {
@@ -25,13 +26,11 @@ MUDGame::MUDGame(){
 void MUDGame::LoadNpc(){
     fstream infile;
     npc tmp;
-    
     infile.open("date\\npc.dat",ios::in);
     if(!infile){
         cout<<"打开失败"<<endl;
         exit(1);
     }
-
     while(!infile.eof()){
         infile>>tmp.Name;
         infile>>tmp.Description;
@@ -41,23 +40,11 @@ void MUDGame::LoadNpc(){
         infile>>tmp.GivePrac;
         infile>>tmp.GiveLearnPinit;
         infile>>tmp.hardlvl;
-        //  if(infile.eof()){
-        //     cout<<"读取结束"<<endl;
-        //     return ;
-        //  }
         NPCs.push_back(tmp);
-        // cout<<skills.size()<<'#';
     }
     return;
 }
 
-void MUDGame::ShowNpcList(){
-    for(int i = 0; i<NPCs.size();i++){
-        cout<<NPCs[i].Name<<endl;
-        cout<<NPCs[i].Description<<endl;
-    }
-
-} 
 void MUDGame::LoadSkill(){
     fstream infile;
     Skill tmp;
@@ -73,15 +60,60 @@ void MUDGame::LoadSkill(){
         infile>>tmp.choices;
         infile>>tmp.answer;
         infile>>tmp.hardlvl;
-        //  if(infile.eof()){
-        //     cout<<"读取结束"<<endl;
-        //     return ;
-        //  }
         skills.push_back(tmp);
-        // cout<<skills.size()<<'#';
     }
     return;
 }
+
+void MUDGame::LoadBoss(){
+    fstream infile;
+    npc tmp;
+    infile.open("date\\boss.dat",ios::in);
+    if(!infile){
+        cout<<"打开失败"<<endl;
+        exit(1);
+    }
+    while(!infile.eof()){
+        infile>>tmp.Name;
+        infile>>tmp.Description;
+        infile>>tmp.GiveMat;
+        infile>>tmp.GiveLog;
+        infile>>tmp.GiveProg;
+        infile>>tmp.GivePrac;
+        infile>>tmp.GiveLearnPinit;
+        infile>>tmp.hardlvl;
+        Boss.push_back(tmp);
+    }
+    return;
+}
+void MUDGame::LoadBossSkill(){
+    fstream infile;
+    Skill tmp;
+    string argus;
+    infile.open("date\\bossskill.dat",ios::in);
+    if(!infile){
+        cout<<"打开失败"<<endl;
+        exit(1);
+    }
+    while(!infile.eof()){
+        infile>>tmp.name;
+        infile>>tmp.description;
+        infile>>tmp.choices;
+        infile>>tmp.answer;
+        infile>>tmp.hardlvl;
+        bossSkills.push_back(tmp);
+    }
+    return;
+}
+
+void MUDGame::ShowNpcList(){
+    for(int i = 0; i<NPCs.size();i++){
+        cout<<NPCs[i].Name<<endl;
+        cout<<NPCs[i].Description<<endl;
+    }
+
+} 
+
 
 void MUDGame::ShowSkillList(){
     for(int i = 0;i < skills.size();i++){
@@ -100,6 +132,8 @@ void MUDGame::RunGame(){
     LoadLogo();
     LoadSkill();
     //ShowSkillList();
+    LoadBoss();
+    LoadBossSkill();
     LoadNpc();
     //ShowNpcList();
     cout<<"load end"<<endl;
@@ -129,8 +163,10 @@ void MUDGame::RunGame(){
                                 //存档未完成
                             }
                             else if(operate == 3){
+                                cout<<"测试战斗"<<endl;
+                                gamestate = fightea;
                                 //do nothing
-                                return;
+                                break;
                             }
                             
                             //thisgame.ToffGame();
@@ -140,8 +176,14 @@ void MUDGame::RunGame(){
                             // return;
                             system("pause");
                             break;
-            case fighstu:   {cout<<"交流回合"<<endl;
+            case fighstu:   {
+                            cout<<"交流回合"<<endl;
+                            cout<<"载入假设"<<endl;
+                            npcindex.push_back(0);
+                            npcindex.push_back(2);
+                            npcchoice = 1;
                             system("pause");
+
                             tmpNpc = &NPCs[npcindex[npcchoice]];
                             int skillindex =tmpNpc->Useskill(skills);
                             
@@ -149,7 +191,10 @@ void MUDGame::RunGame(){
                             if(tmpNpc->Check(skillindex,choice,skills)){
                                 tmpNpc->GivePoint(player);
                             }
-
+                            else{
+                                cout<<"回答错误"<<endl;
+                            }
+                            cout<<"选择 1. 去冒险 2.继续交流"<<endl;
                             cin>>operate;
                             if(operate == 1){
                                 gamestate = adv;
@@ -161,34 +206,36 @@ void MUDGame::RunGame(){
 
             
                             break;}
-            case fightea:   cout<<"考试回合";
+            case fightea:  { 
+                            cout<<"考试回合";
                             system("pause");
-                            // //BOSS打印技能
-                            // int bossskill = Boss[bossindex].Useskill(bossSkills);
-                            // //玩家使用技能
-                            // cout<<"选择行动"<<endl<<"1.普通攻击hello world 2.使用物品";
-                            // cin>>choice;
-                            // if(choice==1){
-                            //     Boss[bossindex].be_attack(false);
-                            // }
-                            // else if(choice ==2){
-                            //     int item_class = 0;//select item
-                            //     Boss[bossindex].be_attack(Boss[bossindex].CheckEquip(bossskill,item_class,bossSkills));
-                            // }                           
+                            //BOSS打印技能
+                            int bossskill = Boss[bossindex].Useskill(bossSkills);
+                            //玩家使用技能
+                            cout<<"选择行动"<<endl<<"1.普通攻击hello world 2.使用物品";
+                            cin>>choice;
+                            if(choice==1){
+                                Boss[bossindex].be_attack(false);
+                                //palyer
+                            }
+                            else if(choice ==2){
+                                int item_class = 0;//select item
+                                Boss[bossindex].be_attack(Boss[bossindex].CheckEquip(bossskill,item_class,bossSkills));
+                            }                           
                             
-                            // if(player.Getter_learn()<0){
-                            //     cout<<"你好像收到了一个学业警示";
-                            // }
-                            // else if(Boss[bossindex].Getter_hardlvl() < 0){
-                            //     cout<<"你通过了考试";
+                            if(player.Getter_learn()<0){
+                                cout<<"你好像收到了一个学业警示";
+                            }
+                            else if(Boss[bossindex].Getter_hardlvl() < 0){
+                                cout<<"你通过了考试";
 
-                            // }
+                            }
 
                             
 
 
 
-                            break;
+                            break;}
             case rest: ;break;
             case bag: ; break;
             case store: ;break;
