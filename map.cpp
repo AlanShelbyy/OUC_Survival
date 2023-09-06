@@ -116,6 +116,8 @@ void move(Player& you) {
     int probability;
     equip_id = rand() % 19;
     MofE(equip_id, num, 15, 10, 20, 2, 5, 1, 30);
+    
+    //刷新0-3个npc 
     num = rand() % 4;
     for (int i = 0; i < num; i++) {
         bool isTrue = 0;
@@ -129,6 +131,7 @@ void move(Player& you) {
         if (!isTrue)
             you.get_map()->getNpc_id().push_back(Npc_id);
     }
+    //固定刷新boss
     if (num = you.get_map()->getId() == 17)
         you.get_map()->getBoss_id().push_back(0);
     if (num = you.get_map()->getId() == 6)
