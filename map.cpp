@@ -9,7 +9,7 @@
 #include"Player.h"
 using namespace std;
 
-ouc_map Ouc_map[19];
+extern ouc_map Ouc_map[19];
 
 int showMap() {
     string line;
