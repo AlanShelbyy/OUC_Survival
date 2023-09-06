@@ -3,7 +3,7 @@
 #include <string>
 #include "map.h"
 #include<iomanip>
-#include"global.h"
+//#include"global.h"
 #include"Equipment.h"
 #include <time.h> 
 #include"Player.h"
@@ -74,7 +74,9 @@ void loadMap(ouc_map Ouc_map[]) {
 }
 
 
+
 //玩家输入函数
+
 int Player_scanf() {
     int a;
     cin >> a;
@@ -88,10 +90,12 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e, int f, int g
 void move(Player& you) {
     int num;
     short neib[6];
+
     you.get_map()->getNeib(neib);
     cout << "有什么想去的地方吗？" << endl;
     //打印能移动到的节点
     int size = 0;//能移动节点的数量
+
     for (int i = 0; i < 6; i++) {
         if (neib[i] != 0) {
             cout << i + 1 << ". " << Ouc_map[neib[i] - 1].getName() << endl;
@@ -107,8 +111,8 @@ void move(Player& you) {
         cout << "无效输入，请重新选择" << endl;
         choice = Player_scanf();
     }
-    you.changep_m(neib[choice - 1] - 1);
-    num = you.get_map()->getId();
+    //you.changep_m(neib[choice - 1] - 1);
+    //num = you.get_map()->getId();
 
     //移动时概率获取装备
     srand(time(NULL));
@@ -188,6 +192,7 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
             probability = rand() % 100;
             if (probability < a) {
                 bool isTrue = 0;
+
                 //背包里存在该装备时
                 for (int i = 0; i < equipment_bag.size(); i++) {
                     if (equipment_bag[i]->get_id() == equip_id) {
@@ -203,6 +208,7 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
                     cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一本" << equipment_bag[equipment_bag.size() - 1]->get_name() << endl;
                 }
                 theBool = 1;
+
             }
         }
         break;
@@ -210,6 +216,7 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
         probability = rand() % 100;
         if (probability < b) {
             bool isTrue = 0;
+
             //背包里存在该装备时
             for (int i = 0; i < equipment_bag.size(); i++) {
                 if (equipment_bag[i]->get_id() == equip_id) {
@@ -225,12 +232,14 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
                 cout << "意外之喜——你" << "拾取了一张" << equipment_bag[equipment_bag.size() - 1]->get_name() << endl;
             }
             theBool = 1;
+
         }
         break;
     case 8:
         probability = rand() % 100;
         if (probability < c) {
             bool isTrue = 0;
+
             //背包里存在该装备时
             for (int i = 0; i < equipment_bag.size(); i++) {
                 if (equipment_bag[i]->get_id() == equip_id) {
@@ -246,6 +255,7 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
                 cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一瓶" << equipment_bag[equipment_bag.size() - 1]->get_name() << "，但你确定敢喝吗" << endl;
             }
             theBool = 1;
+
         }
         break;
     case 9:
@@ -253,6 +263,7 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
             probability = rand() % 100;
             if (probability < d) {
                 bool isTrue = 0;
+
                 for (int i = 0; i < equipment_bag.size(); i++) {
                     if (equipment_bag[i]->get_id() == equip_id) {
                         isTrue = 1;
@@ -266,6 +277,7 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
                     cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了" << equipment_bag[equipment_bag.size() - 1]->get_name() << "，看起来似乎能使你对部分学习内容更加通透" << endl;
                 }
                 theBool = 1;
+
             }
         }
         break;
@@ -274,6 +286,7 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
             probability = rand() % 100;
             if (probability < d) {
                 bool isTrue = 0;
+
                 //背包里存在该装备时
                 for (int i = 0; i < equipment_bag.size(); i++) {
                     if (equipment_bag[i]->get_id() == equip_id) {
@@ -289,6 +302,7 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
                     cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一副没人要的" << equipment_bag[equipment_bag.size() - 1]->get_name() << "天上偶尔是会掉馅饼的，你就欣然接受吧" << endl;
                 }
                 theBool = 1;
+
             }
         }
         break;
@@ -297,6 +311,7 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
             probability = rand() % 100;
             if (probability < e) {
                 bool isTrue = 0;
+
                 for (int i = 0; i < equipment_bag.size(); i++) {
                     if (equipment_bag[i]->get_id() == equip_id) {
                         isTrue = 1;
@@ -310,6 +325,7 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
                     cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "找到了一张大佬的" << equipment_bag[equipment_bag.size() - 1]->get_name() << "，虽然有些潦草，但你还是一眼认出上面正写着困扰你许久的题目" << endl;
                 }
                 theBool = 1;
+
             }
         }
         break;
@@ -318,6 +334,7 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
             probability = rand() % 100;
             if (probability < f) {
                 bool isTrue = 0;
+
                 for (int i = 0; i < equipment_bag.size(); i++) {
                     if (equipment_bag[i]->get_id() == equip_id) {
                         isTrue = 1;
@@ -331,6 +348,7 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
                     cout << "意外之喜——你在" << Ouc_map[num - 1].getName() << "时，某位大佬对你相见如故，你获得了" << equipment_bag[equipment_bag.size() - 1]->get_name() << "，在他的帮助下，你各方面都有了不少长进" << endl;
                 }
                 theBool = 1;
+
             }
         }
         break;
@@ -338,6 +356,7 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
         probability = rand() % 100;
         if (probability < g) {
             bool isTrue = 0;
+
             for (int i = 0; i < equipment_bag.size(); i++) {
                 if (equipment_bag[i]->get_id() == equip_id) {
                     isTrue = 1;
@@ -349,10 +368,13 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
                 cout << "意外之喜——你捡到了一双没人要的" << equipment_bag[equipment_bag.size() - 1]->get_name() << "，穿上它后你似乎能够跨节点移动了" << endl;
             }
             theBool = 1;
+
         }
         break;
     default:
         break;
     }
+
     return theBool;
 }
+

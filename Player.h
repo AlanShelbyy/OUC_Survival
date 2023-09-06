@@ -34,6 +34,7 @@ class Player
 {
 public:
 	Player(); //初始化 
+	void ChooseMajor();
 	void State() const;  //状态  
 	void Backpack() const; //背包
 	void Equip_equipments(int num_eq);//装备/卸装备
@@ -44,6 +45,7 @@ public:
 	void Exam_with_teachers() const;  //与教师NPC考试 
 	void Tasks();
 	void Settings();  //设置
+	void be_attack(int damage);//玩家受攻击
 	int  Getter_learn();
 	void GetReward(int pro , int mat , int log , int pra , int lnp);
 
