@@ -1,6 +1,6 @@
 #pragma once
 #include<iostream>
-
+#include"map.h"
 #include<cstring>
 using namespace std;
 
@@ -48,9 +48,12 @@ public:
 	void be_attack(int damage);//玩家受攻击
 	int  Getter_learn();
 	void GetReward(int pro , int mat , int log , int pra , int lnp);
+	void changep_m(int num);
+	short getMap_id();
+	ouc_map* get_map();
 
 private:
-	//ouc_map * p_m;
+	ouc_map * p_m;
 
 	struct Player_Stats* p; //指向Player的指针
 	int flag_major; //用于开局时玩家挑选专业	
