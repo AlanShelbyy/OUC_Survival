@@ -24,10 +24,10 @@ public:
 			a[i] = neighbor[i];
 		}
 	}
-	vector<int> getNpc_id() {
+	vector<int>& getNpc_id() {
 		return npc_id;
 	}
-	vector<int> getBoss_id() {
+	vector<int>& getBoss_id() {
 		return boss_id;
 	}
 private:

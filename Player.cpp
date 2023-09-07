@@ -44,21 +44,10 @@ Bag mybag;
 
 }*/
 
-void showMap() {
-	string line;
-	ifstream file("data/map.dat");
-	if (file.is_open()) {
-		while (getline(file, line)) {
-			cout << line << endl;
-		}
-		file.close();
-	}
-	else {
-		cout << "无法打开文件" << endl;
-	}
-}
+
 Player::Player(){//测试用例
 	p = (struct Player_Stats*)new struct Player_Stats;
+	p_m = &Ouc_map[0];
 	
 }
 void Player::GetReward(int pro , int mat , int log , int pra , int lnp){
@@ -279,6 +268,7 @@ void Player::Equip_equipments(int num_eq)
 		if (flag_qr == 1)
 		{
 			int temp = num_eq - 1;
+			delete equipment_bag[temp];
 			equipment_bag.erase(equipment_bag.begin()+ temp);
 		}
 		else
@@ -359,7 +349,7 @@ void Player::Eat_orSleep() const
 			srand(time(NULL));
 			int temp2_Player_Action_Points = rand() % 7 + 10; //睡觉随机加 10-16行动点  
 			cout << endl;
-			cout << "呼呼大睡中 ";
+			cout << "呼呼大睡中";
 			Sleep(300);
 			for (int i = 0; i < 6; i++)
 			{
@@ -376,17 +366,27 @@ void Player::Eat_orSleep() const
 
 void Player::Learn_with_classmates() const
 {
-
+	
 }
 
 void Player::Exam_with_teachers() const
 {
-
+	
 }
 
 void Player::Explore_items() const
 {
-
+	cout<<"是否进一步探索该场景中物品？"<<endl;
+	cout<<"1.是\n2.否"<<endl;
+	int temp_ts;
+	cin>>temp_ts;
+	if(temp_ts==1){
+		map_explore(you);
+	}
+	else if(temp_ts==2)
+	{
+		cout<<"见好就收~"<<endl;
+	}
 }
 
 void Player::Settings() 
@@ -421,75 +421,71 @@ void Player::Settings()
 	{
 		mybag.bag_write();
 	}
-	else if (flag_set == 4)
-	{
-
-	}
 }
 
 
 
 
-void Menu()
-{
-	cout << "你要打算做什么 : " << endl;
-	cout << endl;
-	cout << "1. 查看状态  2.背包  3. 探索  4. 学习交流/申请考试  5.移动  6. 吃饭/睡觉  7. 地图 " << endl;
-	cout << endl;
-	int opt;
-	cin >> opt;
-	if (opt == 1)
-	{
-		cout << "你的状态 : " << endl;
-		you.State();
-	}
-	else if (opt == 2)
-	{
-		if (!equipment_bag.size()) //背包为空
-		{
-			cout << "你的背包里 空空如也 " << endl;
-		}
-		else
-		{
-			cout << "以下是你背包中的物品 : " << endl;
-			you.Backpack();
-		}
-	}
-	else if (opt == 3)
-	{
-		map_explore(you);
-	}
-	else if (opt == 4)
-	{
-		if (you.get_map()->getNpc_id().empty())//该房间没有NPC
-		{
-			cout << "这间教室貌似空无一人" << endl;
-		}
-		else
-		{
-			cout << "当前教室有 : " << endl;
-			for (int i = 0; i <you.get_map()->getNpc_id().size(); i++)
-			{
-				cout << i + 1 << '.' ;//npc的名字
-				//NPC 
-			}
-		}
-	}
-	else if (opt == 5)
-	{
-		cout << endl;
-		cout << "你当前所在地编号及名称为 ";
-		you.get_map()->show();
-	}
-	else if (opt == 6)
-	{
-		you.Eat_orSleep();
-	}
-	else if (opt == 7)
-	{
-		showMap();
-	}
-}
+// void Menu()
+// {
+// 	cout << "你要打算做什么 : " << endl;
+// 	cout << endl;
+// 	cout << "1. 查看状态  2.背包  3. 探索  4. 学习交流/申请考试  5.移动  6. 吃饭/睡觉  7. 地图 " << endl;
+// 	cout << endl;
+// 	int opt;
+// 	cin >> opt;
+// 	if (opt == 1)
+// 	{
+// 		cout << "你的状态 : " << endl;
+// 		you.State();
+// 	}
+// 	else if (opt == 2)
+// 	{
+// 		if (!equipment_bag.size()) //背包为空
+// 		{
+// 			cout << "你的背包里 空空如也 " << endl;
+// 		}
+// 		else
+// 		{
+// 			cout << "以下是你背包中的物品 : " << endl;
+// 			you.Backpack();
+// 		}
+// 	}
+// 	else if (opt == 3)
+// 	{
+// 		map_explore(you);
+// 	}
+// 	else if (opt == 4)
+// 	{
+// 		if (you.get_map()->getNpc_id().empty())//该房间没有NPC
+// 		{
+// 			cout << "这间教室貌似空无一人" << endl;
+// 		}
+// 		else
+// 		{
+// 			cout << "当前教室有 : " << endl;
+// 			for (int i = 0; i <you.get_map()->getNpc_id().size(); i++)
+// 			{
+// 				cout << i + 1 << '.' ;//npc的名字
+// 				//NPC 
+// 			}
+// 		}
+// 	}
+// 	else if (opt == 5)
+// 	{
+// 		cout << endl;
+// 		cout << "你当前所在地编号及名称为 ";
+// 		you.get_map()->show();
+// 	}
+// 	else if (opt == 6)
+// 	{
+// 		you.Eat_orSleep();
+// 	}
+// 	else if (opt == 7)
+// 	{
+// 		showMap();
+// 	}
+// }
 
 //玩家输入函数
 

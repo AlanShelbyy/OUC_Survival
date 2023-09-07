@@ -4,6 +4,7 @@
 #include<fstream>
 #include<string>
 #include"Equipment.h"
+#include"map.h"
 #include"fight_part.h"
 using namespace std;
 
@@ -18,6 +19,11 @@ enum {
     } gamestate;
 
 extern vector<Equipment*> equipment_bag;
+extern ouc_map Ouc_map[19];
+
+
+
+void showMap();
 
 MUDGame::MUDGame(){
     _Run = true;
@@ -105,7 +111,13 @@ void MUDGame::LoadBossSkill(){
     }
     return;
 }
-
+//将地图文件加载入Ouc_map数组里
+void MUDGame::LoadMap() {
+    for (int i = 0; i < 19; i++) {
+        ouc_map map(i + 1);
+        Ouc_map[i] = map;
+    }
+}
 void MUDGame::ShowNpcList(){
     for(int i = 0; i<NPCs.size();i++){
         cout<<NPCs[i].Name<<endl;
@@ -128,6 +140,12 @@ void MUDGame::ShowSkillList(){
 
 
 }
+// void MUDGame::GetMapNpc(){
+//     vector<int> npcs = player.get_map()->getNpc_id();
+//     for(int i =0;i < npcs.size();i++){
+//         npcindex.push_back(npcs[i]);
+//     }
+// }
 void MUDGame::RunGame(){
     LoadLogo();
     LoadSkill();
@@ -135,6 +153,7 @@ void MUDGame::RunGame(){
     LoadBoss();
     LoadBossSkill();
     LoadNpc();
+    LoadMap();
     //ShowNpcList();
     cout<<"load end"<<endl;
     int choice=0;
@@ -172,7 +191,90 @@ void MUDGame::RunGame(){
                             //thisgame.ToffGame();
                             break;
             case adv:    cout<<"冒险中"<<endl;
-                            
+                            cout << "你要打算做什么 : " << endl;
+                            cout << endl;
+                            cout << "1. 查看状态  2.背包  3. 探索  4. 学习交流/申请考试  5.移动  6. 吃饭/睡觉  7. 地图 " << endl;
+                            cout << endl;
+                            int opt;
+                            cin >> opt;
+                            if (opt == 1)
+                            {
+                                cout << "你的状态 : " << endl;
+                                player.State();
+                            }
+                            else if (opt == 2)
+                            {
+                                if (!equipment_bag.size()) //背包为空
+                                {
+                                    cout << "你的背包里 空空如也 " << endl;
+                                }
+                                else
+                                {
+                                    cout << "以下是你背包中的物品 : " << endl;
+                                    player.Backpack();
+                                }
+                            }
+                            else if (opt == 3)
+                            {
+                                map_explore(player);
+                            }
+                            else if (opt == 4)
+                            {
+                                if (player.get_map()->getNpc_id().empty())//该房间没有NPC
+                                {
+                                    cout << "这间教室貌似空无一人" << endl;
+                                }
+                                else
+                                {
+                                   if(player.getMap_id()==6||player.getMap_id()==9||player.getMap_id()==17)//在有老师的地图里
+                                   {
+                                    int dz;
+                                    cout<<"1. "<<Boss[player.get_map()->getBoss_id()[0]].Name;
+                                    for(dz=0;dz<player.get_map()->getNpc_id().size();dz++)
+                                    {
+                                        cout<<dz+1<<' '<<NPCs[player.get_map()->getNpc_id()[dz]].Name;
+                                    }
+
+                                    int temp_dz;
+                                    
+                                    cin>>temp_dz;
+                                    
+                                    
+                                    if(temp_dz!=1){ //学生
+                                        cout<<"你现在学术交流/考试的对象是 "<<NPCs[player.get_map()->getNpc_id()[temp_dz+1]].Name;
+                                        gamestate=fighstu;
+                                    }
+                                    
+                                    else {
+                                        cout<<"你现在进行考试的对象是 "<<Boss[player.get_map()->getBoss_id()[0]].Name;
+                                    }
+                                   }
+                                   else{
+                                    for(int dz=0;dz<player.get_map()->getNpc_id().size();dz++)
+                                    {
+                                        cout<<dz+1<<' '<<NPCs[player.get_map()->getNpc_id()[dz]].Name;
+                                    }
+                                    int temp_dz2;
+                                    cin>>temp_dz2;
+                                    cout<<"你现在学术交流的对象是 "<<NPCs[player.get_map()->getNpc_id()[temp_dz2]].Name;
+
+                                   }
+                                }
+                            }
+                            else if (opt == 5)
+                            {
+                                cout << endl;
+                                cout << "你当前所在地编号及名称为 ";
+                                player.get_map()->show();
+                            }
+                            else if (opt == 6)
+                            {
+                                player.Eat_orSleep();
+                            }
+                            else if (opt == 7)
+                            {
+                                showMap();
+                            }
                             // return;
                             system("pause");
                             break;
@@ -285,4 +387,17 @@ void MUDGame::LoadLogo(){
 void MUDGame::ShowLogo(){
 
     cout<<GameLogo;
+}
+void showMap() {
+	string line;
+	ifstream file("data/map.dat");
+	if (file.is_open()) {
+		while (getline(file, line)) {
+			cout << line << endl;
+		}
+		file.close();
+	}
+	else {
+		cout << "无法打开文件" << endl;
+	}
 }

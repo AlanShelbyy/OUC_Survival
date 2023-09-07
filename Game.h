@@ -30,11 +30,13 @@ void LoadLogo();
 void LoadSkill();
 void LoadBossSkill();
 void LoadBoss();
+void LoadMap();
 //debug
 void ShowNpcList();
 void ShowLogo();
 
 //”Œœ∑‘À––
+//void GetMapNpc();
 void ShowSkillList();
 void ToffGame();
 bool RunOrNot();

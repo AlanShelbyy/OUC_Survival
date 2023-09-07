@@ -53,13 +53,7 @@ ouc_map::ouc_map(ouc_map& d) {
     npc_id.assign(3, 3);
 }
 
-//将地图文件加载入Ouc_map数组里
-void loadMap(ouc_map Ouc_map[]) {
-    for (int i = 0; i < 19; i++) {
-        ouc_map map(i + 1);
-        Ouc_map[i] = map;
-    }
-}
+
 
 
 
