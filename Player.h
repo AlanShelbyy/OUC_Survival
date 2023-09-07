@@ -38,7 +38,7 @@ public:
 	void State() const;  //状态  
 	void Backpack() const; //背包
 	void Equip_equipments(int num_eq);//装备/卸装备
-	void Move() const;  //移动 
+	 
 	void Explore_items() const;  //探索物品 
 	void Eat_orSleep() const; //（仅在食堂）吃饭 
 	void Learn_with_classmates() const;  //与同学NPC学习交流 

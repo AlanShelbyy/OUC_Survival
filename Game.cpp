@@ -6,6 +6,7 @@
 #include"Equipment.h"
 #include"map.h"
 #include"fight_part.h"
+#include<windows.h>
 using namespace std;
 
 enum {
@@ -24,7 +25,7 @@ extern ouc_map Ouc_map[19];
 
 
 void showMap();
-
+void showInColor(char str[],int color,HANDLE console);
 MUDGame::MUDGame(){
     _Run = true;
 }
@@ -156,16 +157,19 @@ void MUDGame::RunGame(){
     LoadMap();
     //ShowNpcList();
     cout<<"load end"<<endl;
+    thewindow = GetStdHandle( STD_OUTPUT_HANDLE );
     int choice=0;
     int operate;
     npc* tmpNpc;
     gamestate = start_menu;
     while(RunOrNot()){
-
+        system("cls");
         
         switch(gamestate){ 
             case start_menu:cout<<"开始界面"<<endl;//各种游戏状态
+                            
                             ShowLogo();
+                            
                             cout<<"一名坚毅的海大学生"<<endl;
                             cout<<"1. 新的开始 2. 继续学业 3.退出游戏"<<endl;
                             cin>>operate;
@@ -174,7 +178,7 @@ void MUDGame::RunGame(){
                                 player.ChooseMajor();
                                 player.State();
                                 system("pause");
-                                system("cls");
+                                
                                 //cout<<"虚假的选专业"<<endl;
                                 gamestate = adv;
                             }
@@ -182,18 +186,25 @@ void MUDGame::RunGame(){
                                 //存档未完成
                             }
                             else if(operate == 3){
-                                // cout<<"测试战斗"<<endl;
-                                // gamestate = fightea;
-                                //do nothing
+                                
                                 break;
                             }
                             
                             //thisgame.ToffGame();
                             break;
-            case adv:    cout<<"冒险中"<<endl;
+            case adv:   {cout<<"冒险中"<<endl;
+                            player.get_map()->show();//展示地图信息,最好有地图介绍
+                            //展示所有npc，带颜色
+                            for(int i = 0; i<player.get_map()->getNpc_id().size(); i++){
+                                //cout<<player.get_map()->getNpc_id()[i];
+                                showInColor(NPCs[player.get_map()->getNpc_id()[i]].Name,1,thewindow);
+                                cout<<endl;
+                            }
+                            //
+                            
                             cout << "你要打算做什么 : " << endl;
                             cout << endl;
-                            cout << "1. 查看状态  2.背包  3. 探索  4. 学习交流/申请考试  5.移动  6. 吃饭/睡觉  7. 地图 " << endl;
+                            cout << "1. 查看状态  2.背包  3. 探索  4. 学习交流/申请考试  5.移动  6. 吃饭/睡觉  7. 地图 8.系统" << endl;
                             cout << endl;
                             int opt;
                             cin >> opt;
@@ -201,6 +212,8 @@ void MUDGame::RunGame(){
                             {
                                 cout << "你的状态 : " << endl;
                                 player.State();
+                                system("pause>nul");
+                                break;
                             }
                             else if (opt == 2)
                             {
@@ -213,59 +226,84 @@ void MUDGame::RunGame(){
                                     cout << "以下是你背包中的物品 : " << endl;
                                     player.Backpack();
                                 }
+                                system("pause>nul");
+                                break;
+                                
                             }
                             else if (opt == 3)
                             {
-                                map_explore(player);
+                                map_explore(player);//探索地图
+                                system("pause>nul");
+                                break;
+
                             }
                             else if (opt == 4)
                             {
+                                //cout<<"去别的地方看看吧"<<endl;
+                                cout<<"测试中"<<endl;
                                 if (player.get_map()->getNpc_id().empty())//该房间没有NPC
                                 {
                                     cout << "这间教室貌似空无一人" << endl;
                                 }
                                 else
                                 {
-                                   if(player.getMap_id()==6||player.getMap_id()==9||player.getMap_id()==17)//在有老师的地图里
-                                   {
-                                    int dz;
-                                    cout<<"1. "<<Boss[player.get_map()->getBoss_id()[0]].Name;
-                                    for(dz=0;dz<player.get_map()->getNpc_id().size();dz++)
-                                    {
-                                        cout<<dz+1<<' '<<NPCs[player.get_map()->getNpc_id()[dz]].Name;
-                                    }
+                                //     //判断是否有老师
+                                //    if(player.getMap_id()==6||player.getMap_id()==9||player.getMap_id()==17)
+                                //    {
+                                //     int dz;
+                                //     cout<<"1. "<<Boss[player.get_map()->getBoss_id()[0]].Name;
+                                //     for(dz=0;dz<player.get_map()->getNpc_id().size();dz++)
+                                //     {
+                                //         cout<<dz+1<<' '<<NPCs[player.get_map()->getNpc_id()[dz]].Name;
+                                //     }
 
-                                    int temp_dz;
+                                //     int temp_dz;
                                     
-                                    cin>>temp_dz;
+                                //     cin>>temp_dz;
                                     
                                     
-                                    if(temp_dz!=1){ //学生
-                                        cout<<"你现在学术交流/考试的对象是 "<<NPCs[player.get_map()->getNpc_id()[temp_dz+1]].Name;
-                                        gamestate=fighstu;
-                                    }
+                                //     if(temp_dz!=1){ //学生
+                                //         cout<<"你现在学术交流/考试的对象是 "<<NPCs[player.get_map()->getNpc_id()[temp_dz+1]].Name;
+                                //         gamestate=fighstu;
+                                //     }
                                     
-                                    else {
-                                        cout<<"你现在进行考试的对象是 "<<Boss[player.get_map()->getBoss_id()[0]].Name;
-                                    }
-                                   }
-                                   else{
+                                //     else {
+                                //         cout<<"你现在进行考试的对象是 "<<Boss[player.get_map()->getBoss_id()[0]].Name;
+                                //     }
+                                //    }//没有老师的话
+                                //    else{
+                                    //依次打印名字
+                                    cout<<"选择与谁交流"<<endl;
                                     for(int dz=0;dz<player.get_map()->getNpc_id().size();dz++)
                                     {
                                         cout<<dz+1<<' '<<NPCs[player.get_map()->getNpc_id()[dz]].Name;
                                     }
+                                    //选择npc
+                                    
                                     int temp_dz2;
                                     cin>>temp_dz2;
-                                    cout<<"你现在学术交流的对象是 "<<NPCs[player.get_map()->getNpc_id()[temp_dz2]].Name;
+                                    //输入检查？
 
-                                   }
+                                    cout<<"你现在学术交流的对象是 "<<NPCs[player.get_map()->getNpc_id()[temp_dz2-1]].Name;
+                                    npcchoice = player.get_map()->getNpc_id()[temp_dz2];
+                                    gamestate = fighstu;
+                                    
+
+                                  // }
                                 }
+                                system("pause>nul");
+                                break;
                             }
                             else if (opt == 5)
                             {
-                                cout << endl;
-                                cout << "你当前所在地编号及名称为 ";
-                                player.get_map()->show();
+                                // cout << endl;
+                                // cout << "你当前所在地编号及名称为 ";
+                                // player.get_map()->show();
+                               // cout<<"你可以去的地方:"<<endl;
+                                //打印
+                                //选择
+                                //移动
+                                move(player);
                             }
                             else if (opt == 6)
                             {
@@ -274,19 +312,24 @@ void MUDGame::RunGame(){
                             else if (opt == 7)
                             {
                                 showMap();
+                                system("pause>nul");
                             }
-                            // return;
-                            system("pause");
+                            else if(opt==8){
+                                system("cls");
+                                cout<<"1. 继续游戏 2. 保存进度 3. 退出游戏"<<endl;
+                                int localOpt = 0;
+                                //输入加检查
+
+                            }         
                             break;
+                        }
             case fighstu:   {
                             cout<<"交流回合"<<endl;
-                            cout<<"载入假设"<<endl;
-                            npcindex.push_back(0);
-                            npcindex.push_back(2);
-                            npcchoice = 1;
+                           
+                            
                             system("pause");
 
-                            tmpNpc = &NPCs[npcindex[npcchoice]];
+                            tmpNpc = &NPCs[npcchoice];
                             int skillindex =tmpNpc->Useskill(skills);
                             
                             cin>>choice;
@@ -300,7 +343,7 @@ void MUDGame::RunGame(){
                             cin>>operate;
                             if(operate == 1){
                                 gamestate = adv;
-                                npcindex.erase(npcindex.begin(),npcindex.end());
+                                
                             }
                             else{
 
@@ -385,8 +428,9 @@ void MUDGame::LoadLogo(){
 
 }
 void MUDGame::ShowLogo(){
-
+    SetConsoleTextAttribute(thewindow,FOREGROUND_BLUE);
     cout<<GameLogo;
+    SetConsoleTextAttribute(thewindow,FOREGROUND_GREEN|FOREGROUND_BLUE|FOREGROUND_RED);
 }
 void showMap() {
 	string line;
@@ -400,4 +444,11 @@ void showMap() {
 	else {
 		cout << "无法打开文件" << endl;
 	}
+}
+
+//带颜色的输出
+void showInColor(char str[],int color,HANDLE console){
+    SetConsoleTextAttribute(console,color);
+    cout<<str;
+    SetConsoleTextAttribute(console,FOREGROUND_BLUE|FOREGROUND_GREEN|FOREGROUND_RED);
 }

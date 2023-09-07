@@ -1,5 +1,6 @@
 
 #include"Player.h"
+#include<windows.h>
 #include"fight_part.h"
 class MUDGame{
 private:
@@ -17,11 +18,11 @@ vector<Skill> bossSkills;
 //商店（可选）
 
 //一些用来表示状态的
-vector<int> npcindex;
+
 int npcchoice ;
 
 int bossindex;
-
+HANDLE thewindow;
 public:
 MUDGame();
 //游戏加载行为

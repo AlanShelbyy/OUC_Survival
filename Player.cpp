@@ -534,8 +534,8 @@ void move(Player& you) {
         cout << "无效输入，请重新选择" << endl;
         choice = Player_scanf();
     }
-    //you.changep_m(neib[choice - 1] - 1);
-    //num = you.get_map()->getId();
+    you.changep_m(neib[choice - 1] - 1);
+    num = you.get_map()->getId();
 
     //移动时概率获取装备
     srand(time(NULL));
@@ -548,7 +548,7 @@ void move(Player& you) {
     num = rand() % 4;
     for (int i = 0; i < num; i++) {
         bool isTrue = 0;
-        int Npc_id = rand() % 4;
+        int Npc_id = rand() % 3;
         for (int i = 0; i < you.get_map()->getNpc_id().size(); i++) {
             if (Npc_id == you.get_map()->getNpc_id()[i]) {
                 isTrue = 1;
@@ -567,7 +567,7 @@ void move(Player& you) {
         you.get_map()->getBoss_id().push_back(2);
 }
 
-void map_explore(Player& you) {//移动函数
+void map_explore(Player& you) {//获取当前地图存在的物品
     srand(time(NULL));
     int equip_id = rand() % 19;
     bool theBool = 0;
