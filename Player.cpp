@@ -466,20 +466,20 @@ void Menu()
 	}
 	else if (opt == 3)
 	{
-		you.get_map()->map_explore(you);
+		map_explore(you);
 	}
 	else if (opt == 4)
 	{
-		if (you.get_map()->get_npc_id().empty())//该房间没有NPC
+		if (you.get_map()->getNpc_id().empty())//该房间没有NPC
 		{
 			cout << "这间教室貌似空无一人" << endl;
 		}
 		else
 		{
 			cout << "当前教室有 : " << endl;
-			for (int i = 0; i <you.get_map()->get_npc_id().size(); i++)
+			for (int i = 0; i <you.get_map()->getNpc_id().size(); i++)
 			{
-				cout << i + 1 << '. ' <<
+				cout << i + 1 << '. ' ;//npc的名字
 				//NPC 
 			}
 		}

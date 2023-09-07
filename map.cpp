@@ -9,6 +9,7 @@
 #include"Player.h"
 using namespace std;
 
+extern vector<Equipment*> equipment_bag;
 extern ouc_map Ouc_map[19];
 
 int showMap() {
