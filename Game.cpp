@@ -17,7 +17,7 @@ enum {
     store
     } gamestate;
 
-vector<Equipment*> equipment_bag;
+extern vector<Equipment*> equipment_bag;
 
 MUDGame::MUDGame(){
     _Run = true;

@@ -3,7 +3,7 @@
 #include"map.h"
 #include<cstring>
 using namespace std;
-
+class ouc_map;
 
 struct Player_Stats
 {
@@ -53,7 +53,7 @@ public:
 	ouc_map* get_map();
 
 private:
-	ouc_map * p_m;
+	ouc_map* p_m;
 
 	struct Player_Stats* p; //指向Player的指针
 	int flag_major; //用于开局时玩家挑选专业	
@@ -62,3 +62,6 @@ private:
 
 };
 
+void move(Player& you);
+
+void map_explore(Player& you);

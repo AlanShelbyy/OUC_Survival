@@ -1,8 +1,12 @@
 #pragma once
 #include <string>
 #include<vector>
+
+#include"Player.h"
+
 using namespace std;
-class ouc_map {
+
+class ouc_map{
 public:
 	/*ouc_map(){};*/
 	/*ouc_map(string name, short map_id, short neighbor[]);*/
@@ -37,6 +41,3 @@ private:
 
 bool MofE(int equip_id, int num, int a, int b, int c, int d, int e, int f, int g);
 
-void move(Player& you);
-
-void map_explore(Player& you);

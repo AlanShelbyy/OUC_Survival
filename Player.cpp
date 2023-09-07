@@ -1,10 +1,12 @@
 
 #include<iostream>
+#include<iomanip>
 #include<windows.h>
 #include<cstdlib>
 #include<algorithm>
 #include"Player.h"
 #include<vector>
+#include<ctime>
 #include"Equipment.h"
 #include "map.h"
 #include<fstream>
@@ -13,18 +15,6 @@
 using namespace std;
 extern vector<Equipment*> equipment_bag;
 extern ouc_map Ouc_map[19];
-
-struct Player_Stats
-{
-	int DateCount=1; //天数 
-	char Major[32];
-	int Player_AbilityofLearn;  //学习力 
-	int Player_AbilityofProgramming;  //编程能力值 
-	int Player_AbilityofMath;  // 数学能力值 
-	int Player_AbilityofLogic;  //逻辑能力值 
-	int Player_AbilityofPractice;  //实践能力值 
-	int Player_Action_Points;  //行动点 
-};
 
 void Player::changep_m(int num) {
 	p_m = &Ouc_map[num];
@@ -35,6 +25,9 @@ short Player::getMap_id() {
 ouc_map* Player::get_map() {
 	return p_m;
 }
+
+Player you;    //实例化一个 you
+Bag mybag;
 
 /*void clear()
 {
@@ -307,7 +300,7 @@ void Player::Backpack() const
 		cout << "你背包内的物品有 : " << endl;
 		for (int i = 0; i < equipment_bag.size() ; i++)
 		{
-			cout << i + 1 << '. ' << equipment_bag[i]->get_name();
+			cout << i + 1 << '.' << equipment_bag[i]->get_name();
 		}
 	}
 }
@@ -435,8 +428,6 @@ void Player::Settings()
 }
 
 
-Player you;    //实例化一个 you
-Bag mybag;
 
 
 void Menu()
@@ -479,7 +470,7 @@ void Menu()
 			cout << "当前教室有 : " << endl;
 			for (int i = 0; i <you.get_map()->getNpc_id().size(); i++)
 			{
-				cout << i + 1 << '. ' ;//npc的名字
+				cout << i + 1 << '.' ;//npc的名字
 				//NPC 
 			}
 		}
@@ -498,4 +489,94 @@ void Menu()
 	{
 		showMap();
 	}
+}
+
+//玩家输入函数
+
+int Player_scanf() {
+    int a;
+    cin >> a;
+    return a;
+}
+//快速移动的函数
+void quick_move(Player& you, int num) {
+    cout << "是想跑去哪里吗？";
+    cout << setfill('=') << setw(25) << "地图节点" << setfill('=') << setw(25) << "" << endl;
+    for (int i = 0; i < 19; i++) {
+        Ouc_map[i].show();
+    }
+    int choice = Player_scanf();
+    while (choice < 1 || choice>19) {
+        cout << "别尝试选项以外的数字啦，怎么想也做不到的" << endl;
+        choice = Player_scanf();
+    }
+    you.changep_m(choice);
+}
+
+
+void move(Player& you) {
+    int num;
+    short neib[6];
+
+    you.get_map()->getNeib(neib);
+    cout << "有什么想去的地方吗？" << endl;
+    //打印能移动到的节点
+    int size = 0;//能移动节点的数量
+
+    for (int i = 0; i < 6; i++) {
+        if (neib[i] != 0) {
+            cout << i + 1 << ". " << Ouc_map[neib[i] - 1].getName() << endl;
+            size++;
+        }
+        else
+            break;
+    }
+    //根据玩家选择移动
+    int choice;
+    choice = Player_scanf();
+    while (choice < 1 || choice > size) {
+        cout << "无效输入，请重新选择" << endl;
+        choice = Player_scanf();
+    }
+    //you.changep_m(neib[choice - 1] - 1);
+    //num = you.get_map()->getId();
+
+    //移动时概率获取装备
+    srand(time(NULL));
+    int equip_id;
+    int probability;
+    equip_id = rand() % 19;
+    MofE(equip_id, num, 15, 10, 20, 2, 5, 1, 30);
+    
+    //刷新0-3个npc 
+    num = rand() % 4;
+    for (int i = 0; i < num; i++) {
+        bool isTrue = 0;
+        int Npc_id = rand() % 4;
+        for (int i = 0; i < you.get_map()->getNpc_id().size(); i++) {
+            if (Npc_id == you.get_map()->getNpc_id()[i]) {
+                isTrue = 1;
+                break;
+            }
+        }
+        if (!isTrue)
+            you.get_map()->getNpc_id().push_back(Npc_id);
+    }
+    //固定刷新boss
+    if (num = you.get_map()->getId() == 17)
+        you.get_map()->getBoss_id().push_back(0);
+    if (num = you.get_map()->getId() == 6)
+        you.get_map()->getBoss_id().push_back(1);
+    if (num = you.get_map()->getId() == 9)
+        you.get_map()->getBoss_id().push_back(2);
+}
+
+void map_explore(Player& you) {//移动函数
+    srand(time(NULL));
+    int equip_id = rand() % 19;
+    bool theBool = 0;
+    int num = you.get_map()->getId();
+    theBool = MofE(equip_id, num, 30, 20, 40, 4, 10, 2, 60);
+    if (!theBool)
+        cout << "运气真差，似乎并没有找到什么有用的东西" << endl;
 }
