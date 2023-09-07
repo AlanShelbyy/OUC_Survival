@@ -16,19 +16,19 @@ extern ouc_map Ouc_map[19];
 
 struct Player_Stats
 {
-	int DateCount=1; //?? 
+	int DateCount=1; //天数 
 	char Major[32];
-	int Player_AbilityofLearn;  //??? 
-	int Player_AbilityofProgramming;  //????? 
-	int Player_AbilityofMath;  // ????? 
-	int Player_AbilityofLogic;  //????? 
-	int Player_AbilityofPractice;  //????? 
-	int Player_Action_Points;  //??? 
+	int Player_AbilityofLearn;  //学习力 
+	int Player_AbilityofProgramming;  //编程能力值 
+	int Player_AbilityofMath;  // 数学能力值 
+	int Player_AbilityofLogic;  //逻辑能力值 
+	int Player_AbilityofPractice;  //实践能力值 
+	int Player_Action_Points;  //行动点 
 };
 
 void Player::changep_m(int num) {
 	p_m = &Ouc_map[num];
-};//????
+};//移动位置
 short Player::getMap_id() {
 	return p_m->getId();
 }
@@ -42,7 +42,7 @@ ouc_map* Player::get_map() {
 	cout << endl;
 	cout << endl;
 	int temp_cl;
-	cout << "???????...";
+	cout << "请按任意键继续...";
 	cin >> temp_cl;
 	if (temp_cl)
 	{
@@ -61,10 +61,10 @@ void showMap() {
 		file.close();
 	}
 	else {
-		cout << "??????" << endl;
+		cout << "无法打开文件" << endl;
 	}
 }
-Player::Player(){//????
+Player::Player(){//测试用例
 	p = (struct Player_Stats*)new struct Player_Stats;
 	
 }
@@ -77,23 +77,23 @@ void Player::GetReward(int pro , int mat , int log , int pra , int lnp){
 }
 
 
-// Player::Player()  //???? 
+// Player::Player()  //构造函数 
 // {
 // 	cout << endl;
-// 	cout << "????? OUC ?? ?"; Sleep(400);
-// 	cout << "????????????????? ????????????? : " << endl;
-// 	cout << "1. ????????" << endl;
-// 	cout << "2. ???????" << endl;
-// 	cout << "3. ??????" << endl;
-// 	cout << "4. ????" << endl;
+// 	cout << "欢迎你来到 OUC 信部 ！"; Sleep(400);
+// 	cout << "想好计算机类分流后的专业去向了么？ 有以下四个分流专业供你挑选 : " << endl;
+// 	cout << "1. 计算机科学与技术" << endl;
+// 	cout << "2. 智能科学与技术" << endl;
+// 	cout << "3. 网络空间安全" << endl;
+// 	cout << "4. 软件工程" << endl;
 // 	cout << endl;
-// 	cout << "????????????? : " << endl;
+// 	cout << "请选择一个适合你的分流专业 : " << endl;
 // 	cin >> flag_major;
 // 	if (flag_major == 1)
 // 	{
-// 		cout << "???? [????????] ?????  " << endl;
+// 		cout << "你已成为 [计算机科学与技术] 专业的学生  " << endl;
 // 		Sleep(300);
-// 		cout << "?????? ?????? ?????? ??????? " << endl;
+// 		cout << "快去探索校园 不断交流学习 提高自身能力 争取顺利毕业吧 " << endl;
 // 		p->Player_AbilityofLearn = 1;
 // 		p->Player_AbilityofProgramming = 4;
 // 		p->Player_AbilityofMath = 2;
@@ -103,9 +103,9 @@ void Player::GetReward(int pro , int mat , int log , int pra , int lnp){
 // 	}
 // 	else if (flag_major == 2)
 // 	{
-// 		cout << "???? [???????] ?????  " << endl;
+// 		cout << "你已成为 [智能科学与技术] 专业的学生  " << endl;
 // 		Sleep(300);
-// 		cout << "?????? ?????? ?????? ??????? " << endl;
+// 		cout << "快去探索校园 不断交流学习 提高自身能力 争取顺利毕业吧 " << endl;
 // 		p->Player_AbilityofLearn = 1;
 // 		p->Player_AbilityofProgramming = 2;
 // 		p->Player_AbilityofMath = 2;
@@ -115,9 +115,9 @@ void Player::GetReward(int pro , int mat , int log , int pra , int lnp){
 // 	}
 // 	else if (flag_major == 3)
 // 	{
-// 		cout << "???? [??????] ?????  " << endl;
+// 		cout << "你已成为 [网络空间安全] 专业的学生  " << endl;
 // 		Sleep(300);
-// 		cout << "?????? ?????? ?????? ??????? " << endl;
+// 		cout << "快去探索校园 不断交流学习 提高自身能力 争取顺利毕业吧 " << endl;
 // 		p->Player_AbilityofLearn = 1;
 // 		p->Player_AbilityofProgramming = 2;
 // 		p->Player_AbilityofMath = 2;
@@ -127,9 +127,9 @@ void Player::GetReward(int pro , int mat , int log , int pra , int lnp){
 // 	}
 // 	else if (flag_major == 4)
 // 	{
-// 		cout << "???? [????] ?????  " << endl;
+// 		cout << "你已成为 [软件工程] 专业的学生  " << endl;
 // 		Sleep(300);
-// 		cout << "?????? ?????? ?????? ??????? " << endl;
+// 		cout << "快去探索校园 不断交流学习 提高自身能力 争取顺利毕业吧 " << endl;
 // 		p->Player_AbilityofLearn = 1;
 // 		p->Player_AbilityofProgramming = 4;
 // 		p->Player_AbilityofMath = 2;
@@ -144,66 +144,66 @@ void Player::ChooseMajor()
 {
 
 	cout << endl;
-	cout << "????? OUC ?? ?"; Sleep(400);
-	cout << "????????????????? ????????????? : " << endl;
-	cout << "1. ????????" << endl;
-	cout << "2. ???????" << endl;
-	cout << "3. ??????" << endl;
-	cout << "4. ????" << endl;
+	cout << "欢迎你来到 OUC 信部 ！"; Sleep(400);
+	cout << "想好计算机类分流后的专业去向了么？ 有以下四个分流专业供你挑选 : " << endl;
+	cout << "1. 计算机科学与技术" << endl;
+	cout << "2. 智能科学与技术" << endl;
+	cout << "3. 网络空间安全" << endl;
+	cout << "4. 软件工程" << endl;
 	cout << endl;
-	cout << "????????????? : " << endl;
+	cout << "请选择一个适合你的分流专业 : " << endl;
 	cin >> flag_major;
 	if (flag_major == 1)
 	{
-		cout << "???? [????????] ?????  " << endl;
+		cout << "你已成为 [计算机科学与技术] 专业的学生  " << endl;
 		Sleep(300);
-		cout << "?????? ?????? ?????? ??????? " << endl;
+		cout << "快去探索校园 不断交流学习 提高自身能力 争取顺利毕业吧 " << endl;
 		p->Player_AbilityofLearn = 1;
 		p->Player_AbilityofProgramming = 4;
 		p->Player_AbilityofMath = 2;
 		p->Player_AbilityofLogic = 2;
 		p->Player_AbilityofPractice = 2;
 		p->Player_Action_Points = 10;
-		strcpy(p->Major ,"[????????]");
+		strcpy(p->Major ,"[计算机科学与技术]");
 	}
 	else if (flag_major == 2)
 	{
-		cout << "???? [???????] ?????  " << endl;
+		cout << "你已成为 [智能科学与技术] 专业的学生  " << endl;
 		Sleep(300);
-		cout << "?????? ?????? ?????? ??????? " << endl;
+		cout << "快去探索校园 不断交流学习 提高自身能力 争取顺利毕业吧 " << endl;
 		p->Player_AbilityofLearn = 1;
 		p->Player_AbilityofProgramming = 2;
 		p->Player_AbilityofMath = 2;
 		p->Player_AbilityofLogic = 4;
 		p->Player_AbilityofPractice = 2;
 		p->Player_Action_Points = 10;
-		strcpy(p->Major ,"[???????]");
+		strcpy(p->Major ,"[智能科学与技术]");
 	}
 	else if (flag_major == 3)
 	{
-		cout << "???? [??????] ?????  " << endl;
+		cout << "你已成为 [网络空间安全] 专业的学生  " << endl;
 		Sleep(300);
-		cout << "?????? ?????? ?????? ??????? " << endl;
+		cout << "快去探索校园 不断交流学习 提高自身能力 争取顺利毕业吧 " << endl;
 		p->Player_AbilityofLearn = 1;
 		p->Player_AbilityofProgramming = 2;
 		p->Player_AbilityofMath = 2;
 		p->Player_AbilityofLogic = 3;
 		p->Player_AbilityofPractice = 3;
 		p->Player_Action_Points = 10;
-		strcpy(p->Major ,"[??????]");
+		strcpy(p->Major ,"[网络空间安全]");
 	}
 	else if (flag_major == 4)
 	{
-		cout << "???? [????] ?????  " << endl;
+		cout << "你已成为 [软件工程] 专业的学生  " << endl;
 		Sleep(300);
-		cout << "?????? ?????? ?????? ??????? " << endl;
+		cout << "快去探索校园 不断交流学习 提高自身能力 争取顺利毕业吧 " << endl;
 		p->Player_AbilityofLearn = 1;
 		p->Player_AbilityofProgramming = 4;
 		p->Player_AbilityofMath = 2;
 		p->Player_AbilityofLogic = 2;
 		p->Player_AbilityofPractice = 2;
 		p->Player_Action_Points = 10;
-		strcpy(p->Major ,"[????]");
+		strcpy(p->Major ,"[软件工程]");
 	}
 	
 }
@@ -217,42 +217,42 @@ void Player::be_attack(int damage){
 }
 void Player::Tasks()
 {
-	cout << "?10???????????? [????] ? [????] ???????????????" << endl;
-	cout << "?????????????? [??] ??????6?????????" << endl;
+	cout << "在10个天数单位内，通过与同学 [交流学习] 和 [探索校园] 提升自己的学习力与各方面能力值" << endl;
+	cout << "在有自信的把握下，向教师发起 [考试] 请求，累积到6个学分方可顺利毕业" << endl;
 }
 
-void Player::State() const //???????? 
+void Player::State() const //展示玩家当前状态 
 {
 	cout << endl;
-	cout << "???? [" << p->Major << ']' << endl;
-	cout << "??? : " << p->Player_AbilityofLearn << endl;
-	cout << "??? : " << p->Player_Action_Points << endl;
-	cout << "????? : " << p->Player_AbilityofProgramming << endl;
-	cout << "????? : " << p->Player_AbilityofMath << endl;
-	cout << "????? : " << p->Player_AbilityofLogic << endl;
-	cout << "????? : " << p->Player_AbilityofPractice << endl;
-	cout << "??????? : " << p->DateCount << endl;
+	cout << "你的专业 [" << p->Major << ']' << endl;
+	cout << "学习力 : " << p->Player_AbilityofLearn << endl;
+	cout << "行动点 : " << p->Player_Action_Points << endl;
+	cout << "编程能力值 : " << p->Player_AbilityofProgramming << endl;
+	cout << "数学能力值 : " << p->Player_AbilityofMath << endl;
+	cout << "逻辑能力值 : " << p->Player_AbilityofLogic << endl;
+	cout << "实践能力值 : " << p->Player_AbilityofPractice << endl;
+	cout << "在校已学习天数 : " << p->DateCount << endl;
 }
 
 void Player::Equip_equipments(int num_eq)
 {
 	Equipment player_equ;
 	cout << endl;
-	cout << " ?? [" << equipment_bag[num_eq-1] << "] ??? :" << endl;
-	cout << "1. ?????" << endl;
-	cout << "2. ???????" << endl;
-	cout << "3. ?????" << endl;
-	cout << "4. ????? " << endl;
+	cout << " 对于 [" << equipment_bag[num_eq-1] << "] 你打算 :" << endl;
+	cout << "1. 使用该物品" << endl;
+	cout << "2. 查看该物品属性" << endl;
+	cout << "3. 卸下该装备" << endl;
+	cout << "4. 丢弃该物品 " << endl;
 	int flag_eq;
 	cin >> flag_eq;
 	if (flag_eq == 1)
 	{
-		cout << "?????????? : " << endl;
-		p->Player_AbilityofLearn+= equipment_bag[num_eq - 1]->get_AbilityofLearn();  //??? 
-		this->p->Player_AbilityofProgramming += equipment_bag[num_eq - 1]->get_AbilityofProgramming();  //????? 
-		this->p->Player_AbilityofMath += equipment_bag[num_eq - 1]->get_AbilityofMath(); // ????? 
-		this->p->Player_AbilityofLogic += equipment_bag[num_eq - 1]->get_AbilityofLogic();  //????? 
-		this->p->Player_AbilityofPractice += equipment_bag[num_eq - 1]->get_AbilityofPractice();  //????? 
+		cout << "装备该物品后你的状态 : " << endl;
+		p->Player_AbilityofLearn+= equipment_bag[num_eq - 1]->get_AbilityofLearn();  //学习力 
+		this->p->Player_AbilityofProgramming += equipment_bag[num_eq - 1]->get_AbilityofProgramming();  //编程能力值 
+		this->p->Player_AbilityofMath += equipment_bag[num_eq - 1]->get_AbilityofMath(); // 数学能力值 
+		this->p->Player_AbilityofLogic += equipment_bag[num_eq - 1]->get_AbilityofLogic();  //逻辑能力值 
+		this->p->Player_AbilityofPractice += equipment_bag[num_eq - 1]->get_AbilityofPractice();  //实践能力值 
 		equipment_bag[num_eq - 1]->show();
 	}
 	else if (flag_eq == 2)
@@ -261,26 +261,26 @@ void Player::Equip_equipments(int num_eq)
 	}
 	else if (flag_eq == 3)
 	{
-		if (!equipment_bag[num_eq - 1]->get_on()) //????
+		if (!equipment_bag[num_eq - 1]->get_on()) //还未使用
 		{
-			cout << "??????? ????" << endl;
+			cout << "该物品仍未使用 无法卸下" << endl;
 		}
 		else
 		{
-			this->p->Player_AbilityofLearn -= equipment_bag[num_eq - 1]->get_AbilityofLearn();  //??? 
-			this->p->Player_AbilityofProgramming -= equipment_bag[num_eq - 1]->get_AbilityofProgramming();  //????? 
-			this->p->Player_AbilityofMath -= equipment_bag[num_eq - 1]->get_AbilityofMath(); // ????? 
-			this->p->Player_AbilityofLogic -= equipment_bag[num_eq - 1]->get_AbilityofLogic();  //????? 
-			this->p->Player_AbilityofPractice -= equipment_bag[num_eq - 1]->get_AbilityofPractice();  //????? 
+			this->p->Player_AbilityofLearn -= equipment_bag[num_eq - 1]->get_AbilityofLearn();  //学习力 
+			this->p->Player_AbilityofProgramming -= equipment_bag[num_eq - 1]->get_AbilityofProgramming();  //编程能力值 
+			this->p->Player_AbilityofMath -= equipment_bag[num_eq - 1]->get_AbilityofMath(); // 数学能力值 
+			this->p->Player_AbilityofLogic -= equipment_bag[num_eq - 1]->get_AbilityofLogic();  //逻辑能力值 
+			this->p->Player_AbilityofPractice -= equipment_bag[num_eq - 1]->get_AbilityofPractice();  //实践能力值 
 			equipment_bag[num_eq - 1]->show();
 		}
 	}
 	else if (flag_eq == 4)
 	{
-		cout << "????????" << endl;
-		cout << "1. ??" << endl;
+		cout << "确认丢弃该物品?" << endl;
+		cout << "1. 丢弃" << endl;
 
-		cout << "2. ??" << endl;
+		cout << "2. 取消" << endl;
 		int flag_qr;
 		cin >> flag_qr;
 		if (flag_qr == 1)
@@ -290,7 +290,7 @@ void Player::Equip_equipments(int num_eq)
 		}
 		else
 		{
-			//??
+			//返回
 		}
 	}
 		
@@ -298,13 +298,13 @@ void Player::Equip_equipments(int num_eq)
 
 void Player::Backpack() const
 {
-	 if (!equipment_bag.empty()) //? ??
+	 if (!equipment_bag.empty()) //空 背包
 	{
-		cout << "???????? " << endl;
+		cout << "你的背包空空如也 " << endl;
 	}
 	else
 	{
-		cout << "???????? : " << endl;
+		cout << "你背包内的物品有 : " << endl;
 		for (int i = 0; i < equipment_bag.size() ; i++)
 		{
 			cout << i + 1 << '. ' << equipment_bag[i]->get_name();
@@ -321,22 +321,22 @@ void Player::Eat_orSleep() const
 	cin >> flag_es;
 	if (flag_es == 1)
 	{
-		int flag_eat=1; //??????????  ??flag_eat??? 1 ???  
+		int flag_eat=1; //一天仅仅可以用餐一次  转天flag_eat标注为 1 可用餐  
 		srand(time(NULL));
-		int temp1_Player_Action_Points = rand() % 4 + 2; //??????? 2~5???  
-		if (p_m->getId()!=2) //????
+		int temp1_Player_Action_Points = rand() % 4 + 2; //吃一次饭随机加 2~5行动点  
+		if (p_m->getId()!=2) //不在食堂
 		{
-			cout << "?????? ??????? " << endl;
+			cout << "此处不可用餐 仅可在食堂用餐 " << endl;
 		}
 		else if (!flag_eat)
 		{
 			cout << endl;
-			cout << "?????  ??????? " << endl;
+			cout << "食堂关门啦  请转天再来光顾 " << endl;
 		}
 		else
 		{
 			cout << endl;
-			cout << "???? ";
+			cout << "正在用餐 ";
 			Sleep(300);
 			for (int i = 0; i < 6; i++)
 			{
@@ -344,29 +344,29 @@ void Player::Eat_orSleep() const
 				Sleep(400);
 			}
 			cout << endl;
-			cout << "????  ????? " << temp1_Player_Action_Points << ' ' << endl;
+			cout << "用餐结束  获得行动点 " << temp1_Player_Action_Points << ' ' << endl;
 			p->Player_Action_Points += temp1_Player_Action_Points;
 			flag_eat = 0;
 		}
 	}
 	else if (flag_es == 2)
 	{
-		if (p_m->getId() != 1)//????
+		if (p_m->getId() != 1)//不在宿舍
 		{
 			cout << endl;
-			cout << "??????????" << endl;
+			cout << "仅允许在宿舍睡大觉哦" << endl;
 		}
-		else if (p->Player_Action_Points >= 5)// ???????5 ?????? ????
+		else if (p->Player_Action_Points >= 5)// 体力点大于等于5 防止摆烂玩家 不可睡觉
 		{
 			cout << endl;
-			cout << "?????? ??????~" << endl;
+			cout << "你的精力充沛 不妨多去走走~" << endl;
 		}
 		else
 		{
 			srand(time(NULL));
-			int temp2_Player_Action_Points = rand() % 7 + 10; //????? 10-16???  
+			int temp2_Player_Action_Points = rand() % 7 + 10; //睡觉随机加 10-16行动点  
 			cout << endl;
-			cout << "????? ";
+			cout << "呼呼大睡中 ";
 			Sleep(300);
 			for (int i = 0; i < 6; i++)
 			{
@@ -374,7 +374,7 @@ void Player::Eat_orSleep() const
 				Sleep(400);
 			}
 			cout << endl;
-			cout << "????  ????? " << temp2_Player_Action_Points << ' ' << endl;
+			cout << "睡眠结束  获得行动点 " << temp2_Player_Action_Points << ' ' << endl;
 			p->Player_Action_Points += temp2_Player_Action_Points;
 		}
 	}
@@ -399,9 +399,9 @@ void Player::Explore_items() const
 void Player::Settings() 
 {
 	cout << endl;
-	cout << "????????" << endl;
+	cout << "进入游戏系统菜单" << endl;
 	cout << endl;
-	cout << "1. ????  2. ????  3. ???????  4.???? " << endl;
+	cout << "1. 存储进度  2. 返回标题  3. 保存并退出游戏  4.继续游戏 " << endl;
 	cout << endl;
 	int flag_set;
 	cin >> flag_set;
@@ -411,7 +411,7 @@ void Player::Settings()
 	}
 	else if (flag_set == 2)
 	{
-		cout << "???????? ????????\n1. ????\n2. ????";
+		cout << "请选择返回标题前 是否要存储进度？\n1. 存储进度\n2. 潇洒离去";
 			int temp_save;
 			cin >> temp_save;
 			if (temp_save == 1)
@@ -435,32 +435,32 @@ void Player::Settings()
 }
 
 
-Player you;    //????? you
+Player you;    //实例化一个 you
 Bag mybag;
 
 
 void Menu()
 {
-	cout << "??????? : " << endl;
+	cout << "你要打算做什么 : " << endl;
 	cout << endl;
-	cout << "1. ????  2.??  3. ??  4. ????/????  5.??  6. ??/??  7. ?? " << endl;
+	cout << "1. 查看状态  2.背包  3. 探索  4. 学习交流/申请考试  5.移动  6. 吃饭/睡觉  7. 地图 " << endl;
 	cout << endl;
 	int opt;
 	cin >> opt;
 	if (opt == 1)
 	{
-		cout << "???? : " << endl;
+		cout << "你的状态 : " << endl;
 		you.State();
 	}
 	else if (opt == 2)
 	{
-		if (!equipment_bag.size()) //????
+		if (!equipment_bag.size()) //背包为空
 		{
-			cout << "????? ???? " << endl;
+			cout << "你的背包里 空空如也 " << endl;
 		}
 		else
 		{
-			cout << "?????????? : " << endl;
+			cout << "以下是你背包中的物品 : " << endl;
 			you.Backpack();
 		}
 	}
@@ -470,13 +470,13 @@ void Menu()
 	}
 	else if (opt == 4)
 	{
-		if (you.get_map()->get_npc_id().empty())//?????NPC
+		if (you.get_map()->get_npc_id().empty())//该房间没有NPC
 		{
-			cout << "??????????" << endl;
+			cout << "这间教室貌似空无一人" << endl;
 		}
 		else
 		{
-			cout << "????? : " << endl;
+			cout << "当前教室有 : " << endl;
 			for (int i = 0; i <you.get_map()->get_npc_id().size(); i++)
 			{
 				cout << i + 1 << '. ' <<
@@ -487,7 +487,7 @@ void Menu()
 	else if (opt == 5)
 	{
 		cout << endl;
-		cout << "???????????? ";
+		cout << "你当前所在地编号及名称为 ";
 		you.get_map()->show();
 	}
 	else if (opt == 6)
