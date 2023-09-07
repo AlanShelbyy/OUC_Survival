@@ -71,8 +71,9 @@ int npc::Getter_hardlvl(){
     return hardlvl;
 }
 void npc::GivePoint(Player player){
-
-    cout<<"还没给东西"<<endl;
+    
+    player.GetReward(GiveProg,GiveMat,GiveLog,GivePrac,GiveLearnPinit);
+    cout<<"调试信息：玩家得到了奖励，分值上的"<<endl;
     
 }
 int npc::UseBossSkill(){

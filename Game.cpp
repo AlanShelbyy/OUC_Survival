@@ -247,31 +247,31 @@ void MUDGame::RunGame(){
                                 }
                                 else
                                 {
-                                //     //判断是否有老师
-                                //    if(player.getMap_id()==6||player.getMap_id()==9||player.getMap_id()==17)
-                                //    {
-                                //     int dz;
-                                //     cout<<"1. "<<Boss[player.get_map()->getBoss_id()[0]].Name;
-                                //     for(dz=0;dz<player.get_map()->getNpc_id().size();dz++)
-                                //     {
-                                //         cout<<dz+1<<' '<<NPCs[player.get_map()->getNpc_id()[dz]].Name;
-                                //     }
+                                    //判断是否有老师
+                                   if(player.getMap_id()==6||player.getMap_id()==9||player.getMap_id()==17)
+                                   {
+                                    int dz;
+                                    cout<<"1. "<<Boss[player.get_map()->getBoss_id()[0]].Name;
+                                    for(dz=0;dz<player.get_map()->getNpc_id().size();dz++)
+                                    {
+                                        cout<<dz+1<<' '<<NPCs[player.get_map()->getNpc_id()[dz]].Name;
+                                    }
 
-                                //     int temp_dz;
+                                    int temp_dz;
                                     
-                                //     cin>>temp_dz;
+                                    cin>>temp_dz;
                                     
                                     
-                                //     if(temp_dz!=1){ //学生
-                                //         cout<<"你现在学术交流/考试的对象是 "<<NPCs[player.get_map()->getNpc_id()[temp_dz+1]].Name;
-                                //         gamestate=fighstu;
-                                //     }
+                                    if(temp_dz!=1){ //学生
+                                        cout<<"你现在学术交流/考试的对象是 "<<NPCs[player.get_map()->getNpc_id()[temp_dz+1]].Name;
+                                        gamestate=fighstu;
+                                    }
                                     
-                                //     else {
-                                //         cout<<"你现在进行考试的对象是 "<<Boss[player.get_map()->getBoss_id()[0]].Name;
-                                //     }
-                                //    }//没有老师的话
-                                //    else{
+                                    else {
+                                        cout<<"你现在进行考试的对象是 "<<Boss[player.get_map()->getBoss_id()[0]].Name;
+                                    }
+                                   }//没有老师的话
+                                   else{
                                     //依次打印名字
                                     cout<<"选择与谁交流"<<endl;
                                     for(int dz=0;dz<player.get_map()->getNpc_id().size();dz++)
@@ -279,20 +279,17 @@ void MUDGame::RunGame(){
                                         cout<<dz+1<<' '<<NPCs[player.get_map()->getNpc_id()[dz]].Name;
                                     }
                                     //选择npc
-                                    
+                                    cout<<endl;
                                     int temp_dz2;
                                     cin>>temp_dz2;
                                     //输入检查？
-
                                     cout<<"你现在学术交流的对象是 "<<NPCs[player.get_map()->getNpc_id()[temp_dz2-1]].Name;
                                     npcchoice = player.get_map()->getNpc_id()[temp_dz2];
                                     gamestate = fighstu;
-                                    
-
-                                  // }
+                                   }
                                 }
-                                system("pause>nul");
-                                break;
+                                
+                                
                             }
                             else if (opt == 5)
                             {
@@ -325,35 +322,29 @@ void MUDGame::RunGame(){
                         }
             case fighstu:   {
                             cout<<"交流回合"<<endl;
-                           
-                            
-                            system("pause");
-
+                            // system("pause");
                             tmpNpc = &NPCs[npcchoice];
                             int skillindex =tmpNpc->Useskill(skills);
-                            
                             cin>>choice;
                             if(tmpNpc->Check(skillindex,choice,skills)){
                                 tmpNpc->GivePoint(player);
+                                cout<<"你英明神武的做出了完美的回答"<<endl;
                             }
                             else{
                                 cout<<"回答错误"<<endl;
                             }
+
+
                             cout<<"选择 1. 去冒险 2.继续交流"<<endl;
                             cin>>operate;
                             if(operate == 1){
                                 gamestate = adv;
-                                
                             }
-                            else{
-
-                            }
-
-            
                             break;}
             case fightea:  { 
+
                             cout<<"考试回合";
-                            system("pause");
+                            //system("pause");
                             //BOSS打印技能
                             int bossskill = Boss[bossindex].Useskill(bossSkills);
                             //玩家使用技能
@@ -368,26 +359,18 @@ void MUDGame::RunGame(){
                                 bool right = Boss[bossindex].CheckEquip(bossskill,item_class,bossSkills);
                                 if(right){
                                         Boss[bossindex].be_attack(Boss[bossindex].CheckEquip(bossskill,item_class,bossSkills));
-                                    
                                 }
                                 else{
                                     player.be_attack(20);
                                 }
-
                             }                           
-                            
                             if(player.Getter_learn()<0){
                                 cout<<"你好像收到了一个学业警示";
+                                //player.GetWarning();
                             }
                             else if(Boss[bossindex].Getter_hardlvl() < 0){
                                 cout<<"你通过了考试";
-
                             }
-
-                            
-
-
-
                             break;}
             case rest: ;break;
             case bag: ; break;
@@ -398,10 +381,9 @@ void MUDGame::RunGame(){
         }
     }
 }
+
 void MUDGame::ToffGame(){
     _Run = false;
-
-
 }
 bool MUDGame::RunOrNot(){
     return _Run;

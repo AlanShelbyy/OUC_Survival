@@ -9,6 +9,7 @@ struct Player_Stats
 {
 	int DateCount=1; //天数 
 	char Major[32];
+	int Warning;
 	int Player_AbilityofLearn;  //学习力 
 	int Player_AbilityofProgramming;  //编程能力值 
 	int Player_AbilityofMath;  // 数学能力值 
@@ -25,6 +26,7 @@ struct Player_Stats
 		Player_AbilityofProgramming  = 0;
 		Player_Action_Points = 0;
 		Player_Action_Points = 10;
+		Warning = 0;
 	} 
 };
 
