@@ -21,7 +21,8 @@ public:
     bool CheckEquip(int skill,int item_class,vector<Skill>& BossSkills);
     int Getter_hardlvl();
     void be_attack(bool right_item);
-    void GivePoint(Player player);
+    void GivePoint(Player &player);
+    void Debug_show();
     bool IsBoss();
     //ÎªÁË·½±ã
     int hardlvl;

@@ -20,8 +20,8 @@ vector<Skill> bossSkills;
 //一些用来表示状态的
 
 int npcchoice ;
-
 int bossindex;
+
 HANDLE thewindow;
 public:
 MUDGame();

@@ -281,7 +281,7 @@ void Player::Equip_equipments(int num_eq)
 
 void Player::Backpack() const
 {
-	 if (!equipment_bag.empty()) //空 背包
+	 if (equipment_bag.empty()) //空 背包
 	{
 		cout << "你的背包空空如也 " << endl;
 	}
@@ -290,7 +290,7 @@ void Player::Backpack() const
 		cout << "你背包内的物品有 : " << endl;
 		for (int i = 0; i < equipment_bag.size() ; i++)
 		{
-			cout << i + 1 << '.' << equipment_bag[i]->get_name();
+			cout << i + 1 << '.' << equipment_bag[i]->get_name()<<endl;
 		}
 	}
 }
@@ -568,10 +568,13 @@ void move(Player& you) {
 }
 
 void map_explore(Player& you) {//获取当前地图存在的物品
-    srand(time(NULL));
+    srand(time(0));
     int equip_id = rand() % 19;
     bool theBool = 0;
     int num = you.get_map()->getId();
+	if(equip_id==6){
+		cout<<"6号物品"<<endl;
+	}
     theBool = MofE(equip_id, num, 30, 20, 40, 4, 10, 2, 60);
     if (!theBool)
         cout << "运气真差，似乎并没有找到什么有用的东西" << endl;

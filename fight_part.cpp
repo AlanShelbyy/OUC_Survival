@@ -17,6 +17,9 @@ npc::npc(){
 
 
 }
+void npc::Debug_show(){
+    cout<<"<!#!>"<<GiveProg<<GiveMat<<GiveLog<<GivePrac<<GiveLearnPinit;
+}
 bool npc::IsBoss(){
     return _isBoss;
 }
@@ -70,10 +73,10 @@ void npc::be_attack(bool right_item){
 int npc::Getter_hardlvl(){
     return hardlvl;
 }
-void npc::GivePoint(Player player){
-    
+void npc::GivePoint(Player &player){
+    //cout<<GiveProg<<GiveMat<<GiveLog<<GivePrac<<GiveLearnPinit<<endl;
     player.GetReward(GiveProg,GiveMat,GiveLog,GivePrac,GiveLearnPinit);
-    cout<<"调试信息：玩家得到了奖励，分值上的"<<endl;
+    //cout<<"调试信息：玩家得到了奖励，分值上的"<<endl;
     
 }
 int npc::UseBossSkill(){

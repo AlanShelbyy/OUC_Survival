@@ -9,8 +9,8 @@
 #include"Player.h"
 using namespace std;
 
-extern vector<Equipment*> equipment_bag;
 extern ouc_map Ouc_map[19];
+extern vector<Equipment*> equipment_bag;
 
 
 
@@ -20,7 +20,7 @@ ouc_map::ouc_map( int n ) {
     name = fname + "/" + to_string(n) + ".dat";
     ifstream readf(name);
     if (!readf)
-        cout << "æ— æ³•æ‰“å¼€æ–‡ä»¶" << name << endl;
+        cout << "ÎÞ·¨´ò¿ªÎÄ¼þ" << name << endl;
     getline(readf, name);
     getline(readf,change);
     map_id = stoi(change);
@@ -53,6 +53,21 @@ ouc_map::ouc_map(ouc_map& d) {
     npc_id.assign(3, 3);
 }
 
+//½«µØÍ¼ÎÄ¼þ¼ÓÔØÈëOuc_mapÊý×éÀï
+void loadMap(ouc_map Ouc_map[]) {
+    for (int i = 0; i < 19; i++) {
+        ouc_map map(i + 1);
+        Ouc_map[i] = map;
+    }
+}
+
+
+
+
+
+
+
+bool MofE(int equip_id, int num, int a, int b, int c, int d, int e, int f, int g);
 
 
 
@@ -61,17 +76,11 @@ ouc_map::ouc_map(ouc_map& d) {
 
 
 
-
-
-
-
-
-
-//æ‰“å°å½“å‰ä½ç½®çš„å‡½æ•°
+//´òÓ¡µ±Ç°Î»ÖÃµÄº¯Êý
 void show_address(Player& you) {
-    cout << setfill('=') << setw(25) << "åœ°å›¾èŠ‚ç‚¹" << setfill('=') << setw(25) << "" << endl;
-    cout << "ä½ å½“å‰å¤„äºŽâ€”â€”" << you.get_map()->getName() << endl;
-    cout << "è¯¥èŠ‚ç‚¹åœ°å›¾ç¼–å·æ˜¯ï¼š" << you.get_map()->getId() << endl;
+    cout << setfill('=') << setw(25) << "µØÍ¼½Úµã" << setfill('=') << setw(25) << "" << endl;
+    cout << "Äãµ±Ç°´¦ÓÚ¡ª¡ª" << you.get_map()->getName() << endl;
+    cout << "¸Ã½ÚµãµØÍ¼±àºÅÊÇ£º" << you.get_map()->getId() << endl;
 }
 
 
@@ -88,22 +97,25 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
     case 6:
         if (num == 4 || num == 16 || num == 17 || num == 18 || num == 5 || num == 6) {
             probability = rand() % 100;
+            cout<<"prob"<<probability<<endl;
             if (probability < a) {
                 bool isTrue = 0;
 
-                //èƒŒåŒ…é‡Œå­˜åœ¨è¯¥è£…å¤‡æ—¶
+                //±³°üÀï´æÔÚ¸Ã×°±¸Ê±
                 for (int i = 0; i < equipment_bag.size(); i++) {
                     if (equipment_bag[i]->get_id() == equip_id) {
                         isTrue = 1;
                         equipment_bag[i]->num_plus();
-                        cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†ä¸€æœ¬" << equipment_bag[i]->get_name() << endl;
+                        cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁËÒ»±¾" << equipment_bag[i]->get_name() << endl;
+
                         break;
                     }
                 }
-                //ä¸å­˜åœ¨æ—¶æ·»åŠ è¯¥è£…å¤‡
+                //²»´æÔÚÊ±Ìí¼Ó¸Ã×°±¸
                 if (!isTrue) {
-                    equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                    cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†ä¸€æœ¬" << equipment_bag[equipment_bag.size() - 1]->get_name() << endl;
+                    equipment_bag.push_back(new Equipment("data/Equipment",equip_id ));
+                    cout<<"Ìí¼Ó³É¹¦"<<endl;
+                    cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁËÒ»±¾" << equipment_bag[equipment_bag.size() - 1]->get_name() << endl;
                 }
                 theBool = 1;
 
@@ -115,19 +127,19 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
         if (probability < b) {
             bool isTrue = 0;
 
-            //èƒŒåŒ…é‡Œå­˜åœ¨è¯¥è£…å¤‡æ—¶
+            //±³°üÀï´æÔÚ¸Ã×°±¸Ê±
             for (int i = 0; i < equipment_bag.size(); i++) {
                 if (equipment_bag[i]->get_id() == equip_id) {
                     isTrue = 1;
                     equipment_bag[i]->num_plus();
-                    cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨ç§»åŠ¨è¿‡ç¨‹ä¸­" << "æ‹¾å–äº†ä¸€å¼ " << equipment_bag[i]->get_name() << endl;
+                    cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚÒÆ¶¯¹ý³ÌÖÐ" << "Ê°È¡ÁËÒ»ÕÅ" << equipment_bag[i]->get_name() << endl;
                     break;
                 }
             }
-            //ä¸å­˜åœ¨æ—¶æ·»åŠ è¯¥è£…å¤‡
+            //²»´æÔÚÊ±Ìí¼Ó¸Ã×°±¸
             if (!isTrue) {
                 equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ " << "æ‹¾å–äº†ä¸€å¼ " << equipment_bag[equipment_bag.size() - 1]->get_name() << endl;
+                cout << "ÒâÍâÖ®Ï²¡ª¡ªÄã" << "Ê°È¡ÁËÒ»ÕÅ" << equipment_bag[equipment_bag.size() - 1]->get_name() << endl;
             }
             theBool = 1;
 
@@ -138,19 +150,19 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
         if (probability < c) {
             bool isTrue = 0;
 
-            //èƒŒåŒ…é‡Œå­˜åœ¨è¯¥è£…å¤‡æ—¶
+            //±³°üÀï´æÔÚ¸Ã×°±¸Ê±
             for (int i = 0; i < equipment_bag.size(); i++) {
                 if (equipment_bag[i]->get_id() == equip_id) {
                     isTrue = 1;
                     equipment_bag[i]->num_plus();
-                    cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ¡åˆ°äº†ä¸€ç“¶" << equipment_bag[i]->get_name() << "ï¼Œä½†ä½ ç¡®å®šæ•¢å–å—" << endl;
+                    cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "¼ñµ½ÁËÒ»Æ¿" << equipment_bag[i]->get_name() << "£¬µ«ÄãÈ·¶¨¸ÒºÈÂð" << endl;
                     break;
                 }
             }
-            //ä¸å­˜åœ¨æ—¶æ·»åŠ è¯¥è£…å¤‡
+            //²»´æÔÚÊ±Ìí¼Ó¸Ã×°±¸
             if (!isTrue) {
                 equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†ä¸€ç“¶" << equipment_bag[equipment_bag.size() - 1]->get_name() << "ï¼Œä½†ä½ ç¡®å®šæ•¢å–å—" << endl;
+                cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁËÒ»Æ¿" << equipment_bag[equipment_bag.size() - 1]->get_name() << "£¬µ«ÄãÈ·¶¨¸ÒºÈÂð" << endl;
             }
             theBool = 1;
 
@@ -166,13 +178,13 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
                     if (equipment_bag[i]->get_id() == equip_id) {
                         isTrue = 1;
                         equipment_bag[i]->num_plus();
-                        cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†" << equipment_bag[i]->get_name() << "ï¼Œçœ‹èµ·æ¥ä¼¼ä¹Žèƒ½ä½¿ä½ å¯¹éƒ¨åˆ†å­¦ä¹ å†…å®¹æ›´åŠ é€šé€" << endl;
+                        cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁË" << equipment_bag[i]->get_name() << "£¬¿´ÆðÀ´ËÆºõÄÜÊ¹Äã¶Ô²¿·ÖÑ§Ï°ÄÚÈÝ¸ü¼ÓÍ¨Í¸" << endl;
                         break;
                     }
                 }
                 if (!isTrue) {
                     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                    cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†" << equipment_bag[equipment_bag.size() - 1]->get_name() << "ï¼Œçœ‹èµ·æ¥ä¼¼ä¹Žèƒ½ä½¿ä½ å¯¹éƒ¨åˆ†å­¦ä¹ å†…å®¹æ›´åŠ é€šé€" << endl;
+                    cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁË" << equipment_bag[equipment_bag.size() - 1]->get_name() << "£¬¿´ÆðÀ´ËÆºõÄÜÊ¹Äã¶Ô²¿·ÖÑ§Ï°ÄÚÈÝ¸ü¼ÓÍ¨Í¸" << endl;
                 }
                 theBool = 1;
 
@@ -185,19 +197,19 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
             if (probability < d) {
                 bool isTrue = 0;
 
-                //èƒŒåŒ…é‡Œå­˜åœ¨è¯¥è£…å¤‡æ—¶
+                //±³°üÀï´æÔÚ¸Ã×°±¸Ê±
                 for (int i = 0; i < equipment_bag.size(); i++) {
                     if (equipment_bag[i]->get_id() == equip_id) {
                         isTrue = 1;
                         equipment_bag[i]->num_plus();
-                        cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†ä¸€å‰¯æ²¡äººè¦çš„" << equipment_bag[i]->get_name() << "å¤©ä¸Šå¶å°”æ˜¯ä¼šæŽ‰é¦…é¥¼çš„ï¼Œä½ å°±æ¬£ç„¶æŽ¥å—å§" << endl;
+                        cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁËÒ»¸±Ã»ÈËÒªµÄ" << equipment_bag[i]->get_name() << "ÌìÉÏÅ¼¶ûÊÇ»áµôÏÚ±ýµÄ£¬Äã¾ÍÐÀÈ»½ÓÊÜ°É" << endl;
                         break;
                     }
                 }
-                //ä¸å­˜åœ¨æ—¶æ·»åŠ è¯¥è£…å¤‡
+                //²»´æÔÚÊ±Ìí¼Ó¸Ã×°±¸
                 if (!isTrue) {
                     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                    cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†ä¸€å‰¯æ²¡äººè¦çš„" << equipment_bag[equipment_bag.size() - 1]->get_name() << "å¤©ä¸Šå¶å°”æ˜¯ä¼šæŽ‰é¦…é¥¼çš„ï¼Œä½ å°±æ¬£ç„¶æŽ¥å—å§" << endl;
+                    cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁËÒ»¸±Ã»ÈËÒªµÄ" << equipment_bag[equipment_bag.size() - 1]->get_name() << "ÌìÉÏÅ¼¶ûÊÇ»áµôÏÚ±ýµÄ£¬Äã¾ÍÐÀÈ»½ÓÊÜ°É" << endl;
                 }
                 theBool = 1;
 
@@ -214,13 +226,13 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
                     if (equipment_bag[i]->get_id() == equip_id) {
                         isTrue = 1;
                         equipment_bag[i]->num_plus();
-                        cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†ä¸€å¼ å¤§ä½¬çš„" << equipment_bag[i]->get_name() << "ï¼Œè™½ç„¶æœ‰äº›æ½¦è‰ï¼Œä½†ä½ è¿˜æ˜¯ä¸€çœ¼è®¤å‡ºä¸Šé¢æ­£å†™ç€å›°æ‰°ä½ è®¸ä¹…çš„é¢˜ç›®" << endl;
+                        cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁËÒ»ÕÅ´óÀÐµÄ" << equipment_bag[i]->get_name() << "£¬ËäÈ»ÓÐÐ©ÁÊ²Ý£¬µ«Äã»¹ÊÇÒ»ÑÛÈÏ³öÉÏÃæÕýÐ´×ÅÀ§ÈÅÄãÐí¾ÃµÄÌâÄ¿" << endl;
                         break;
                     }
                 }
                 if (!isTrue) {
                     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                    cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ‰¾åˆ°äº†ä¸€å¼ å¤§ä½¬çš„" << equipment_bag[equipment_bag.size() - 1]->get_name() << "ï¼Œè™½ç„¶æœ‰äº›æ½¦è‰ï¼Œä½†ä½ è¿˜æ˜¯ä¸€çœ¼è®¤å‡ºä¸Šé¢æ­£å†™ç€å›°æ‰°ä½ è®¸ä¹…çš„é¢˜ç›®" << endl;
+                    cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "ÕÒµ½ÁËÒ»ÕÅ´óÀÐµÄ" << equipment_bag[equipment_bag.size() - 1]->get_name() << "£¬ËäÈ»ÓÐÐ©ÁÊ²Ý£¬µ«Äã»¹ÊÇÒ»ÑÛÈÏ³öÉÏÃæÕýÐ´×ÅÀ§ÈÅÄãÐí¾ÃµÄÌâÄ¿" << endl;
                 }
                 theBool = 1;
 
@@ -237,13 +249,13 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
                     if (equipment_bag[i]->get_id() == equip_id) {
                         isTrue = 1;
                         equipment_bag[i]->num_plus();
-                        cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ—¶ï¼ŒæŸä½å¤§ä½¬å¯¹ä½ ç›¸è§å¦‚æ•…ï¼Œä½ èŽ·å¾—äº†" << equipment_bag[i]->get_name() << "ï¼Œåœ¨ä»–çš„å¸®åŠ©ä¸‹ï¼Œä½ å„æ–¹é¢éƒ½æœ‰äº†ä¸å°‘é•¿è¿›" << endl;
+                        cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "Ê±£¬Ä³Î»´óÀÐ¶ÔÄãÏà¼ûÈç¹Ê£¬Äã»ñµÃÁË" << equipment_bag[i]->get_name() << "£¬ÔÚËûµÄ°ïÖúÏÂ£¬Äã¸÷·½Ãæ¶¼ÓÐÁË²»ÉÙ³¤½ø" << endl;
                         break;
                     }
                 }
                 if (!isTrue) {
                     equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                    cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ åœ¨" << Ouc_map[num - 1].getName() << "æ—¶ï¼ŒæŸä½å¤§ä½¬å¯¹ä½ ç›¸è§å¦‚æ•…ï¼Œä½ èŽ·å¾—äº†" << equipment_bag[equipment_bag.size() - 1]->get_name() << "ï¼Œåœ¨ä»–çš„å¸®åŠ©ä¸‹ï¼Œä½ å„æ–¹é¢éƒ½æœ‰äº†ä¸å°‘é•¿è¿›" << endl;
+                    cout << "ÒâÍâÖ®Ï²¡ª¡ªÄãÔÚ" << Ouc_map[num - 1].getName() << "Ê±£¬Ä³Î»´óÀÐ¶ÔÄãÏà¼ûÈç¹Ê£¬Äã»ñµÃÁË" << equipment_bag[equipment_bag.size() - 1]->get_name() << "£¬ÔÚËûµÄ°ïÖúÏÂ£¬Äã¸÷·½Ãæ¶¼ÓÐÁË²»ÉÙ³¤½ø" << endl;
                 }
                 theBool = 1;
 
@@ -263,7 +275,7 @@ bool MofE(int equip_id, int num, int a, int b, int c, int d, int e , int f, int 
             }
             if (!isTrue) {
                 equipment_bag.push_back(new Equipment{ "data/Equipment",equip_id });
-                cout << "æ„å¤–ä¹‹å–œâ€”â€”ä½ æ¡åˆ°äº†ä¸€åŒæ²¡äººè¦çš„" << equipment_bag[equipment_bag.size() - 1]->get_name() << "ï¼Œç©¿ä¸Šå®ƒåŽä½ ä¼¼ä¹Žèƒ½å¤Ÿè·¨èŠ‚ç‚¹ç§»åŠ¨äº†" << endl;
+                cout << "ÒâÍâÖ®Ï²¡ª¡ªÄã¼ñµ½ÁËÒ»Ë«Ã»ÈËÒªµÄ" << equipment_bag[equipment_bag.size() - 1]->get_name() << "£¬´©ÉÏËüºóÄãËÆºõÄÜ¹»¿ç½ÚµãÒÆ¶¯ÁË" << endl;
             }
             theBool = 1;
 
