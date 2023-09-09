@@ -11,31 +11,32 @@ void Bag::bag_write() {
 	int size = equipment_bag.size();
 	ofstream ofs("data/Bag/bag.dat", ios::out | ios::binary);
 	if (!ofs)
-		cout << "ÄúµÄ´æµµºÈÁËÃÏÆÅÌÀ£¬Çë¿ìÈ¥¿ªÊ¼ÐÂµÄÓÎÏ·°É£¡" << endl;
+		cout << "æ‚¨çš„å­˜æ¡£å–äº†å­Ÿå©†æ±¤ï¼Œè¯·å¿«åŽ»å¼€å§‹æ–°çš„æ¸¸æˆå§ï¼" << endl;
 	else {
 		cout << size << endl;
 		for (int i = 0; i < size; i++) {
 			
 			ofs.write(reinterpret_cast<char*>(equipment_bag[i]), sizeof(Equipment));
-			cout<<"Ä¿±êÒ»##"<<endl;
+			cout<<"ç›®æ ‡ä¸€##"<<endl;
 			equipment_bag[i]->show();
 		}
 	}
-	cout << "´æµµ³É¹¦" << endl;
+	cout << "å­˜æ¡£æˆåŠŸ" << endl;
 	ofs.close();
 }
 void Bag::bag_read() {
 	ifstream ifs("data/Bag/bag.dat", ios::in | ios::binary);
 	
 	Equipment* l = new Equipment;
-	cout << "¿ªÊ¼¶ÁÈ¡" << endl;
+	cout << "å¼€å§‹è¯»å–" << endl;
 	while (!ifs.eof()) {
 		ifs.read(reinterpret_cast<char*>(l), sizeof(Equipment));
 		if(!ifs.eof()){
 			equipment_bag.push_back(l);
-			cout << "¶ÁÈ¡³É¹¦" << endl;
+			cout << "è¯»å–æˆåŠŸ" << endl;
 
 			//equipment_bag.back()->show();
+			i++;
 			
 		}
 			
