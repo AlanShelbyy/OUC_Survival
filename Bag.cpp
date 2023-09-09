@@ -13,9 +13,11 @@ void Bag::bag_write() {
 	if (!ofs)
 		cout << "您的存档喝了孟婆汤，请快去开始新的游戏吧！" << endl;
 	else {
+		cout << size << endl;
 		for (int i = 0; i < size; i++) {
-			cout << size << endl;
+			
 			ofs.write(reinterpret_cast<char*>(equipment_bag[i]), sizeof(Equipment));
+			cout<<"目标一##"<<endl;
 			equipment_bag[i]->show();
 		}
 	}
@@ -24,15 +26,19 @@ void Bag::bag_write() {
 }
 void Bag::bag_read() {
 	ifstream ifs("data/Bag/bag.dat", ios::in | ios::binary);
-	int i = 0;
+	
 	Equipment* l = new Equipment;
 	cout << "开始读取" << endl;
 	while (!ifs.eof()) {
 		ifs.read(reinterpret_cast<char*>(l), sizeof(Equipment));
-		if(!ifs.eof())
+		if(!ifs.eof()){
 			equipment_bag.push_back(l);
-		cout << "读取成功" << endl;
-		equipment_bag[i]->show();
-		i++;
+			cout << "读取成功" << endl;
+
+			//equipment_bag.back()->show();
+			
+		}
+			
+		
 	}
 }

@@ -5,6 +5,7 @@
 #include<string>
 #include"Equipment.h"
 #include"map.h"
+#include"Bag.h"
 #include"fight_part.h"
 #include<windows.h>
 #include<conio.h>
@@ -167,6 +168,7 @@ void MUDGame::RunGame(){
     LoadMap();
     //ShowNpcList();
     //cout<<"load end"<<endl;
+    Bag bagsaver;
     thewindow = GetStdHandle( STD_OUTPUT_HANDLE );
     int choice=0;
     int operate;
@@ -193,7 +195,10 @@ void MUDGame::RunGame(){
                                 gamestate = adv;
                             }
                             else if(operate == 2){
-                                //´æµµÎ´Íê³É
+                                cout<<"±³°ü´æµµ"<<endl;
+                                //bagsaver.bag_read();
+                                gamestate = adv;
+                                break;
                             }
                             else if(operate == 3){
                                 
@@ -333,7 +338,9 @@ void MUDGame::RunGame(){
                                 localOpt=GetInput(1,3);
                                 switch(localOpt){
                                     case 1:
-                                    case 2:
+                                    case 2://±³°ü
+                                           // bagsaver.bag_write();
+
                                     case 3:ToffGame();break;
                                     default: break;
                                 }
