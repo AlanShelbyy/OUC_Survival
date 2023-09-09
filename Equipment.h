@@ -11,18 +11,23 @@ struct Effect {
 	int Player_AbilityofLogic;  //逻辑能力值 
 	int Player_AbilityofPractice;  //实践能力值 
 	int Player_Action_Points;  //行动点 
+	
 };
 
 //装备的状态
 struct Type {
 	bool on;//是否装上
 	bool immediate;//是否是立即使用装备
+	
 };
 
 //装备的读取
 class Equipment {
 public:
+
 	Equipment(string fname = "data/Equipment", int n = 1);//初始化
+	
+
 	void show();//展示装备的各种属性
 	void num_plus() {//装备数量加一
 		num++;

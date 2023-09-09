@@ -196,7 +196,7 @@ void MUDGame::RunGame(){
                             }
                             else if(operate == 2){
                                 cout<<"교관닸도"<<endl;
-                                //bagsaver.bag_read();
+                                bagsaver.bag_read();
                                 gamestate = adv;
                                 break;
                             }
@@ -339,7 +339,7 @@ void MUDGame::RunGame(){
                                 switch(localOpt){
                                     case 1:
                                     case 2://교관
-                                           // bagsaver.bag_write();
+                                            bagsaver.bag_write();
 
                                     case 3:ToffGame();break;
                                     default: break;
