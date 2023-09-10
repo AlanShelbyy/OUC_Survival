@@ -20,7 +20,7 @@ extern ouc_map Ouc_map[19];
 
 void Player::changep_m(int num) {
 	p_m = &Ouc_map[num];
-};//ÒÆ¶¯Î»ÖÃ
+};//ç§»åŠ¨ä½ç½®
 short Player::getMap_id() {
 	return p_m->getId();
 }
@@ -28,7 +28,7 @@ ouc_map* Player::get_map() {
 	return p_m;
 }
 
-Player you;    //ÊµÀı»¯Ò»¸ö you
+Player you;    //å®ä¾‹åŒ–ä¸€ä¸ª you
 Bag mybag;
 
 /*void clear()
@@ -37,7 +37,7 @@ Bag mybag;
 	cout << endl;
 	cout << endl;
 	int temp_cl;
-	cout << "Çë°´ÈÎÒâ¼ü¼ÌĞø...";
+	cout << "è¯·æŒ‰ä»»æ„é”®ç»§ç»­...";
 	cin >> temp_cl;
 	if (temp_cl)
 	{
@@ -47,7 +47,7 @@ Bag mybag;
 }*/
 
 
-Player::Player() {//²âÊÔÓÃÀı
+Player::Player() {//æµ‹è¯•ç”¨ä¾‹
 	p = (struct Player_Stats*)new struct Player_Stats;
 	p_m = &Ouc_map[0];
 
@@ -61,23 +61,23 @@ void Player::GetReward(int pro, int mat, int log, int pra, int lnp) {
 }
 
 
-// Player::Player()  //¹¹Ôìº¯Êı 
+// Player::Player()  //æ„é€ å‡½æ•° 
 // {
 // 	cout << endl;
-// 	cout << "»¶Ó­ÄãÀ´µ½ OUC ĞÅ²¿ £¡"; Sleep(400);
-// 	cout << "ÏëºÃ¼ÆËã»úÀà·ÖÁ÷ºóµÄ×¨ÒµÈ¥ÏòÁËÃ´£¿ ÓĞÒÔÏÂËÄ¸ö·ÖÁ÷×¨Òµ¹©ÄãÌôÑ¡ : " << endl;
-// 	cout << "1. ¼ÆËã»ú¿ÆÑ§Óë¼¼Êõ" << endl;
-// 	cout << "2. ÖÇÄÜ¿ÆÑ§Óë¼¼Êõ" << endl;
-// 	cout << "3. ÍøÂç¿Õ¼ä°²È«" << endl;
-// 	cout << "4. Èí¼ş¹¤³Ì" << endl;
+// 	cout << "æ¬¢è¿ä½ æ¥åˆ° OUC ä¿¡éƒ¨ ï¼"; Sleep(400);
+// 	cout << "æƒ³å¥½è®¡ç®—æœºç±»åˆ†æµåçš„ä¸“ä¸šå»å‘äº†ä¹ˆï¼Ÿ æœ‰ä»¥ä¸‹å››ä¸ªåˆ†æµä¸“ä¸šä¾›ä½ æŒ‘é€‰ : " << endl;
+// 	cout << "1. è®¡ç®—æœºç§‘å­¦ä¸æŠ€æœ¯" << endl;
+// 	cout << "2. æ™ºèƒ½ç§‘å­¦ä¸æŠ€æœ¯" << endl;
+// 	cout << "3. ç½‘ç»œç©ºé—´å®‰å…¨" << endl;
+// 	cout << "4. è½¯ä»¶å·¥ç¨‹" << endl;
 // 	cout << endl;
-// 	cout << "ÇëÑ¡ÔñÒ»¸öÊÊºÏÄãµÄ·ÖÁ÷×¨Òµ : " << endl;
+// 	cout << "è¯·é€‰æ‹©ä¸€ä¸ªé€‚åˆä½ çš„åˆ†æµä¸“ä¸š : " << endl;
 // 	cin >> flag_major;
 // 	if (flag_major == 1)
 // 	{
-// 		cout << "ÄãÒÑ³ÉÎª [¼ÆËã»ú¿ÆÑ§Óë¼¼Êõ] ×¨ÒµµÄÑ§Éú  " << endl;
+// 		cout << "ä½ å·²æˆä¸º [è®¡ç®—æœºç§‘å­¦ä¸æŠ€æœ¯] ä¸“ä¸šçš„å­¦ç”Ÿ  " << endl;
 // 		Sleep(300);
-// 		cout << "¿ìÈ¥Ì½Ë÷Ğ£Ô° ²»¶Ï½»Á÷Ñ§Ï° Ìá¸ß×ÔÉíÄÜÁ¦ ÕùÈ¡Ë³Àû±ÏÒµ°É " << endl;
+// 		cout << "å¿«å»æ¢ç´¢æ ¡å›­ ä¸æ–­äº¤æµå­¦ä¹  æé«˜è‡ªèº«èƒ½åŠ› äº‰å–é¡ºåˆ©æ¯•ä¸šå§ " << endl;
 // 		p->Player_AbilityofLearn = 1;
 // 		p->Player_AbilityofProgramming = 4;
 // 		p->Player_AbilityofMath = 2;
@@ -87,9 +87,9 @@ void Player::GetReward(int pro, int mat, int log, int pra, int lnp) {
 // 	}
 // 	else if (flag_major == 2)
 // 	{
-// 		cout << "ÄãÒÑ³ÉÎª [ÖÇÄÜ¿ÆÑ§Óë¼¼Êõ] ×¨ÒµµÄÑ§Éú  " << endl;
+// 		cout << "ä½ å·²æˆä¸º [æ™ºèƒ½ç§‘å­¦ä¸æŠ€æœ¯] ä¸“ä¸šçš„å­¦ç”Ÿ  " << endl;
 // 		Sleep(300);
-// 		cout << "¿ìÈ¥Ì½Ë÷Ğ£Ô° ²»¶Ï½»Á÷Ñ§Ï° Ìá¸ß×ÔÉíÄÜÁ¦ ÕùÈ¡Ë³Àû±ÏÒµ°É " << endl;
+// 		cout << "å¿«å»æ¢ç´¢æ ¡å›­ ä¸æ–­äº¤æµå­¦ä¹  æé«˜è‡ªèº«èƒ½åŠ› äº‰å–é¡ºåˆ©æ¯•ä¸šå§ " << endl;
 // 		p->Player_AbilityofLearn = 1;
 // 		p->Player_AbilityofProgramming = 2;
 // 		p->Player_AbilityofMath = 2;
@@ -99,9 +99,9 @@ void Player::GetReward(int pro, int mat, int log, int pra, int lnp) {
 // 	}
 // 	else if (flag_major == 3)
 // 	{
-// 		cout << "ÄãÒÑ³ÉÎª [ÍøÂç¿Õ¼ä°²È«] ×¨ÒµµÄÑ§Éú  " << endl;
+// 		cout << "ä½ å·²æˆä¸º [ç½‘ç»œç©ºé—´å®‰å…¨] ä¸“ä¸šçš„å­¦ç”Ÿ  " << endl;
 // 		Sleep(300);
-// 		cout << "¿ìÈ¥Ì½Ë÷Ğ£Ô° ²»¶Ï½»Á÷Ñ§Ï° Ìá¸ß×ÔÉíÄÜÁ¦ ÕùÈ¡Ë³Àû±ÏÒµ°É " << endl;
+// 		cout << "å¿«å»æ¢ç´¢æ ¡å›­ ä¸æ–­äº¤æµå­¦ä¹  æé«˜è‡ªèº«èƒ½åŠ› äº‰å–é¡ºåˆ©æ¯•ä¸šå§ " << endl;
 // 		p->Player_AbilityofLearn = 1;
 // 		p->Player_AbilityofProgramming = 2;
 // 		p->Player_AbilityofMath = 2;
@@ -111,9 +111,9 @@ void Player::GetReward(int pro, int mat, int log, int pra, int lnp) {
 // 	}
 // 	else if (flag_major == 4)
 // 	{
-// 		cout << "ÄãÒÑ³ÉÎª [Èí¼ş¹¤³Ì] ×¨ÒµµÄÑ§Éú  " << endl;
+// 		cout << "ä½ å·²æˆä¸º [è½¯ä»¶å·¥ç¨‹] ä¸“ä¸šçš„å­¦ç”Ÿ  " << endl;
 // 		Sleep(300);
-// 		cout << "¿ìÈ¥Ì½Ë÷Ğ£Ô° ²»¶Ï½»Á÷Ñ§Ï° Ìá¸ß×ÔÉíÄÜÁ¦ ÕùÈ¡Ë³Àû±ÏÒµ°É " << endl;
+// 		cout << "å¿«å»æ¢ç´¢æ ¡å›­ ä¸æ–­äº¤æµå­¦ä¹  æé«˜è‡ªèº«èƒ½åŠ› äº‰å–é¡ºåˆ©æ¯•ä¸šå§ " << endl;
 // 		p->Player_AbilityofLearn = 1;
 // 		p->Player_AbilityofProgramming = 4;
 // 		p->Player_AbilityofMath = 2;
@@ -128,66 +128,66 @@ void Player::ChooseMajor()
 {
 
 	cout << endl;
-	cout << "»¶Ó­ÄãÀ´µ½ OUC ĞÅ²¿ £¡"; Sleep(400);
-	cout << "ÏëºÃ¼ÆËã»úÀà·ÖÁ÷ºóµÄ×¨ÒµÈ¥ÏòÁËÃ´£¿ ÓĞÒÔÏÂËÄ¸ö·ÖÁ÷×¨Òµ¹©ÄãÌôÑ¡ : " << endl;
-	cout << "1. ¼ÆËã»ú¿ÆÑ§Óë¼¼Êõ" << endl;
-	cout << "2. ÖÇÄÜ¿ÆÑ§Óë¼¼Êõ" << endl;
-	cout << "3. ÍøÂç¿Õ¼ä°²È«" << endl;
-	cout << "4. Èí¼ş¹¤³Ì" << endl;
+	cout << "æ¬¢è¿ä½ æ¥åˆ° OUC ä¿¡éƒ¨ ï¼"; Sleep(400);
+	cout << "æƒ³å¥½è®¡ç®—æœºç±»åˆ†æµåçš„ä¸“ä¸šå»å‘äº†ä¹ˆï¼Ÿ æœ‰ä»¥ä¸‹å››ä¸ªåˆ†æµä¸“ä¸šä¾›ä½ æŒ‘é€‰ : " << endl;
+	cout << "1. è®¡ç®—æœºç§‘å­¦ä¸æŠ€æœ¯" << endl;
+	cout << "2. æ™ºèƒ½ç§‘å­¦ä¸æŠ€æœ¯" << endl;
+	cout << "3. ç½‘ç»œç©ºé—´å®‰å…¨" << endl;
+	cout << "4. è½¯ä»¶å·¥ç¨‹" << endl;
 	cout << endl;
-	cout << "ÇëÑ¡ÔñÒ»¸öÊÊºÏÄãµÄ·ÖÁ÷×¨Òµ : " << endl;
+	cout << "è¯·é€‰æ‹©ä¸€ä¸ªé€‚åˆä½ çš„åˆ†æµä¸“ä¸š : " << endl;
 	cin >> flag_major;
 	if (flag_major == 1)
 	{
-		cout << "ÄãÒÑ³ÉÎª [¼ÆËã»ú¿ÆÑ§Óë¼¼Êõ] ×¨ÒµµÄÑ§Éú  " << endl;
+		cout << "ä½ å·²æˆä¸º [è®¡ç®—æœºç§‘å­¦ä¸æŠ€æœ¯] ä¸“ä¸šçš„å­¦ç”Ÿ  " << endl;
 		Sleep(300);
-		cout << "¿ìÈ¥Ì½Ë÷Ğ£Ô° ²»¶Ï½»Á÷Ñ§Ï° Ìá¸ß×ÔÉíÄÜÁ¦ ÕùÈ¡Ë³Àû±ÏÒµ°É " << endl;
+		cout << "å¿«å»æ¢ç´¢æ ¡å›­ ä¸æ–­äº¤æµå­¦ä¹  æé«˜è‡ªèº«èƒ½åŠ› äº‰å–é¡ºåˆ©æ¯•ä¸šå§ " << endl;
 		p->Player_AbilityofLearn = 1;
 		p->Player_AbilityofProgramming = 4;
 		p->Player_AbilityofMath = 2;
 		p->Player_AbilityofLogic = 2;
 		p->Player_AbilityofPractice = 2;
 		p->Player_Action_Points = 10;
-		strcpy(p->Major, "[¼ÆËã»ú¿ÆÑ§Óë¼¼Êõ]");
+		strcpy(p->Major, "[è®¡ç®—æœºç§‘å­¦ä¸æŠ€æœ¯]");
 	}
 	else if (flag_major == 2)
 	{
-		cout << "ÄãÒÑ³ÉÎª [ÖÇÄÜ¿ÆÑ§Óë¼¼Êõ] ×¨ÒµµÄÑ§Éú  " << endl;
+		cout << "ä½ å·²æˆä¸º [æ™ºèƒ½ç§‘å­¦ä¸æŠ€æœ¯] ä¸“ä¸šçš„å­¦ç”Ÿ  " << endl;
 		Sleep(300);
-		cout << "¿ìÈ¥Ì½Ë÷Ğ£Ô° ²»¶Ï½»Á÷Ñ§Ï° Ìá¸ß×ÔÉíÄÜÁ¦ ÕùÈ¡Ë³Àû±ÏÒµ°É " << endl;
+		cout << "å¿«å»æ¢ç´¢æ ¡å›­ ä¸æ–­äº¤æµå­¦ä¹  æé«˜è‡ªèº«èƒ½åŠ› äº‰å–é¡ºåˆ©æ¯•ä¸šå§ " << endl;
 		p->Player_AbilityofLearn = 1;
 		p->Player_AbilityofProgramming = 2;
 		p->Player_AbilityofMath = 2;
 		p->Player_AbilityofLogic = 4;
 		p->Player_AbilityofPractice = 2;
 		p->Player_Action_Points = 10;
-		strcpy(p->Major, "[ÖÇÄÜ¿ÆÑ§Óë¼¼Êõ]");
+		strcpy(p->Major, "[æ™ºèƒ½ç§‘å­¦ä¸æŠ€æœ¯]");
 	}
 	else if (flag_major == 3)
 	{
-		cout << "ÄãÒÑ³ÉÎª [ÍøÂç¿Õ¼ä°²È«] ×¨ÒµµÄÑ§Éú  " << endl;
+		cout << "ä½ å·²æˆä¸º [ç½‘ç»œç©ºé—´å®‰å…¨] ä¸“ä¸šçš„å­¦ç”Ÿ  " << endl;
 		Sleep(300);
-		cout << "¿ìÈ¥Ì½Ë÷Ğ£Ô° ²»¶Ï½»Á÷Ñ§Ï° Ìá¸ß×ÔÉíÄÜÁ¦ ÕùÈ¡Ë³Àû±ÏÒµ°É " << endl;
+		cout << "å¿«å»æ¢ç´¢æ ¡å›­ ä¸æ–­äº¤æµå­¦ä¹  æé«˜è‡ªèº«èƒ½åŠ› äº‰å–é¡ºåˆ©æ¯•ä¸šå§ " << endl;
 		p->Player_AbilityofLearn = 1;
 		p->Player_AbilityofProgramming = 2;
 		p->Player_AbilityofMath = 2;
 		p->Player_AbilityofLogic = 3;
 		p->Player_AbilityofPractice = 3;
 		p->Player_Action_Points = 10;
-		strcpy(p->Major, "[ÍøÂç¿Õ¼ä°²È«]");
+		strcpy(p->Major, "[ç½‘ç»œç©ºé—´å®‰å…¨]");
 	}
 	else if (flag_major == 4)
 	{
-		cout << "ÄãÒÑ³ÉÎª [Èí¼ş¹¤³Ì] ×¨ÒµµÄÑ§Éú  " << endl;
+		cout << "ä½ å·²æˆä¸º [è½¯ä»¶å·¥ç¨‹] ä¸“ä¸šçš„å­¦ç”Ÿ  " << endl;
 		Sleep(300);
-		cout << "¿ìÈ¥Ì½Ë÷Ğ£Ô° ²»¶Ï½»Á÷Ñ§Ï° Ìá¸ß×ÔÉíÄÜÁ¦ ÕùÈ¡Ë³Àû±ÏÒµ°É " << endl;
+		cout << "å¿«å»æ¢ç´¢æ ¡å›­ ä¸æ–­äº¤æµå­¦ä¹  æé«˜è‡ªèº«èƒ½åŠ› äº‰å–é¡ºåˆ©æ¯•ä¸šå§ " << endl;
 		p->Player_AbilityofLearn = 1;
 		p->Player_AbilityofProgramming = 4;
 		p->Player_AbilityofMath = 2;
 		p->Player_AbilityofLogic = 2;
 		p->Player_AbilityofPractice = 2;
 		p->Player_Action_Points = 10;
-		strcpy(p->Major, "[Èí¼ş¹¤³Ì]");
+		strcpy(p->Major, "[è½¯ä»¶å·¥ç¨‹]");
 	}
 
 }
@@ -201,42 +201,42 @@ void Player::be_attack(int damage) {
 }
 void Player::Tasks()
 {
-	cout << "ÔÚ10¸öÌìÊıµ¥Î»ÄÚ£¬Í¨¹ıÓëÍ¬Ñ§ [½»Á÷Ñ§Ï°] ºÍ [Ì½Ë÷Ğ£Ô°] ÌáÉı×Ô¼ºµÄÑ§Ï°Á¦Óë¸÷·½ÃæÄÜÁ¦Öµ" << endl;
-	cout << "ÔÚÓĞ×ÔĞÅµÄ°ÑÎÕÏÂ£¬Ïò½ÌÊ¦·¢Æğ [¿¼ÊÔ] ÇëÇó£¬ÀÛ»ıµ½6¸öÑ§·Ö·½¿ÉË³Àû±ÏÒµ" << endl;
+	cout << "åœ¨10ä¸ªå¤©æ•°å•ä½å†…ï¼Œé€šè¿‡ä¸åŒå­¦ [äº¤æµå­¦ä¹ ] å’Œ [æ¢ç´¢æ ¡å›­] æå‡è‡ªå·±çš„å­¦ä¹ åŠ›ä¸å„æ–¹é¢èƒ½åŠ›å€¼" << endl;
+	cout << "åœ¨æœ‰è‡ªä¿¡çš„æŠŠæ¡ä¸‹ï¼Œå‘æ•™å¸ˆå‘èµ· [è€ƒè¯•] è¯·æ±‚ï¼Œç´¯ç§¯åˆ°6ä¸ªå­¦åˆ†æ–¹å¯é¡ºåˆ©æ¯•ä¸š" << endl;
 }
 
-void Player::State() const //Õ¹Ê¾Íæ¼Òµ±Ç°×´Ì¬ 
+void Player::State() const //å±•ç¤ºç©å®¶å½“å‰çŠ¶æ€ 
 {
 	cout << endl;
-	cout << "ÄãµÄ×¨Òµ [" << p->Major << ']' << endl;
-	cout << "Ñ§Ï°Á¦ : " << p->Player_AbilityofLearn << endl;
-	cout << "ĞĞ¶¯µã : " << p->Player_Action_Points << endl;
-	cout << "±à³ÌÄÜÁ¦Öµ : " << p->Player_AbilityofProgramming << endl;
-	cout << "ÊıÑ§ÄÜÁ¦Öµ : " << p->Player_AbilityofMath << endl;
-	cout << "Âß¼­ÄÜÁ¦Öµ : " << p->Player_AbilityofLogic << endl;
-	cout << "Êµ¼ùÄÜÁ¦Öµ : " << p->Player_AbilityofPractice << endl;
-	cout << "ÔÚĞ£ÒÑÑ§Ï°ÌìÊı : " << p->DateCount << endl;
+	cout << "ä½ çš„ä¸“ä¸š [" << p->Major << ']' << endl;
+	cout << "å­¦ä¹ åŠ› : " << p->Player_AbilityofLearn << endl;
+	cout << "è¡ŒåŠ¨ç‚¹ : " << p->Player_Action_Points << endl;
+	cout << "ç¼–ç¨‹èƒ½åŠ›å€¼ : " << p->Player_AbilityofProgramming << endl;
+	cout << "æ•°å­¦èƒ½åŠ›å€¼ : " << p->Player_AbilityofMath << endl;
+	cout << "é€»è¾‘èƒ½åŠ›å€¼ : " << p->Player_AbilityofLogic << endl;
+	cout << "å®è·µèƒ½åŠ›å€¼ : " << p->Player_AbilityofPractice << endl;
+	cout << "åœ¨æ ¡å·²å­¦ä¹ å¤©æ•° : " << p->DateCount << endl;
 }
 
 void Player::Equip_equipments(int num_eq)
 {
 	Equipment player_equ;
 	cout << endl;
-	cout << " ¶ÔÓÚ [" << equipment_bag[num_eq - 1] << "] Äã´òËã :" << endl;
-	cout << "1. Ê¹ÓÃ¸ÃÎïÆ·" << endl;
-	cout << "2. ²é¿´¸ÃÎïÆ·ÊôĞÔ" << endl;
-	cout << "3. Ğ¶ÏÂ¸Ã×°±¸" << endl;
-	cout << "4. ¶ªÆú¸ÃÎïÆ· " << endl;
+	cout << " å¯¹äº [" << equipment_bag[num_eq - 1] << "] ä½ æ‰“ç®— :" << endl;
+	cout << "1. ä½¿ç”¨è¯¥ç‰©å“" << endl;
+	cout << "2. æŸ¥çœ‹è¯¥ç‰©å“å±æ€§" << endl;
+	cout << "3. å¸ä¸‹è¯¥è£…å¤‡" << endl;
+	cout << "4. ä¸¢å¼ƒè¯¥ç‰©å“ " << endl;
 	int flag_eq;
 	cin >> flag_eq;
 	if (flag_eq == 1)
 	{
-		cout << "×°±¸¸ÃÎïÆ·ºóÄãµÄ×´Ì¬ : " << endl;
-		p->Player_AbilityofLearn += equipment_bag[num_eq - 1]->get_AbilityofLearn();  //Ñ§Ï°Á¦ 
-		this->p->Player_AbilityofProgramming += equipment_bag[num_eq - 1]->get_AbilityofProgramming();  //±à³ÌÄÜÁ¦Öµ 
-		this->p->Player_AbilityofMath += equipment_bag[num_eq - 1]->get_AbilityofMath(); // ÊıÑ§ÄÜÁ¦Öµ 
-		this->p->Player_AbilityofLogic += equipment_bag[num_eq - 1]->get_AbilityofLogic();  //Âß¼­ÄÜÁ¦Öµ 
-		this->p->Player_AbilityofPractice += equipment_bag[num_eq - 1]->get_AbilityofPractice();  //Êµ¼ùÄÜÁ¦Öµ 
+		cout << "è£…å¤‡è¯¥ç‰©å“åä½ çš„çŠ¶æ€ : " << endl;
+		p->Player_AbilityofLearn += equipment_bag[num_eq - 1]->get_AbilityofLearn();  //å­¦ä¹ åŠ› 
+		this->p->Player_AbilityofProgramming += equipment_bag[num_eq - 1]->get_AbilityofProgramming();  //ç¼–ç¨‹èƒ½åŠ›å€¼ 
+		this->p->Player_AbilityofMath += equipment_bag[num_eq - 1]->get_AbilityofMath(); // æ•°å­¦èƒ½åŠ›å€¼ 
+		this->p->Player_AbilityofLogic += equipment_bag[num_eq - 1]->get_AbilityofLogic();  //é€»è¾‘èƒ½åŠ›å€¼ 
+		this->p->Player_AbilityofPractice += equipment_bag[num_eq - 1]->get_AbilityofPractice();  //å®è·µèƒ½åŠ›å€¼ 
 		equipment_bag[num_eq - 1]->show();
 	}
 	else if (flag_eq == 2)
@@ -245,26 +245,26 @@ void Player::Equip_equipments(int num_eq)
 	}
 	else if (flag_eq == 3)
 	{
-		if (!equipment_bag[num_eq - 1]->get_on()) //»¹Î´Ê¹ÓÃ
+		if (!equipment_bag[num_eq - 1]->get_on()) //è¿˜æœªä½¿ç”¨
 		{
-			cout << "¸ÃÎïÆ·ÈÔÎ´Ê¹ÓÃ ÎŞ·¨Ğ¶ÏÂ" << endl;
+			cout << "è¯¥ç‰©å“ä»æœªä½¿ç”¨ æ— æ³•å¸ä¸‹" << endl;
 		}
 		else
 		{
-			this->p->Player_AbilityofLearn -= equipment_bag[num_eq - 1]->get_AbilityofLearn();  //Ñ§Ï°Á¦ 
-			this->p->Player_AbilityofProgramming -= equipment_bag[num_eq - 1]->get_AbilityofProgramming();  //±à³ÌÄÜÁ¦Öµ 
-			this->p->Player_AbilityofMath -= equipment_bag[num_eq - 1]->get_AbilityofMath(); // ÊıÑ§ÄÜÁ¦Öµ 
-			this->p->Player_AbilityofLogic -= equipment_bag[num_eq - 1]->get_AbilityofLogic();  //Âß¼­ÄÜÁ¦Öµ 
-			this->p->Player_AbilityofPractice -= equipment_bag[num_eq - 1]->get_AbilityofPractice();  //Êµ¼ùÄÜÁ¦Öµ 
+			this->p->Player_AbilityofLearn -= equipment_bag[num_eq - 1]->get_AbilityofLearn();  //å­¦ä¹ åŠ› 
+			this->p->Player_AbilityofProgramming -= equipment_bag[num_eq - 1]->get_AbilityofProgramming();  //ç¼–ç¨‹èƒ½åŠ›å€¼ 
+			this->p->Player_AbilityofMath -= equipment_bag[num_eq - 1]->get_AbilityofMath(); // æ•°å­¦èƒ½åŠ›å€¼ 
+			this->p->Player_AbilityofLogic -= equipment_bag[num_eq - 1]->get_AbilityofLogic();  //é€»è¾‘èƒ½åŠ›å€¼ 
+			this->p->Player_AbilityofPractice -= equipment_bag[num_eq - 1]->get_AbilityofPractice();  //å®è·µèƒ½åŠ›å€¼ 
 			equipment_bag[num_eq - 1]->show();
 		}
 	}
 	else if (flag_eq == 4)
 	{
-		cout << "È·ÈÏ¶ªÆú¸ÃÎïÆ·?" << endl;
-		cout << "1. ¶ªÆú" << endl;
+		cout << "ç¡®è®¤ä¸¢å¼ƒè¯¥ç‰©å“?" << endl;
+		cout << "1. ä¸¢å¼ƒ" << endl;
 
-		cout << "2. È¡Ïû" << endl;
+		cout << "2. å–æ¶ˆ" << endl;
 		int flag_qr;
 		cin >> flag_qr;
 		if (flag_qr == 1)
@@ -275,7 +275,7 @@ void Player::Equip_equipments(int num_eq)
 		}
 		else
 		{
-			//·µ»Ø
+			//è¿”å›
 		}
 	}
 
@@ -283,13 +283,13 @@ void Player::Equip_equipments(int num_eq)
 
 void Player::Backpack() const
 {
-	if (equipment_bag.empty()) //¿Õ ±³°ü
+	if (equipment_bag.empty()) //ç©º èƒŒåŒ…
 	{
-		cout << "ÄãµÄ±³°ü¿Õ¿ÕÈçÒ² " << endl;
+		cout << "ä½ çš„èƒŒåŒ…ç©ºç©ºå¦‚ä¹Ÿ " << endl;
 	}
 	else
 	{
-		cout << "Äã±³°üÄÚµÄÎïÆ·ÓĞ : " << endl;
+		cout << "ä½ èƒŒåŒ…å†…çš„ç‰©å“æœ‰ : " << endl;
 		for (int i = 0; i < equipment_bag.size(); i++)
 		{
 			cout << i + 1 << '.' << equipment_bag[i]->get_name() << endl;
@@ -306,22 +306,22 @@ void Player::Eat_orSleep() const
 	cin >> flag_es;
 	if (flag_es == 1)
 	{
-		int flag_eat = 1; //Ò»Ìì½ö½ö¿ÉÒÔÓÃ²ÍÒ»´Î  ×ªÌìflag_eat±ê×¢Îª 1 ¿ÉÓÃ²Í  
+		int flag_eat = 1; //ä¸€å¤©ä»…ä»…å¯ä»¥ç”¨é¤ä¸€æ¬¡  è½¬å¤©flag_eatæ ‡æ³¨ä¸º 1 å¯ç”¨é¤  
 		srand(time(NULL));
-		int temp1_Player_Action_Points = rand() % 4 + 2; //³ÔÒ»´Î·¹Ëæ»ú¼Ó 2~5ĞĞ¶¯µã  
-		if (p_m->getId() != 2) //²»ÔÚÊ³ÌÃ
+		int temp1_Player_Action_Points = rand() % 4 + 2; //åƒä¸€æ¬¡é¥­éšæœºåŠ  2~5è¡ŒåŠ¨ç‚¹  
+		if (p_m->getId() != 2) //ä¸åœ¨é£Ÿå ‚
 		{
-			cout << "´Ë´¦²»¿ÉÓÃ²Í ½ö¿ÉÔÚÊ³ÌÃÓÃ²Í " << endl;
+			cout << "æ­¤å¤„ä¸å¯ç”¨é¤ ä»…å¯åœ¨é£Ÿå ‚ç”¨é¤ " << endl;
 		}
 		else if (!flag_eat)
 		{
 			cout << endl;
-			cout << "Ê³ÌÃ¹ØÃÅÀ²  Çë×ªÌìÔÙÀ´¹â¹Ë " << endl;
+			cout << "é£Ÿå ‚å…³é—¨å•¦  è¯·è½¬å¤©å†æ¥å…‰é¡¾ " << endl;
 		}
 		else
 		{
 			cout << endl;
-			cout << "ÕıÔÚÓÃ²Í ";
+			cout << "æ­£åœ¨ç”¨é¤ ";
 			Sleep(300);
 			for (int i = 0; i < 6; i++)
 			{
@@ -329,29 +329,29 @@ void Player::Eat_orSleep() const
 				Sleep(400);
 			}
 			cout << endl;
-			cout << "ÓÃ²Í½áÊø  »ñµÃĞĞ¶¯µã " << temp1_Player_Action_Points << ' ' << endl;
+			cout << "ç”¨é¤ç»“æŸ  è·å¾—è¡ŒåŠ¨ç‚¹ " << temp1_Player_Action_Points << ' ' << endl;
 			p->Player_Action_Points += temp1_Player_Action_Points;
 			flag_eat = 0;
 		}
 	}
 	else if (flag_es == 2)
 	{
-		if (p_m->getId() != 1)//²»ÔÚËŞÉá
+		if (p_m->getId() != 1)//ä¸åœ¨å®¿èˆ
 		{
 			cout << endl;
-			cout << "½öÔÊĞíÔÚËŞÉáË¯´ó¾õÅ¶" << endl;
+			cout << "ä»…å…è®¸åœ¨å®¿èˆç¡å¤§è§‰å“¦" << endl;
 		}
-		else if (p->Player_Action_Points >= 5)// ÌåÁ¦µã´óÓÚµÈÓÚ5 ·ÀÖ¹°ÚÀÃÍæ¼Ò ²»¿ÉË¯¾õ
+		else if (p->Player_Action_Points >= 5)// ä½“åŠ›ç‚¹å¤§äºç­‰äº5 é˜²æ­¢æ‘†çƒ‚ç©å®¶ ä¸å¯ç¡è§‰
 		{
 			cout << endl;
-			cout << "ÄãµÄ¾«Á¦³äÅæ ²»·Á¶àÈ¥×ß×ß~" << endl;
+			cout << "ä½ çš„ç²¾åŠ›å……æ²› ä¸å¦¨å¤šå»èµ°èµ°~" << endl;
 		}
 		else
 		{
 			srand(time(NULL));
-			int temp2_Player_Action_Points = rand() % 7 + 10; //Ë¯¾õËæ»ú¼Ó 10-16ĞĞ¶¯µã  
+			int temp2_Player_Action_Points = rand() % 7 + 10; //ç¡è§‰éšæœºåŠ  10-16è¡ŒåŠ¨ç‚¹  
 			cout << endl;
-			cout << "ºôºô´óË¯ÖĞ";
+			cout << "å‘¼å‘¼å¤§ç¡ä¸­";
 			Sleep(300);
 			for (int i = 0; i < 6; i++)
 			{
@@ -359,7 +359,7 @@ void Player::Eat_orSleep() const
 				Sleep(400);
 			}
 			cout << endl;
-			cout << "Ë¯Ãß½áÊø  »ñµÃĞĞ¶¯µã " << temp2_Player_Action_Points << ' ' << endl;
+			cout << "ç¡çœ ç»“æŸ  è·å¾—è¡ŒåŠ¨ç‚¹ " << temp2_Player_Action_Points << ' ' << endl;
 			p->Player_Action_Points += temp2_Player_Action_Points;
 		}
 	}
@@ -378,8 +378,8 @@ void Player::Exam_with_teachers() const
 
 void Player::Explore_items() const
 {
-	cout << "ÊÇ·ñ½øÒ»²½Ì½Ë÷¸Ã³¡¾°ÖĞÎïÆ·£¿" << endl;
-	cout << "1.ÊÇ\n2.·ñ" << endl;
+	cout << "æ˜¯å¦è¿›ä¸€æ­¥æ¢ç´¢è¯¥åœºæ™¯ä¸­ç‰©å“ï¼Ÿ" << endl;
+	cout << "1.æ˜¯\n2.å¦" << endl;
 	int temp_ts;
 	cin >> temp_ts;
 	if (temp_ts == 1) {
@@ -387,16 +387,16 @@ void Player::Explore_items() const
 	}
 	else if (temp_ts == 2)
 	{
-		cout << "¼ûºÃ¾ÍÊÕ~" << endl;
+		cout << "è§å¥½å°±æ”¶~" << endl;
 	}
 }
 
 void Player::Settings()
 {
 	cout << endl;
-	cout << "½øÈëÓÎÏ·ÏµÍ³²Ëµ¥" << endl;
+	cout << "è¿›å…¥æ¸¸æˆç³»ç»Ÿèœå•" << endl;
 	cout << endl;
-	cout << "1. ´æ´¢½ø¶È  2. ·µ»Ø±êÌâ  3. ±£´æ²¢ÍË³öÓÎÏ·  4.¼ÌĞøÓÎÏ· " << endl;
+	cout << "1. å­˜å‚¨è¿›åº¦  2. è¿”å›æ ‡é¢˜  3. ä¿å­˜å¹¶é€€å‡ºæ¸¸æˆ  4.ç»§ç»­æ¸¸æˆ " << endl;
 	cout << endl;
 	int flag_set;
 	cin >> flag_set;
@@ -406,7 +406,7 @@ void Player::Settings()
 	}
 	else if (flag_set == 2)
 	{
-		cout << "ÇëÑ¡Ôñ·µ»Ø±êÌâÇ° ÊÇ·ñÒª´æ´¢½ø¶È£¿\n1. ´æ´¢½ø¶È\n2. äìÈ÷ÀëÈ¥";
+		cout << "è¯·é€‰æ‹©è¿”å›æ ‡é¢˜å‰ æ˜¯å¦è¦å­˜å‚¨è¿›åº¦ï¼Ÿ\n1. å­˜å‚¨è¿›åº¦\n2. æ½‡æ´’ç¦»å»";
 		int temp_save;
 		cin >> temp_save;
 		if (temp_save == 1)
@@ -430,26 +430,26 @@ void Player::Settings()
 
 // void Menu()
 // {
-// 	cout << "ÄãÒª´òËã×öÊ²Ã´ : " << endl;
+// 	cout << "ä½ è¦æ‰“ç®—åšä»€ä¹ˆ : " << endl;
 // 	cout << endl;
-// 	cout << "1. ²é¿´×´Ì¬  2.±³°ü  3. Ì½Ë÷  4. Ñ§Ï°½»Á÷/ÉêÇë¿¼ÊÔ  5.ÒÆ¶¯  6. ³Ô·¹/Ë¯¾õ  7. µØÍ¼ " << endl;
+// 	cout << "1. æŸ¥çœ‹çŠ¶æ€  2.èƒŒåŒ…  3. æ¢ç´¢  4. å­¦ä¹ äº¤æµ/ç”³è¯·è€ƒè¯•  5.ç§»åŠ¨  6. åƒé¥­/ç¡è§‰  7. åœ°å›¾ " << endl;
 // 	cout << endl;
 // 	int opt;
 // 	cin >> opt;
 // 	if (opt == 1)
 // 	{
-// 		cout << "ÄãµÄ×´Ì¬ : " << endl;
+// 		cout << "ä½ çš„çŠ¶æ€ : " << endl;
 // 		you.State();
 // 	}
 // 	else if (opt == 2)
 // 	{
-// 		if (!equipment_bag.size()) //±³°üÎª¿Õ
+// 		if (!equipment_bag.size()) //èƒŒåŒ…ä¸ºç©º
 // 		{
-// 			cout << "ÄãµÄ±³°üÀï ¿Õ¿ÕÈçÒ² " << endl;
+// 			cout << "ä½ çš„èƒŒåŒ…é‡Œ ç©ºç©ºå¦‚ä¹Ÿ " << endl;
 // 		}
 // 		else
 // 		{
-// 			cout << "ÒÔÏÂÊÇÄã±³°üÖĞµÄÎïÆ· : " << endl;
+// 			cout << "ä»¥ä¸‹æ˜¯ä½ èƒŒåŒ…ä¸­çš„ç‰©å“ : " << endl;
 // 			you.Backpack();
 // 		}
 // 	}
@@ -459,16 +459,16 @@ void Player::Settings()
 // 	}
 // 	else if (opt == 4)
 // 	{
-// 		if (you.get_map()->getNpc_id().empty())//¸Ã·¿¼äÃ»ÓĞNPC
+// 		if (you.get_map()->getNpc_id().empty())//è¯¥æˆ¿é—´æ²¡æœ‰NPC
 // 		{
-// 			cout << "Õâ¼ä½ÌÊÒÃ²ËÆ¿ÕÎŞÒ»ÈË" << endl;
+// 			cout << "è¿™é—´æ•™å®¤è²Œä¼¼ç©ºæ— ä¸€äºº" << endl;
 // 		}
 // 		else
 // 		{
-// 			cout << "µ±Ç°½ÌÊÒÓĞ : " << endl;
+// 			cout << "å½“å‰æ•™å®¤æœ‰ : " << endl;
 // 			for (int i = 0; i <you.get_map()->getNpc_id().size(); i++)
 // 			{
-// 				cout << i + 1 << '.' ;//npcµÄÃû×Ö
+// 				cout << i + 1 << '.' ;//npcçš„åå­—
 // 				//NPC 
 // 			}
 // 		}
@@ -476,7 +476,7 @@ void Player::Settings()
 // 	else if (opt == 5)
 // 	{
 // 		cout << endl;
-// 		cout << "Äãµ±Ç°ËùÔÚµØ±àºÅ¼°Ãû³ÆÎª ";
+// 		cout << "ä½ å½“å‰æ‰€åœ¨åœ°ç¼–å·åŠåç§°ä¸º ";
 // 		you.get_map()->show();
 // 	}
 // 	else if (opt == 6)
@@ -489,23 +489,23 @@ void Player::Settings()
 // 	}
 // }
 
-//Íæ¼ÒÊäÈëº¯Êı
+//ç©å®¶è¾“å…¥å‡½æ•°
 
 int Player_scanf() {
 	int a;
 	cin >> a;
 	return a;
 }
-//¿ìËÙÒÆ¶¯µÄº¯Êı
+//å¿«é€Ÿç§»åŠ¨çš„å‡½æ•°
 void quick_move(Player& you, int num) {
-	cout << "ÊÇÏëÅÜÈ¥ÄÄÀïÂğ£¿";
-	cout << setfill('=') << setw(25) << "µØÍ¼½Úµã" << setfill('=') << setw(25) << "" << endl;
+	cout << "æ˜¯æƒ³è·‘å»å“ªé‡Œå—ï¼Ÿ";
+	cout << setfill('=') << setw(25) << "åœ°å›¾èŠ‚ç‚¹" << setfill('=') << setw(25) << "" << endl;
 	for (int i = 0; i < 19; i++) {
 		Ouc_map[i].show();
 	}
 	int choice = Player_scanf();
 	while (choice < 1 || choice>19) {
-		cout << "±ğ³¢ÊÔÑ¡ÏîÒÔÍâµÄÊı×ÖÀ²£¬ÔõÃ´ÏëÒ²×ö²»µ½µÄ" << endl;
+		cout << "åˆ«å°è¯•é€‰é¡¹ä»¥å¤–çš„æ•°å­—å•¦ï¼Œæ€ä¹ˆæƒ³ä¹Ÿåšä¸åˆ°çš„" << endl;
 		choice = Player_scanf();
 	}
 	you.changep_m(choice);
@@ -517,9 +517,9 @@ void move(Player& you) {
 	short neib[6];
 
 	you.get_map()->getNeib(neib);
-	cout << "ÓĞÊ²Ã´ÏëÈ¥µÄµØ·½Âğ£¿" << endl;
-	//´òÓ¡ÄÜÒÆ¶¯µ½µÄ½Úµã
-	int size = 0;//ÄÜÒÆ¶¯½ÚµãµÄÊıÁ¿
+	cout << "æœ‰ä»€ä¹ˆæƒ³å»çš„åœ°æ–¹å—ï¼Ÿ" << endl;
+	//æ‰“å°èƒ½ç§»åŠ¨åˆ°çš„èŠ‚ç‚¹
+	int size = 0;//èƒ½ç§»åŠ¨èŠ‚ç‚¹çš„æ•°é‡
 
 	for (int i = 0; i < 6; i++) {
 		if (neib[i] != 0) {
@@ -529,24 +529,24 @@ void move(Player& you) {
 		else
 			break;
 	}
-	//¸ù¾İÍæ¼ÒÑ¡ÔñÒÆ¶¯
+	//æ ¹æ®ç©å®¶é€‰æ‹©ç§»åŠ¨
 	int choice;
 	choice = Player_scanf();
 	while (choice < 1 || choice > size) {
-		cout << "ÎŞĞ§ÊäÈë£¬ÇëÖØĞÂÑ¡Ôñ" << endl;
+		cout << "æ— æ•ˆè¾“å…¥ï¼Œè¯·é‡æ–°é€‰æ‹©" << endl;
 		choice = Player_scanf();
 	}
 	you.changep_m(neib[choice - 1] - 1);
 	num = you.get_map()->getId();
 
-	//ÒÆ¶¯Ê±¸ÅÂÊ»ñÈ¡×°±¸
+	//ç§»åŠ¨æ—¶æ¦‚ç‡è·å–è£…å¤‡
 	srand(time(NULL));
 	int equip_id;
 	int probability;
 	equip_id = rand() % 19;
-	MofE(equip_id, num, 15, 10, 20, 2, 5, 1, 30);
+	MofE(equip_id, num, 60, 50, 40, 30, 30, 20, 70);
 
-	//Ë¢ĞÂ0-3¸önpc 
+	//åˆ·æ–°0-3ä¸ªnpc 
 	num = rand() % 4;
 	for (int i = 0; i < num; i++) {
 		bool isTrue = 0;
@@ -560,7 +560,7 @@ void move(Player& you) {
 		if (!isTrue)
 			you.get_map()->getNpc_id().push_back(Npc_id);
 	}
-	//¹Ì¶¨Ë¢ĞÂboss
+	//å›ºå®šåˆ·æ–°boss
 	if (num = you.get_map()->getId() == 17)
 		you.get_map()->getBoss_id().push_back(0);
 	if (num = you.get_map()->getId() == 6)
@@ -569,15 +569,15 @@ void move(Player& you) {
 		you.get_map()->getBoss_id().push_back(2);
 }
 
-void map_explore(Player& you) {//»ñÈ¡µ±Ç°µØÍ¼´æÔÚµÄÎïÆ·
+void map_explore(Player& you) {//è·å–å½“å‰åœ°å›¾å­˜åœ¨çš„ç‰©å“
 	srand(time(0));
 	int equip_id = rand() % 19;
 	bool theBool = 0;
 	int num = you.get_map()->getId();
 	if (equip_id == 6) {
-		cout << "6ºÅÎïÆ·" << endl;
+		cout << "6å·ç‰©å“" << endl;
 	}
-	theBool = MofE(equip_id, num, 30, 20, 40, 4, 10, 2, 60);
+	theBool = MofE(equip_id, num, 85, 80, 90, 80, 85, 70, 100);
 	if (!theBool)
-		cout << "ÔËÆøÕæ²î£¬ËÆºõ²¢Ã»ÓĞÕÒµ½Ê²Ã´ÓĞÓÃµÄ¶«Î÷" << endl;
+		cout << "è¿æ°”çœŸå·®ï¼Œä¼¼ä¹å¹¶æ²¡æœ‰æ‰¾åˆ°ä»€ä¹ˆæœ‰ç”¨çš„ä¸œè¥¿" << endl;
 }
